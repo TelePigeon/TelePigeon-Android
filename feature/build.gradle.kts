@@ -17,6 +17,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:type"))
     implementation(project(":core:ui"))
+    implementation(project(":domain"))
 
     // Android
     implementation(libs.bundles.androidx)
