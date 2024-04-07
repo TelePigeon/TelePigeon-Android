@@ -62,6 +62,11 @@ jobs:
           DEFAULTS_PROJECT: ${{ secrets.DEFAULTS_PROJECT }}
         run: echo "defaults.project=$DEFAULTS_PROJECT" >> sentry.properties
 
+      - name: Access AUTH_TOKEN
+        env:
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+        run: echo "auth.token=$AUTH_TOKEN" >> sentry.properties
+
       - name: Lint Check
         run: ./gradlew ktlintCheck -PcompileSdkVersion=34
 
