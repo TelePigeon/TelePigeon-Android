@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.telepigeon.android.application)
     alias(libs.plugins.telepigeon.android.test)
     alias(libs.plugins.telepigeon.android.hilt)
+    alias(libs.plugins.google.firebase.crashlytics)
+    alias(libs.plugins.sentry)
 }
 
 val properties =
@@ -19,6 +21,8 @@ android {
         applicationId = "com.dongguk.telepigeon"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
+
+        manifestPlaceholders["IO_SENTRY_DSN"] = properties["io.sentry.dsn"] as String
     }
 
     buildTypes {
