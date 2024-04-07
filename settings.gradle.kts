@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TelePigeon"
 include(":app")
+include(":core:ui")
