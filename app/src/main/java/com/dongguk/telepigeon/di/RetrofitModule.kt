@@ -1,10 +1,10 @@
 package com.dongguk.telepigeon.di
 
 import com.dongguk.telepigeon.BuildConfig
+import com.dongguk.telepigeon.BuildConfig.DEBUG
 import com.dongguk.telepigeon.di.qualifier.Auth
 import com.dongguk.telepigeon.di.qualifier.TelePigeon
 import com.dongguk.telepigeon.interceptor.AuthInterceptor
-import com.google.android.datatransport.BuildConfig.DEBUG
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
