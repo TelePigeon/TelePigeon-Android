@@ -49,7 +49,7 @@ jobs:
 
       - name: Access IO_SENTRY_DSN
         env:
-          IO_SENTRY_TOKEN: ${{ secrets.IO_SENTRY_DSN }}
+          IO_SENTRY_DSN: ${{ secrets.IO_SENTRY_DSN }}
         run: echo "io.sentry.dsn=\"$IO_SENTRY_DSN\"" >> local.properties
 
       - name: Lint Check
