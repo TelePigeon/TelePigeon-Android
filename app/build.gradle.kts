@@ -7,9 +7,10 @@ plugins {
     alias(libs.plugins.telepigeon.android.hilt)
 }
 
-val properties = Properties().apply {
-    load(project.rootProject.file("local.properties").inputStream())
-}
+val properties =
+    Properties().apply {
+        load(project.rootProject.file("local.properties").inputStream())
+    }
 
 android {
     namespace = "com.dongguk.telepigeon"
@@ -31,7 +32,7 @@ android {
             buildConfigField("String", "BASE_URL", properties["prod.base.url"].toString())
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

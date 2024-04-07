@@ -1,24 +1,27 @@
 package com.dongguk.telpigeon.core.ui.util.view
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 
-fun View.stringOf(@StringRes resId: Int) = ContextCompat.getString(context, resId)
+fun View.stringOf(
+    @StringRes resId: Int,
+) = ContextCompat.getString(context, resId)
 
-fun View.colorOf(@ColorRes resId: Int) = ContextCompat.getColor(context, resId)
+fun View.colorOf(
+    @ColorRes resId: Int,
+) = ContextCompat.getColor(context, resId)
 
-fun View.setBackgroundTint(@ColorRes resId: Int) =
+fun View.setBackgroundTint(
+    @ColorRes resId: Int,
+) =
     ViewCompat.setBackgroundTintList(this, ContextCompat.getColorStateList(context, resId))
 
 inline fun View.setOnSingleClickListener(
     delay: Long = 500L,
-    crossinline block: (View) -> Unit
+    crossinline block: (View) -> Unit,
 ) {
     var isClickable = true
     setOnClickListener { view ->

@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace="com.dongguk.telepigeon.core.ui"
+    namespace = "com.dongguk.telepigeon.core.ui"
 }

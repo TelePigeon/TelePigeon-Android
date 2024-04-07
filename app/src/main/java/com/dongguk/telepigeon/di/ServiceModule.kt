@@ -14,6 +14,8 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun providesDummyService(@TelePigeon retrofit: Retrofit): DummyService =
+    fun providesDummyService(
+        @TelePigeon retrofit: Retrofit,
+    ): DummyService =
         retrofit.create(DummyService::class.java)
 }

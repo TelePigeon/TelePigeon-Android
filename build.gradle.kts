@@ -15,4 +15,11 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.ktlint)
+}
+
+allprojects {
+    apply {
+        plugin(rootProject.libs.plugins.ktlint.get().pluginId)
+    }
 }

@@ -26,18 +26,19 @@ object RetrofitModule {
     @OptIn(ExperimentalSerializationApi::class)
     @Provides
     @Singleton
-    fun providesJson(): Json = Json {
-        isLenient = true
-        prettyPrint = true
-        explicitNulls = false
-        ignoreUnknownKeys = true
-    }
+    fun providesJson(): Json =
+        Json {
+            isLenient = true
+            prettyPrint = true
+            explicitNulls = false
+            ignoreUnknownKeys = true
+        }
 
     @Provides
     @Singleton
     fun providesOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        @Auth authInterceptor: Interceptor
+        @Auth authInterceptor: Interceptor,
     ): OkHttpClient =
         OkHttpClient.Builder().apply {
             connectTimeout(10, TimeUnit.SECONDS)
@@ -49,9 +50,10 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providesLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
+    fun providesLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
 
     @Provides
     @Singleton
@@ -62,12 +64,15 @@ object RetrofitModule {
     @Provides
     @TelePigeon
     @Singleton
-    fun providesPingleRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit =
+    fun providesPingleRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(
-                json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull()))
+                json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull())),
             )
             .build()
 }

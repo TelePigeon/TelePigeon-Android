@@ -12,22 +12,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DummyViewModel @Inject constructor(
-    private val getDummyUserListUseCase: GetDummyUserListUseCase
-) : ViewModel() {
-    private val _dummyUserListState = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
-    val dummyUserState = _dummyUserListState.asStateFlow()
+class DummyViewModel
+    @Inject
+    constructor(
+        private val getDummyUserListUseCase: GetDummyUserListUseCase,
+    ) : ViewModel() {
+        private val _dummyUserListState = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
+        val dummyUserState = _dummyUserListState.asStateFlow()
 
-    fun getDummyUserList() {
-        viewModelScope.launch {
+        fun getDummyUserList() {
             viewModelScope.launch {
-                _dummyUserListState.value = UiState.Loading
-                getDummyUserListUseCase().onSuccess { dummyUserList ->
-                    _dummyUserListState.value = UiState.Success(dummyUserList)
-                }.onFailure { exception: Throwable ->
-                    _dummyUserListState.value = UiState.Error(exception.message)
+                viewModelScope.launch {
+                    _dummyUserListState.value = UiState.Loading
+                    getDummyUserListUseCase().onSuccess { dummyUserList ->
+                        _dummyUserListState.value = UiState.Success(dummyUserList)
+                    }.onFailure { exception: Throwable ->
+                        _dummyUserListState.value = UiState.Error(exception.message)
+                    }
                 }
             }
         }
     }
-}

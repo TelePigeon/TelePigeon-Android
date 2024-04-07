@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace="com.dongguk.telepigeon.core.design.system"
+    namespace = "com.dongguk.telepigeon.core.design.system"
     buildFeatures {
         viewBinding = true
     }

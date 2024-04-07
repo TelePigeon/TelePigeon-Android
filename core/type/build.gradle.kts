@@ -5,5 +5,5 @@ plugins {
 }
 
 android {
-    namespace="com.dongguk.telepigeon.core.type"
+    namespace = "com.dongguk.telepigeon.core.type"
 }
