@@ -52,6 +52,16 @@ jobs:
           IO_SENTRY_DSN: ${{ secrets.IO_SENTRY_DSN }}
         run: echo "io.sentry.dsn=\"$IO_SENTRY_DSN\"" >> local.properties
 
+      - name: Access DEFAULTS_ORG
+        env:
+          DEFAULTS_ORG: ${{ secrets.DEFAULTS_ORG }}
+        run: echo "defaults.org=$DEFAULTS_ORG" >> sentry.properties
+
+      - name: Access DEFAULTS_PROJECT
+        env:
+          DEFAULTS_PROJECT: ${{ secrets.DEFAULTS_PROJECT }}
+        run: echo "defaults.project=$DEFAULTS_PROJECT" >> sentry.properties
+
       - name: Lint Check
         run: ./gradlew ktlintCheck -PcompileSdkVersion=34
 
