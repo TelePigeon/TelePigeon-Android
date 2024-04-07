@@ -6,9 +6,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 fun Fragment.stringOf(
-    @StringRes resId: Int,
+    @StringRes resId: Int
 ) = getString(resId)
 
 fun Fragment.colorOf(
-    @ColorRes resId: Int,
+    @ColorRes resId: Int
 ) = ContextCompat.getColor(requireContext(), resId)

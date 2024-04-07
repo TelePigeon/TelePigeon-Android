@@ -7,21 +7,21 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 
 fun View.stringOf(
-    @StringRes resId: Int,
+    @StringRes resId: Int
 ) = ContextCompat.getString(context, resId)
 
 fun View.colorOf(
-    @ColorRes resId: Int,
+    @ColorRes resId: Int
 ) = ContextCompat.getColor(context, resId)
 
 fun View.setBackgroundTint(
-    @ColorRes resId: Int,
+    @ColorRes resId: Int
 ) =
     ViewCompat.setBackgroundTintList(this, ContextCompat.getColorStateList(context, resId))
 
 inline fun View.setOnSingleClickListener(
     delay: Long = 500L,
-    crossinline block: (View) -> Unit,
+    crossinline block: (View) -> Unit
 ) {
     var isClickable = true
     setOnClickListener { view ->

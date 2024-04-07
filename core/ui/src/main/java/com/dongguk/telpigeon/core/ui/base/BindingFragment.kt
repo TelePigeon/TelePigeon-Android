@@ -16,7 +16,7 @@ abstract class BindingFragment<T : ViewBinding>(private val inflater: (LayoutInf
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = inflater(layoutInflater)
         return binding.root

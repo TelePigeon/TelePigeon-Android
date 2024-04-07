@@ -13,23 +13,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DummyViewModel
-    @Inject
-    constructor(
-        private val getDummyUserListUseCase: GetDummyUserListUseCase,
-    ) : ViewModel() {
-        private val _dummyUserListState = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
-        val dummyUserState = _dummyUserListState.asStateFlow()
+@Inject
+constructor(
+    private val getDummyUserListUseCase: GetDummyUserListUseCase
+) : ViewModel() {
+    private val _dummyUserListState = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
+    val dummyUserState = _dummyUserListState.asStateFlow()
 
-        fun getDummyUserList() {
+    fun getDummyUserList() {
+        viewModelScope.launch {
             viewModelScope.launch {
-                viewModelScope.launch {
-                    _dummyUserListState.value = UiState.Loading
-                    getDummyUserListUseCase().onSuccess { dummyUserList ->
-                        _dummyUserListState.value = UiState.Success(dummyUserList)
-                    }.onFailure { exception: Throwable ->
-                        _dummyUserListState.value = UiState.Error(exception.message)
-                    }
+                _dummyUserListState.value = UiState.Loading
+                getDummyUserListUseCase().onSuccess { dummyUserList ->
+                    _dummyUserListState.value = UiState.Success(dummyUserList)
+                }.onFailure { exception: Throwable ->
+                    _dummyUserListState.value = UiState.Error(exception.message)
                 }
             }
         }
     }
+}

@@ -37,7 +37,7 @@ android {
             buildConfigField("String", "BASE_URL", properties["prod.base.url"].toString())
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
+                "proguard-rules.pro"
             )
         }
     }

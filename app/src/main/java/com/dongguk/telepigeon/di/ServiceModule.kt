@@ -15,7 +15,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun providesDummyService(
-        @TelePigeon retrofit: Retrofit,
+        @TelePigeon retrofit: Retrofit
     ): DummyService =
         retrofit.create(DummyService::class.java)
 }
