@@ -16,4 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "TelePigeon"
 include(":app")
-include(":build-logic")
