@@ -4,6 +4,7 @@ import com.dongguk.telepigeon.domain.model.UserEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Serializable
 class ResponseGetDummyUserListDto(
     @SerialName("page")
     val page: Int,
