@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.telepigeon.android.application)
     alias(libs.plugins.telepigeon.android.test)
     alias(libs.plugins.telepigeon.android.hilt)
+    alias(libs.plugins.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.sentry)
 }
