@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main -->
+    <color name="lemon">#FFC142</color>
+
+    <!-- sub -->
+    <color name="monstera">#7F851C</color>
+    <color name="key_lime">#CDC265</color>
+
+    <!-- black&white -->
+    <color name="black">#080909</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- grayscale -->
+    <color name="g_01">#EDF0F4</color>
+    <color name="g_02">#DBE2E9</color>
+    <color name="g_03">#CAD1D9</color>
+    <color name="g_04">#B7BFC6</color>
+    <color name="g_05">#A0AAB2</color>
+    <color name="g_06">#7F8A96</color>
+    <color name="g_07">#626D79</color>
+    <color name="g_08">#48535C</color>
+    <color name="g_09">#363E45</color>
+    <color name="g_10">#252930</color>
+    <color name="g_11">#15181B</color>
+
+    <!-- system -->
+    <color name="alert_red">#D6392F</color>
+
+    <!-- Background -->
+    <color name="marble">#F7F3ED</color>
+    <color name="latte">#D7BF9E</color>
+</resources>
