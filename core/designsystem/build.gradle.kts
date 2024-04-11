@@ -12,4 +12,5 @@ android {
 }
 dependencies {
     implementation(project(":core:type"))
+    implementation(project(":core:ui"))
 }
