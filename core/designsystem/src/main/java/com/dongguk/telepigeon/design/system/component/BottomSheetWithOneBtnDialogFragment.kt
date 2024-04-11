@@ -27,14 +27,14 @@ class BottomSheetWithOneBtnDialogFragment(
 
     private fun initLayout() {
         with(binding) {
-            tvBottomSheetWithOneButtonInterjection.text = interjection
-            tvBottomSheetWithOneButtonSentence.text = sentence
-            btnBottomSheetWithTwoButton.text = btnText
+            tvBottomSheetWithOneBtnInterjection.text = interjection
+            tvBottomSheetWithOneBtnSentence.text = sentence
+            btnBottomSheetWithOneBtn.text = btnText
         }
     }
 
     private fun addListeners() {
-        binding.btnBottomSheetWithTwoButton.setOnClickListener {
+        binding.btnBottomSheetWithOneBtn.setOnClickListener {
             clickBtn()
             dismiss()
         }

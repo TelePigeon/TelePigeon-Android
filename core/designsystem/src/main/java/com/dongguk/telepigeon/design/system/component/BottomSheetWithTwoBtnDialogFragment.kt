@@ -29,21 +29,21 @@ class BottomSheetWithTwoBtnDialogFragment(
 
     private fun initLayout() {
         with(binding) {
-            tvBottomSheetWithTwoButtonInterjection.text = interjection
-            tvBottomSheetWithTwoButtonSentence.text = sentence
-            btnBottomSheetWithTwoButtonLeft.text = leftBtnText
-            btnBottomSheetWithTwoButtonRight.text = rightBtnText
+            tvBottomSheetWithTwoBtnInterjection.text = interjection
+            tvBottomSheetWithTwoBtnSentence.text = sentence
+            btnBottomSheetWithTwoBtnLeft.text = leftBtnText
+            btnBottomSheetWithTwoBtnRight.text = rightBtnText
         }
     }
 
     private fun addListeners() {
         with(binding) {
-            btnBottomSheetWithTwoButtonLeft.setOnClickListener {
+            btnBottomSheetWithTwoBtnLeft.setOnClickListener {
                 clickLeftBtn()
                 dismiss()
             }
 
-            btnBottomSheetWithTwoButtonRight.setOnClickListener {
+            btnBottomSheetWithTwoBtnRight.setOnClickListener {
                 clickRightBtn()
                 dismiss()
             }
