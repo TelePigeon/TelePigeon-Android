@@ -6,7 +6,7 @@ import android.view.View
 import com.dongguk.telepigeon.core.design.system.databinding.DialogBottomSheetWithTwoBtnBinding
 import com.dongguk.telpigeon.core.ui.base.BindingBottomSheetDialogFragment
 
-class BottomSheetWithTwoButtonDialogFragment(
+class BottomSheetWithTwoBtnDialogFragment(
     private val interjection: String,
     private val sentence: String,
     private val leftBtnText: String,
