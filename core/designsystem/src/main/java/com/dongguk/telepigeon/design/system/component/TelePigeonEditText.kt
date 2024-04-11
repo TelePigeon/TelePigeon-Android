@@ -14,7 +14,7 @@ class TelePigeonEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr)  {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
     private val binding: EditTextTelepigeonBinding
     val editText get() = binding.etEditTextTelepigeonText
 
