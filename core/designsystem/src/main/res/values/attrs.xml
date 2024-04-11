@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TelePigeonEditText">
+        <attr name="telePigeonEditTextTitle" format="reference|string" />
+        <attr name="telePigeonEditTextHint" format="reference|string" />
+    </declare-styleable>
+</resources>

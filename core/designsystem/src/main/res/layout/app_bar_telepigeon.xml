@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_app_bar_telepigeon_arrow_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="10dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_all_arrow_left_28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_app_bar_telepigeon_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.20"
+        android:textColor="@color/g_10"
+        app:layout_constraintBottom_toBottomOf="@id/iv_app_bar_telepigeon_arrow_left"
+        app:layout_constraintEnd_toStartOf="@id/iv_app_bar_telepigeon_x"
+        app:layout_constraintStart_toEndOf="@id/iv_app_bar_telepigeon_arrow_left"
+        app:layout_constraintTop_toTopOf="@id/iv_app_bar_telepigeon_arrow_left"
+        tools:text="제목" />
+
+    <ImageView
+        android:id="@+id/iv_app_bar_telepigeon_x"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_all_x_24"
+        app:layout_constraintBottom_toBottomOf="@id/iv_app_bar_telepigeon_arrow_left"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_app_bar_telepigeon_arrow_left" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
