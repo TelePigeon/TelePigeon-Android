@@ -8,4 +8,34 @@
 
     <style name="Theme.TelePigeon" parent="Base.Theme.TelePigeon" />
 
+    <!-- Button -->
+    <style name="Theme.TelePigeon.Button" parent="Widget.Material3.Button">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:height">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+    </style>
+
+    <style name="Theme.TelePigeon.Button.Select" parent="Theme.TelePigeon.Button">
+        <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Sub.Semi.18</item>
+        <item name="android:backgroundTint">@color/selector_all_btn_select_background</item>
+        <item name="android:textColor">@color/selector_all_btn_select_text_color</item>
+    </style>
+
+    <style name="Theme.TelePigeon.Button.Outlined" parent="Theme.TelePigeon.Button">
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:strokeWidth">@dimen/button_stroke_width</item>
+    </style>
+
+    <style name="Theme.TelePigeon.Button.Outlined.G06" parent="Theme.TelePigeon.Button">
+        <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Sub.Bold.18</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="strokeWidth">@dimen/button_stroke_width</item>
+        <item name="strokeColor">@color/g_06</item>
+        <item name="android:textColor">@color/g_06</item>
+    </style>
+
 </resources>
