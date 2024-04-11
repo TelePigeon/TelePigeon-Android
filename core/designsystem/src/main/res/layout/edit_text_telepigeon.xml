@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_border_radius_10"
+    android:backgroundTint="@color/marble"
+    android:paddingHorizontal="18dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="14dp">
+
+    <TextView
+        android:id="@+id/tv_edit_text_telepigeon_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Body.Bold.14"
+        android:textColor="@color/g_07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="제목" />
+
+    <EditText
+        android:id="@+id/et_edit_text_telepigeon_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@null"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+        android:textColor="@color/g_10"
+        android:textColorHint="@color/g_04"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit_text_telepigeon_title"
+        tools:text="내용" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

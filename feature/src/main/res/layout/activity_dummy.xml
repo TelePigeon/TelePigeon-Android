@@ -58,5 +58,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/telepigeonAppbar" />
 
+    <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/telepigeonAppbar2"
+        app:telePigeonEditTextHint="힌트"
+        app:telePigeonEditTextTitle="제목" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
