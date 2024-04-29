@@ -1,6 +1,8 @@
 package com.dongguk.telepigeon.feature
 
 import android.os.Bundle
+import android.view.View
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dongguk.telepigeon.feature.databinding.ActivityMainBinding
@@ -17,22 +19,17 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
         val navController = (supportFragmentManager.findFragmentById(R.id.fcv_main_all_navi) as NavHostFragment).navController
         binding.bnvMainAllNavi.setupWithNavController(navController)
 
-        binding.bnvMainAllNavi.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu_all_navi_main -> {
-                    navController.navigate(R.id.menu_all_navi_main)
-                    true
-                }
-                R.id.menu_all_navi_calender -> {
-                    navController.navigate(R.id.menu_all_navi_calender)
-                    true
-                }
-                R.id.menu_all_navi_setting -> {
-                    navController.navigate(R.id.menu_all_navi_setting)
-                    true
-                }
-                else -> false
-            }
+        setBottomNavigationVisibility(navController = navController)
+    }
+
+    private fun setBottomNavigationVisibility(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.bnvMainAllNavi.visibility = if (destination.id in listOf(
+                    R.id.menu_all_navi_main,
+                    R.id.menu_all_navi_calender,
+                    R.id.menu_all_navi_setting
+                )
+            ) View.VISIBLE else View.GONE
         }
     }
 }
