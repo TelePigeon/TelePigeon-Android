@@ -3,20 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_all"
-    app:startDestination="@id/menu_all_navi_main">
+    app:startDestination="@id/menu_all_home">
+
     <fragment
         android:id="@+id/menu_all_navi_main"
         android:name="com.dongguk.telepigeon.feature.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+
     <fragment
         android:id="@+id/menu_all_navi_calender"
         android:name="com.dongguk.telepigeon.feature.calender.CalenderFragment"
         android:label="fragment_calender"
         tools:layout="@layout/fragment_calender" />
+
     <fragment
         android:id="@+id/menu_all_navi_setting"
         android:name="com.dongguk.telepigeon.feature.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/menu_all_home"
+        android:name="com.dongguk.telepigeon.feature.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_main"
+            app:destination="@id/menu_all_navi_main" />
+    </fragment>
 </navigation>
