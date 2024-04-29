@@ -17,7 +17,7 @@ class ResponseGetDummyUserListDto(
     @SerialName("data")
     val data: List<User>,
     @SerialName("support")
-    val support: Support
+    val support: Support,
 ) {
     @Serializable
     data class User(
@@ -30,12 +30,12 @@ class ResponseGetDummyUserListDto(
         @SerialName("last_name")
         val lastName: String,
         @SerialName("avatar")
-        val avatar: String
+        val avatar: String,
     ) {
         fun toUserEntity() =
             UserEntity(
                 id = this.id,
-                firstName = this.firstName
+                firstName = this.firstName,
             )
     }
 
@@ -44,7 +44,7 @@ class ResponseGetDummyUserListDto(
         @SerialName("url")
         val url: String,
         @SerialName("text")
-        val text: String
+        val text: String,
     )
 
     fun toUserEntityList() = data.map { user -> user.toUserEntity() }

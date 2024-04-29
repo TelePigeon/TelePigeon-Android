@@ -24,12 +24,18 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
 
     private fun setBottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bnvMainAllNavi.visibility = if (destination.id in listOf(
-                    R.id.menu_all_navi_main,
-                    R.id.menu_all_navi_calender,
-                    R.id.menu_all_navi_setting
-                )
-            ) View.VISIBLE else View.GONE
+            binding.bnvMainAllNavi.visibility =
+                if (destination.id in
+                    listOf(
+                        R.id.menu_all_navi_main,
+                        R.id.menu_all_navi_calender,
+                        R.id.menu_all_navi_setting,
+                    )
+                ) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
         }
     }
 }

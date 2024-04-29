@@ -6,15 +6,15 @@ import com.dongguk.telepigeon.data.datasource.local.DummyLocalDataSource
 import javax.inject.Inject
 
 class DummyLocalDataSourceImpl
-@Inject
-constructor(
-    private val dataStore: SharedPreferences
-) : DummyLocalDataSource {
-    override fun setDummyData(dummy: Int) {
-        dataStore.edit { putInt(DUMMY, dummy) }
-    }
+    @Inject
+    constructor(
+        private val dataStore: SharedPreferences,
+    ) : DummyLocalDataSource {
+        override fun setDummyData(dummy: Int) {
+            dataStore.edit { putInt(DUMMY, dummy) }
+        }
 
-    companion object {
-        const val DUMMY = "dummy"
+        companion object {
+            const val DUMMY = "dummy"
+        }
     }
-}

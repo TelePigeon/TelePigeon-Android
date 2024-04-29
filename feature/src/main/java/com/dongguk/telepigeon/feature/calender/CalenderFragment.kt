@@ -6,7 +6,10 @@ import com.dongguk.telepigeon.feature.databinding.FragmentCalenderBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
 class CalenderFragment : BindingFragment<FragmentCalenderBinding>({ FragmentCalenderBinding.inflate(it) }) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
     }
 }

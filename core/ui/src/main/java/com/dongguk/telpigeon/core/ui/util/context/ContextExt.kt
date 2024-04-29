@@ -15,9 +15,9 @@ fun Context.hideKeyboard(view: View) {
 }
 
 fun Context.stringOf(
-    @StringRes resId: Int
+    @StringRes resId: Int,
 ) = getString(resId)
 
 fun Context.colorOf(
-    @ColorRes resId: Int
+    @ColorRes resId: Int,
 ) = ContextCompat.getColor(this, resId)

@@ -8,7 +8,10 @@ import com.dongguk.telepigeon.feature.databinding.FragmentHomeBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.inflate(it) }) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvHomeHome.setOnClickListener {

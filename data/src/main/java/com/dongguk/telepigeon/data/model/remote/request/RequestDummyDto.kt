@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RequestDummyDto(
     @SerialName("id")
-    val id: String
+    val id: String,
 )

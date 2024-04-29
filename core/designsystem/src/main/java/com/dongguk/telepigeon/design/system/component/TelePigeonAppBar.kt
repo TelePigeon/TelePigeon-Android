@@ -10,30 +10,35 @@ import com.dongguk.telepigeon.core.design.system.databinding.AppBarTelepigeonBin
 import com.dongguk.telepigeon.type.AppBarType
 
 @SuppressLint("CustomViewStyleable")
-class TelePigeonAppBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private var binding: AppBarTelepigeonBinding
+class TelePigeonAppBar
+    @JvmOverloads
+    constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0,
+    ) : ConstraintLayout(context, attrs, defStyleAttr) {
+        private var binding: AppBarTelepigeonBinding
 
-    init {
-        binding = AppBarTelepigeonBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+        init {
+            binding = AppBarTelepigeonBinding.inflate(LayoutInflater.from(context), this, true)
+        }
 
-    fun initLayout(appBarType: AppBarType, title: String = "") {
-        with(binding) {
-            when (appBarType) {
-                AppBarType.TITLE -> {
-                    ivAppBarTelepigeonX.visibility = View.INVISIBLE
-                    tvAppBarTelepigeonTitle.text = title
-                }
+        fun initLayout(
+            appBarType: AppBarType,
+            title: String = "",
+        ) {
+            with(binding) {
+                when (appBarType) {
+                    AppBarType.TITLE -> {
+                        ivAppBarTelepigeonX.visibility = View.INVISIBLE
+                        tvAppBarTelepigeonTitle.text = title
+                    }
 
-                AppBarType.X -> {
-                    ivAppBarTelepigeonArrowLeft.visibility = View.INVISIBLE
-                    tvAppBarTelepigeonTitle.visibility = View.INVISIBLE
+                    AppBarType.X -> {
+                        ivAppBarTelepigeonArrowLeft.visibility = View.INVISIBLE
+                        tvAppBarTelepigeonTitle.visibility = View.INVISIBLE
+                    }
                 }
             }
         }
     }
-}
