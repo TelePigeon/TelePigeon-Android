@@ -13,9 +13,12 @@ class BottomSheetWithTwoBtnDialogFragment(
     private val rightBtnText: String,
     private val clickLeftBtn: () -> Unit = {},
     private val clickRightBtn: () -> Unit = {},
-    private val onDialogClosed: () -> Unit = {}
+    private val onDialogClosed: () -> Unit = {},
 ) : BindingBottomSheetDialogFragment<DialogBottomSheetWithTwoBtnBinding>({ DialogBottomSheetWithTwoBtnBinding.inflate(it) }) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()

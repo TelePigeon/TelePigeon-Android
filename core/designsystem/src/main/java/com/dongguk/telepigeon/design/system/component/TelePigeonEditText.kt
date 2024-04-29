@@ -10,30 +10,32 @@ import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.core.design.system.databinding.EditTextTelepigeonBinding
 
 @SuppressLint("CustomViewStyleable")
-class TelePigeonEditText @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private val binding: EditTextTelepigeonBinding
-    val editText get() = binding.etEditTextTelepigeonText
+class TelePigeonEditText
+    @JvmOverloads
+    constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0,
+    ) : ConstraintLayout(context, attrs, defStyleAttr) {
+        private val binding: EditTextTelepigeonBinding
+        val editText get() = binding.etEditTextTelepigeonText
 
-    init {
-        binding = EditTextTelepigeonBinding.inflate(LayoutInflater.from(context), this, true)
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TelePigeonEditText)
-        try {
-            initView(typedArray)
-        } finally {
-            typedArray.recycle()
+        init {
+            binding = EditTextTelepigeonBinding.inflate(LayoutInflater.from(context), this, true)
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TelePigeonEditText)
+            try {
+                initView(typedArray)
+            } finally {
+                typedArray.recycle()
+            }
         }
-    }
 
-    private fun initView(typedArray: TypedArray) {
-        typedArray.apply {
-            with(binding) {
-                tvEditTextTelepigeonTitle.text = getString(R.styleable.TelePigeonEditText_telePigeonEditTextTitle)
-                etEditTextTelepigeonText.hint = getString(R.styleable.TelePigeonEditText_telePigeonEditTextHint)
+        private fun initView(typedArray: TypedArray) {
+            typedArray.apply {
+                with(binding) {
+                    tvEditTextTelepigeonTitle.text = getString(R.styleable.TelePigeonEditText_telePigeonEditTextTitle)
+                    etEditTextTelepigeonText.hint = getString(R.styleable.TelePigeonEditText_telePigeonEditTextHint)
+                }
             }
         }
     }
-}
