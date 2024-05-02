@@ -2,6 +2,7 @@ package com.dongguk.telepigeon.feature.home.setting
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithTwoBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
@@ -24,6 +25,9 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
 
     private fun initAppBar() {
         binding.appbarHomeSetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(R.string.home_setting_title))
+        binding.appbarHomeSetting.binding.ivAppBarTelepigeonArrowLeft.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setTvHomeSettingWithdrawalClickListeners() {
