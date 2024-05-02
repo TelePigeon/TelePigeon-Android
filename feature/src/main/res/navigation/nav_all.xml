@@ -25,11 +25,20 @@
 
     <fragment
         android:id="@+id/menu_all_home"
-        android:name="com.dongguk.telepigeon.feature.home.HomeFragment"
+        android:name="com.dongguk.telepigeon.feature.home.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_main"
             app:destination="@id/menu_all_navi_main" />
+        <action
+            android:id="@+id/action_home_to_home_setting"
+            app:destination="@id/menu_all_home_setting" />
     </fragment>
+
+    <fragment
+        android:id="@+id/menu_all_home_setting"
+        android:name="com.dongguk.telepigeon.feature.home.setting.HomeSettingFragment"
+        android:label="fragment_home_setting"
+        tools:layout="@layout/fragment_home_setting" />
 </navigation>
