@@ -17,7 +17,7 @@ class TelePigeonAppBar
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0,
     ) : ConstraintLayout(context, attrs, defStyleAttr) {
-        private var binding: AppBarTelepigeonBinding
+        var binding: AppBarTelepigeonBinding
 
         init {
             binding = AppBarTelepigeonBinding.inflate(LayoutInflater.from(context), this, true)
