@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_all"
-    app:startDestination="@id/menu_all_home">
+    app:startDestination="@id/menu_home">
 
     <fragment
         android:id="@+id/menu_all_navi_main"
@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_setting" />
 
     <fragment
-        android:id="@+id/menu_all_home"
+        android:id="@+id/menu_home"
         android:name="com.dongguk.telepigeon.feature.home.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
@@ -33,11 +33,39 @@
             app:destination="@id/menu_all_navi_main" />
         <action
             android:id="@+id/action_home_to_home_setting"
-            app:destination="@id/menu_all_home_setting" />
+            app:destination="@id/menu_home_setting" />
+        <action
+            android:id="@+id/action_home_to_home_add_room"
+            app:destination="@id/menu_home_add_room" />
     </fragment>
 
     <fragment
-        android:id="@+id/menu_all_home_setting"
+        android:id="@+id/menu_home_add_room"
+        android:name="com.dongguk.telepigeon.feature.home.addroom.HomeAddRoomFragment"
+        android:label="fragment_home_add_room"
+        tools:layout="@layout/fragment_home_add_room">
+        <action
+            android:id="@+id/action_home_add_room_to_home_create_room"
+            app:destination="@id/menu_home_create_room" />
+        <action
+            android:id="@+id/action_home_add_room_to_home_enter_room"
+            app:destination="@id/menu_home_enter_room" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_home_create_room"
+        android:name="com.dongguk.telepigeon.feature.home.createroom.HomeCreateRoomFragment"
+        android:label="fragment_home_create_room"
+        tools:layout="@layout/fragment_home_create_room" />
+
+    <fragment
+        android:id="@+id/menu_home_enter_room"
+        android:name="com.dongguk.telepigeon.feature.home.enterroom.HomeEnterRoomFragment"
+        android:label="fragment_home_enter_room"
+        tools:layout="@layout/fragment_home_enter_room" />
+
+    <fragment
+        android:id="@+id/menu_home_setting"
         android:name="com.dongguk.telepigeon.feature.home.setting.HomeSettingFragment"
         android:label="fragment_home_setting"
         tools:layout="@layout/fragment_home_setting" />
