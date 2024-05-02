@@ -33,8 +33,9 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomEntity, HomeModifyRoomViewHold
 
         holder.itemView.setOnClickListener {
             notifyItemChanged(_selectedItemPosition)
-            notifyItemChanged(position)
-            _selectedItemPosition = position
+            _selectedItemPosition = holder.adapterPosition
+            notifyItemChanged(_selectedItemPosition)
+
         }
     }
 
