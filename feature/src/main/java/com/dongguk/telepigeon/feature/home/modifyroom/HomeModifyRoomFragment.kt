@@ -16,7 +16,10 @@ class HomeModifyRoomFragment : BindingFragment<FragmentHomeModifyRoomBinding>({ 
     private val homeModifyRoomViewModel by viewModels<HomeModifyRoomViewModel>()
     private lateinit var homeModifyRoomAdapter: HomeModifyRoomAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initAppBar()
@@ -52,7 +55,7 @@ class HomeModifyRoomFragment : BindingFragment<FragmentHomeModifyRoomBinding>({ 
     private fun showDeleteRoomBottomSheetDialogFragment() {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_ROOM,
-            clickLeftBtn = { findNavController().popBackStack(R.id.menu_home, false) }
+            clickLeftBtn = { findNavController().popBackStack(R.id.menu_home, false) },
         ).show(childFragmentManager, DELETE_ROOM_BOTTOM_SHEET)
     }
 
