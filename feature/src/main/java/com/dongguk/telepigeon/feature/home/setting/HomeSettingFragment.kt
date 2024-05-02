@@ -38,7 +38,7 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
 
     private fun setTvHomeSettingLogoutClickListeners() {
         binding.tvHomeSettingLogout.setOnClickListener {
-            showLogoutBottomSheerDialogFragment()
+            showLogoutBottomSheetDialogFragment()
         }
     }
 
@@ -48,7 +48,7 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
         ).show(childFragmentManager, WITHDRAWAL_BOTTOM_SHEET)
     }
 
-    private fun showLogoutBottomSheerDialogFragment() {
+    private fun showLogoutBottomSheetDialogFragment() {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.LOGOUT,
         ).show(childFragmentManager, LOGOUT_BOTTOM_SHEET)

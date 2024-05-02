@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_home_to_home_add_room"
             app:destination="@id/menu_home_add_room" />
+        <action
+            android:id="@+id/action_home_to_home_modify_room"
+            app:destination="@id/menu_home_modify_room" />
     </fragment>
 
     <fragment
@@ -63,6 +66,12 @@
         android:name="com.dongguk.telepigeon.feature.home.enterroom.HomeEnterRoomFragment"
         android:label="fragment_home_enter_room"
         tools:layout="@layout/fragment_home_enter_room" />
+
+    <fragment
+        android:id="@+id/menu_home_modify_room"
+        android:name="com.dongguk.telepigeon.feature.home.modifyroom.HomeModifyRoomFragment"
+        android:label="fragment_home_modify_room"
+        tools:layout="@layout/fragment_home_modify_room" />
 
     <fragment
         android:id="@+id/menu_home_setting"

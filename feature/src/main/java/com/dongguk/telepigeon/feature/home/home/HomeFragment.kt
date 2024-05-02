@@ -19,8 +19,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
-        setIvHomeSettingClickListeners()
-        setTvHomeAddRoomClickListeners()
+        setIvHomeSettingClickListener()
+        setTvHomeAddRoomClickListener()
+        setTvHomeModifyClickListener()
     }
 
     override fun onDestroyView() {
@@ -42,15 +43,21 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
         }
     }
 
-    private fun setIvHomeSettingClickListeners() {
+    private fun setIvHomeSettingClickListener() {
         binding.ivHomeSetting.setOnClickListener {
             navigateToHomeSetting()
         }
     }
 
-    private fun setTvHomeAddRoomClickListeners() {
+    private fun setTvHomeAddRoomClickListener() {
         binding.tvHomeAddRoom.setOnClickListener {
             navigateToHomeAddRoom()
+        }
+    }
+
+    private fun setTvHomeModifyClickListener() {
+        binding.tvHomeModify.setOnClickListener {
+            navigateToHomeModifyRoom()
         }
     }
 
@@ -60,5 +67,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
 
     private fun navigateToHomeAddRoom() {
         findNavController().navigate(R.id.action_home_to_home_add_room)
+    }
+
+    private fun navigateToHomeModifyRoom() {
+        findNavController().navigate(R.id.action_home_to_home_modify_room)
     }
 }
