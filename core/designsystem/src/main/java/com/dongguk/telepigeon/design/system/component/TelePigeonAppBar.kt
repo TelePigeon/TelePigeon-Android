@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.dongguk.telepigeon.core.design.system.databinding.AppBarTelepigeonBinding
-import com.dongguk.telepigeon.type.AppBarType
+import com.dongguk.telepigeon.design.system.type.AppBarType
 
 @SuppressLint("CustomViewStyleable")
 class TelePigeonAppBar

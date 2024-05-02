@@ -4,13 +4,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import com.dongguk.telepigeon.core.design.system.databinding.DialogBottomSheetWithTwoBtnBinding
+import com.dongguk.telepigeon.design.system.type.BottomSheetWithTwoBtnType
 import com.dongguk.telpigeon.core.ui.base.BindingBottomSheetDialogFragment
+import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 
 class BottomSheetWithTwoBtnDialogFragment(
-    private val interjection: String,
-    private val sentence: String,
-    private val leftBtnText: String,
-    private val rightBtnText: String,
+    private val bottomSheetWithTwoBtnType: BottomSheetWithTwoBtnType,
     private val clickLeftBtn: () -> Unit = {},
     private val clickRightBtn: () -> Unit = {},
     private val onDialogClosed: () -> Unit = {},
@@ -22,7 +21,8 @@ class BottomSheetWithTwoBtnDialogFragment(
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
-        addListeners()
+        setBtnBottomSheetWithTwoBtnLeftClickListeners()
+        setBtnBottomSheetWithTwoBtnRightClickListeners()
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -32,24 +32,24 @@ class BottomSheetWithTwoBtnDialogFragment(
 
     private fun initLayout() {
         with(binding) {
-            tvBottomSheetWithTwoBtnInterjection.text = interjection
-            tvBottomSheetWithTwoBtnSentence.text = sentence
-            btnBottomSheetWithTwoBtnLeft.text = leftBtnText
-            btnBottomSheetWithTwoBtnRight.text = rightBtnText
+            tvBottomSheetWithTwoBtnInterjection.text = stringOf(bottomSheetWithTwoBtnType.interjection)
+            tvBottomSheetWithTwoBtnSentence.text = stringOf(bottomSheetWithTwoBtnType.sentence)
+            btnBottomSheetWithTwoBtnLeft.text = stringOf(bottomSheetWithTwoBtnType.leftBtnText)
+            btnBottomSheetWithTwoBtnRight.text = stringOf(bottomSheetWithTwoBtnType.rightBtnText)
         }
     }
 
-    private fun addListeners() {
-        with(binding) {
-            btnBottomSheetWithTwoBtnLeft.setOnClickListener {
-                clickLeftBtn()
-                dismiss()
-            }
+    private fun setBtnBottomSheetWithTwoBtnLeftClickListeners() {
+        binding.btnBottomSheetWithTwoBtnLeft.setOnClickListener {
+            clickLeftBtn()
+            dismiss()
+        }
+    }
 
-            btnBottomSheetWithTwoBtnRight.setOnClickListener {
-                clickRightBtn()
-                dismiss()
-            }
+    private fun setBtnBottomSheetWithTwoBtnRightClickListeners() {
+        binding.btnBottomSheetWithTwoBtnRight.setOnClickListener {
+            clickRightBtn()
+            dismiss()
         }
     }
 }
