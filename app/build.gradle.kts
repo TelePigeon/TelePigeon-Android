@@ -56,7 +56,6 @@ dependencies {
     implementation(project(":feature"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
-    implementation(project(":core:type"))
     implementation(project(":core:ui"))
     implementation(project(":domain"))
     implementation(project(":data"))

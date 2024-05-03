@@ -5,4 +5,52 @@
     <string name="all_navi_main">메인</string>
     <string name="all_navi_calender">달력</string>
     <string name="all_navi_setting">설정</string>
+
+    <!-- dialog -->
+    <string name="dialog_check">확인</string>
+    <string name="dialog_cancellation">취소</string>
+    <string name="dialog_interjection_whoops">앗,</string>
+    <string name="dialog_interjection_ooh">오,</string>
+    <string name="dialog_sentence_withdrawal">탈퇴하시겠습니까?</string>
+    <string name="dialog_sentence_logout">로그아웃 하시겠습니까?</string>
+    <string name="dialog_sentence_wrong_code">잘못된 초대코드입니다.</string>
+    <string name="dialog_sentence_entered_room">이미 입장하신 방입니다.</string>
+    <string name="dialog_sentence_matched_room">이미 매칭이 완료된 방입니다.</string>
+    <string name="dialog_sentence_create_room">방이 생성되었습니다.</string>
+    <string name="dialog_sententce_delete_room">선택한 방을 삭제하시겠습니까?</string>
+
+    <!-- edit text -->
+    <string name="edit_text_code">초대코드</string>
+    <string name="edit_text_code_hint">초대코드를 입력해주세요</string>
+    <string name="edit_text_name">방 이름</string>
+    <string name="edit_text_name_hint">방 이름을 입력해주세요(최대 8글자)</string>
+
+    <!-- button -->
+    <string name="button_enter_room">입장하기</string>
+    <string name="button_create_room">생성하기</string>
+    <string name="button_delete_room">삭제하기</string>
+
+    <!-- home -->
+    <string name="home_title">홈</string>
+    <string name="home_description">방을 눌러 입장하세요</string>
+    <string name="home_add">추가하기</string>
+    <string name="home_modify">수정하기</string>
+    <string name="home_room_empty">아직 방이 없어요\n추가하기에서 방을 생성해주세요</string>
+    <string name="home_add_room">방 추가하기</string>
+    <string name="home_enter_room">초대코드로 입장하기</string>
+    <string name="home_enter_room_description">초대자에게 공유 받은 초대코드를 입력해주세요</string>
+    <string name="home_create_room">새로운 방 생성하기</string>
+    <string name="home_create_room_description">방 설정에서 초대코드를 공유해 이용해보세요</string>
+    <string name="home_delete_room">방 목록 수정</string>
+
+    <!-- answer description -->
+    <string name="answer_description_check_answer">상대의 답변을 확인하세요</string>
+    <string name="answer_description_done">답변을 완료했어요</string>
+    <string name="answer_description_not_yet">아직 답변을 하지 않았어요</string>
+    
+    <!-- home setting -->
+    <string name="home_setting_title">앱 전체 설정</string>
+    <string name="home_setting_notification">알림 설정</string>
+    <string name="home_setting_logout">로그아웃</string>
+    <string name="home_setting_withdrawal">탈퇴하기</string>
 </resources>

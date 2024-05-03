@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonAppBar
+        android:id="@+id/appbar_home_add_room"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_add_room_enter_room"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_border_radius_12"
+        android:backgroundTint="@color/lemon"
+        android:gravity="center"
+        android:paddingVertical="28dp"
+        android:text="@string/home_enter_room"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Bold.18"
+        android:textColor="@color/g_10"
+        app:layout_constraintEnd_toStartOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/appbar_home_add_room" />
+
+    <TextView
+        android:id="@+id/tv_home_add_room_create_room"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_border_radius_12"
+        android:backgroundTint="@color/key_lime"
+        android:gravity="center"
+        android:paddingVertical="28dp"
+        android:text="@string/home_create_room"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Bold.18"
+        android:textColor="@color/g_10"
+        app:layout_constraintEnd_toStartOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_add_room_enter_room" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

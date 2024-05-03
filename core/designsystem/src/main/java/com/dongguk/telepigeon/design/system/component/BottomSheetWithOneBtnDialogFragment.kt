@@ -4,12 +4,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import com.dongguk.telepigeon.core.design.system.databinding.DialogBottomSheetWithOneBtnBinding
+import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
 import com.dongguk.telpigeon.core.ui.base.BindingBottomSheetDialogFragment
+import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 
 class BottomSheetWithOneBtnDialogFragment(
-    private val interjection: String,
-    private val sentence: String,
-    private val btnText: String,
+    private val bottomSheetWithOneBtnType: BottomSheetWithOneBtnType,
     private val clickBtn: () -> Unit = {},
     private val onDialogClosed: () -> Unit = {},
 ) : BindingBottomSheetDialogFragment<DialogBottomSheetWithOneBtnBinding>({ DialogBottomSheetWithOneBtnBinding.inflate(it) }) {
@@ -20,7 +20,7 @@ class BottomSheetWithOneBtnDialogFragment(
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
-        addListeners()
+        setBtnBottomSheetWithOneBtnClickListeners()
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -30,13 +30,13 @@ class BottomSheetWithOneBtnDialogFragment(
 
     private fun initLayout() {
         with(binding) {
-            tvBottomSheetWithOneBtnInterjection.text = interjection
-            tvBottomSheetWithOneBtnSentence.text = sentence
-            btnBottomSheetWithOneBtn.text = btnText
+            tvBottomSheetWithOneBtnInterjection.text = stringOf(bottomSheetWithOneBtnType.interjection)
+            tvBottomSheetWithOneBtnSentence.text = stringOf(bottomSheetWithOneBtnType.sentence)
+            btnBottomSheetWithOneBtn.text = stringOf(bottomSheetWithOneBtnType.btnText)
         }
     }
 
-    private fun addListeners() {
+    private fun setBtnBottomSheetWithOneBtnClickListeners() {
         binding.btnBottomSheetWithOneBtn.setOnClickListener {
             clickBtn()
             dismiss()
