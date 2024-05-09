@@ -1,4 +1,4 @@
-package com.dongguk.telepigeon.feature.main
+package com.dongguk.telepigeon.feature.main.main
 
 import android.os.Bundle
 import android.view.View

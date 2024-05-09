@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menu_all_navi_main"
-        android:name="com.dongguk.telepigeon.feature.main.MainFragment"
+        android:name="com.dongguk.telepigeon.feature.main.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 
