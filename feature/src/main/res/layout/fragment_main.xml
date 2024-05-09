@@ -35,18 +35,19 @@
         android:id="@+id/tv_main_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="@string/main_description"
         android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
         android:textColor="@color/g_06"
         app:layout_constraintEnd_toStartOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_room_name"
-        tools:text="초대코드를 보내보세요" />
+        app:layout_constraintTop_toBottomOf="@id/tv_main_room_name" />
 
     <ImageView
         android:id="@+id/iv_main_background_home_city"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="38dp"
+        android:scaleType="fitXY"
         android:src="@drawable/background_home_city"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,4 +86,16 @@
         app:layout_constraintStart_toStartOf="@id/gl_start"
         app:layout_constraintTop_toBottomOf="@id/iv_main_speech_bubble"
         tools:src="@drawable/ic_character" />
+
+    <TextView
+        android:id="@+id/tv_main_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
+        android:textColor="@color/g_10"
+        app:layout_constraintEnd_toStartOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/iv_main_character"
+        tools:text="질문 답변하기" />
 </androidx.constraintlayout.widget.ConstraintLayout>
