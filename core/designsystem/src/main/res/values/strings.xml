@@ -47,10 +47,21 @@
     <string name="answer_description_check_answer">상대의 답변을 확인하세요</string>
     <string name="answer_description_done">답변을 완료했어요</string>
     <string name="answer_description_not_yet">아직 답변을 하지 않았어요</string>
-    
+
     <!-- home setting -->
     <string name="home_setting_title">앱 전체 설정</string>
     <string name="home_setting_notification">알림 설정</string>
     <string name="home_setting_logout">로그아웃</string>
     <string name="home_setting_withdrawal">탈퇴하기</string>
+
+    <!-- qna -->
+    <string name="qna_title_survival">오늘의 생존신고 보내기</string>
+    <string name="qna_title_check_answer">상대의 답변 확인하기</string>
+    <string name="qna_description_survival">아래 질문에 답변을 작성해주세요</string>
+    <string name="qna_description_check_answer">상대의 생존신고를 확인해보세요</string>
+    <string name="qna_btn_text_survival">전송하기</string>
+    <string name="qna_btn_text_check_answer">확인하기</string>
+    <string name="qna_answer_hint">답변 입력하기</string>
+    <string name="qna_add_picture">사진 추가하기</string>
+    <string name="qna_warning">패널티가 부과되었습니다. 필수로 사진을 추가해주세요.</string>
 </resources>
