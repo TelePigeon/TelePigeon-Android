@@ -17,7 +17,7 @@ class HomeRoomViewHolder(private val binding: ItemHomeRoomBinding, private val c
     fun onBind(homeRoomEntity: HomeRoomEntity) {
         this.homeRoomEntity = homeRoomEntity
         with(binding) {
-            ivHomeRoomEmotion.setImageDrawable(context.getDrawable(homeRoomEntity.emotion))
+            ivHomeRoomEmotion.setImageResource(homeRoomEntity.emotion)
             tvHomeRoomName.text = homeRoomEntity.name
             tvHomeRoomRelation.text = homeRoomEntity.relation
             tvHomeRoomAnswerDescription.text = context.getString(homeRoomEntity.answerDescription)
