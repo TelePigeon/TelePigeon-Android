@@ -11,7 +11,7 @@ import com.dongguk.telpigeon.core.ui.util.view.setBackgroundTint
 class HomeModifyRoomViewHolder(private val binding: ItemHomeRoomBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
     fun onSelectedItemBind(homeRoomEntity: HomeRoomEntity) {
         with(binding) {
-            ivHomeRoomEmotion.setImageDrawable(context.getDrawable(homeRoomEntity.emotion))
+            ivHomeRoomEmotion.setImageResource(homeRoomEntity.emotion)
             tvHomeRoomName.text = homeRoomEntity.name
             tvHomeRoomRelation.text = homeRoomEntity.relation
             tvHomeRoomAnswerDescription.text = context.getString(homeRoomEntity.answerDescription)
@@ -24,7 +24,7 @@ class HomeModifyRoomViewHolder(private val binding: ItemHomeRoomBinding, private
 
     fun onUnselectedItemBind(homeRoomEntity: HomeRoomEntity) {
         with(binding) {
-            ivHomeRoomEmotion.setImageDrawable(context.getDrawable(homeRoomEntity.emotion))
+            ivHomeRoomEmotion.setImageResource(homeRoomEntity.emotion)
             tvHomeRoomName.text = homeRoomEntity.name
             tvHomeRoomRelation.text = homeRoomEntity.relation
             tvHomeRoomAnswerDescription.text = context.getString(homeRoomEntity.answerDescription)

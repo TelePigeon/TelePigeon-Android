@@ -7,9 +7,19 @@
 
     <fragment
         android:id="@+id/menu_all_navi_main"
-        android:name="com.dongguk.telepigeon.feature.main.MainFragment"
+        android:name="com.dongguk.telepigeon.feature.main.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_main_qna"
+            app:destination="@id/menu_main_qna" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_main_qna"
+        android:name="com.dongguk.telepigeon.feature.main.qna.QnaFragment"
+        android:label="fragment_qna"
+        tools:layout="@layout/fragment_qna" />
 
     <fragment
         android:id="@+id/menu_all_navi_calender"

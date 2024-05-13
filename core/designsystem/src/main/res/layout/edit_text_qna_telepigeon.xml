@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_border_radius_10"
+    android:backgroundTint="@color/marble"
+    android:paddingHorizontal="18dp"
+    android:paddingVertical="22dp">
+
+    <ImageView
+        android:id="@+id/iv_edit_text_qna_telepigeon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_all_question_30" />
+
+    <EditText
+        android:id="@+id/et_edit_text_qna_telepigeon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Body.Semi.14"
+        android:textColor="@color/g_10"
+        android:textColorHint="@color/g_04"
+        app:layout_constraintBottom_toBottomOf="@id/iv_edit_text_qna_telepigeon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_edit_text_qna_telepigeon"
+        app:layout_constraintTop_toTopOf="@id/iv_edit_text_qna_telepigeon"
+        tools:text="답변 입력하기" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

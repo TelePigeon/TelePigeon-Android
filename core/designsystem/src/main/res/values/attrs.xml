@@ -4,4 +4,8 @@
         <attr name="telePigeonEditTextTitle" format="reference|string" />
         <attr name="telePigeonEditTextHint" format="reference|string" />
     </declare-styleable>
+
+    <declare-styleable name="TelePigeonQnaEditText">
+        <attr name="telePigeonQnaEditTextHint" format="reference|string" />
+    </declare-styleable>
 </resources>

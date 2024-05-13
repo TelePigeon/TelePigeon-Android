@@ -7,12 +7,14 @@ import com.dongguk.telepigeon.domain.model.HomeRoomEntity
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
 
-class HomeRoomAdapter : ListAdapter<HomeRoomEntity, HomeRoomViewHolder>(
-    ItemDiffCallback<HomeRoomEntity>(
-        onItemsTheSame = { old, new -> old.id == new.id },
-        onContentsTheSame = { old, new -> old == new },
-    ),
-) {
+class HomeRoomAdapter(
+    private val navigateToMain: (Int) -> Unit,
+) : ListAdapter<HomeRoomEntity, HomeRoomViewHolder>(
+        ItemDiffCallback<HomeRoomEntity>(
+            onItemsTheSame = { old, new -> old.id == new.id },
+            onContentsTheSame = { old, new -> old == new },
+        ),
+    ) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -20,6 +22,7 @@ class HomeRoomAdapter : ListAdapter<HomeRoomEntity, HomeRoomViewHolder>(
         HomeRoomViewHolder(
             binding = ItemHomeRoomBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             context = parent.context,
+            navigateToMain = navigateToMain,
         )
 
     override fun onBindViewHolder(

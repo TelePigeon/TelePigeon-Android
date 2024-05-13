@@ -2,6 +2,7 @@ package com.dongguk.telepigeon.feature.home.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.feature.R
@@ -30,7 +31,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
     }
 
     private fun initAdapter() {
-        homeRoomAdapter = HomeRoomAdapter()
+        homeRoomAdapter = HomeRoomAdapter(navigateToMain = ::navigateToMain)
         binding.rvHomeRoom.adapter = homeRoomAdapter
 
         // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
@@ -61,6 +62,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
         }
     }
 
+    private fun navigateToMain(roomId: Int) {
+        findNavController().navigate(R.id.action_home_to_main, bundleOf(ROOM_ID to roomId))
+    }
+
     private fun navigateToHomeSetting() {
         findNavController().navigate(R.id.action_home_to_home_setting)
     }
@@ -71,5 +76,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
 
     private fun navigateToHomeModifyRoom() {
         findNavController().navigate(R.id.action_home_to_home_modify_room)
+    }
+
+    companion object {
+        const val ROOM_ID = "roomId"
     }
 }
