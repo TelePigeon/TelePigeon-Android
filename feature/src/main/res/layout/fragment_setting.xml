@@ -6,14 +6,281 @@
     android:layout_height="match_parent"
     tools:context=".setting.SettingFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setting"
-        android:textAppearance="@style/TextAppearance.TelePigeon.Title.Extra.40"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_setting"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+            <TextView
+                android:id="@+id/tv_setting_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/setting_title"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Extra.40"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_setting_room_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/setting_room_info_title"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+                app:layout_constraintEnd_toStartOf="@id/btn_setting_room_info_copy"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_setting_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_setting_room_info_copy"
+                style="@style/Theme.TelePigeon.Button.Small"
+                android:layout_width="wrap_content"
+                android:text="@string/setting_copy"
+                app:layout_constraintBottom_toBottomOf="@id/tv_setting_room_info_title"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toEndOf="@id/tv_setting_room_info_title"
+                app:layout_constraintTop_toTopOf="@id/tv_setting_room_info_title" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_setting_room_info_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@+id/tv_setting_room_info_title"
+                app:telePigeonEditTextTitle="@string/edit_text_code" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_setting_room_info_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/et_setting_room_info_code"
+                app:telePigeonEditTextTitle="@string/edit_text_name" />
+
+            <TextView
+                android:id="@+id/tv_setting_key_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/setting_key_word_title"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+                app:layout_constraintEnd_toStartOf="@id/btn_setting_key_word_modify"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/et_setting_room_info_name" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_setting_key_word_modify"
+                style="@style/Theme.TelePigeon.Button.Small"
+                android:layout_width="wrap_content"
+                android:text="@string/setting_modify"
+                app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toEndOf="@id/tv_setting_key_word"
+                app:layout_constraintTop_toTopOf="@id/tv_setting_key_word" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_setting_key_word_current"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_setting_key_word"
+                app:telePigeonEditTextTitle="@string/setting_key_word_current" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_setting_key_word_extra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_border_radius_10"
+                android:backgroundTint="@color/marble"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/et_setting_key_word_current">
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_extra_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/setting_key_word_extra"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Body.Bold.14"
+                    android:textColor="@color/g_07"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_setting_key_word_extra_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_setting_gender_20"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_extra_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_setting_key_word_extra_title" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_extra_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/setting_key_word_extra_gender"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_setting_key_word_extra_gender"
+                    app:layout_constraintStart_toEndOf="@id/iv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toTopOf="@id/iv_setting_key_word_extra_gender" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_extra_gender_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="18dp"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word_extra_gender"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_extra_gender"
+                    tools:text="남성" />
+
+                <ImageView
+                    android:id="@+id/iv_setting_key_word_age_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_setting_age_group_20"
+                    app:layout_constraintStart_toStartOf="@id/iv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toBottomOf="@id/iv_setting_key_word_extra_gender" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_age_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_key_word_extra_age_range"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_setting_key_word_age_group"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toTopOf="@id/iv_setting_key_word_age_group" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_age_group_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word_age_group"
+                    app:layout_constraintEnd_toEndOf="@id/tv_setting_key_word_extra_gender_content"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_extra_gender_content"
+                    app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_age_group"
+                    tools:text="20대" />
+
+                <ImageView
+                    android:id="@+id/iv_setting_key_word_relationship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="17dp"
+                    android:src="@drawable/ic_setting_relationship_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_setting_key_word_age_group"
+                    app:layout_constraintTop_toBottomOf="@id/iv_setting_key_word_age_group" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_relationship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_key_word_extra_relation"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_setting_key_word_relationship"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_age_group"
+                    app:layout_constraintTop_toTopOf="@id/iv_setting_key_word_relationship" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_relationship_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word_relationship"
+                    app:layout_constraintEnd_toEndOf="@id/tv_setting_key_word_age_group_content"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_age_group_content"
+                    app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_relationship"
+                    tools:text="자식" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_setting_worry_setting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/setting_worry_setting_title"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+                android:textColor="@color/g_10"
+                app:layout_constraintEnd_toStartOf="@id/btn_setting_worry_setting"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/layout_setting_key_word_extra" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_setting_worry_setting"
+                style="@style/Theme.TelePigeon.Button.Small"
+                android:layout_width="wrap_content"
+                android:text="@string/setting_setting"
+                app:layout_constraintBottom_toBottomOf="@id/tv_setting_worry_setting_title"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toEndOf="@id/tv_setting_worry_setting_title"
+                app:layout_constraintTop_toTopOf="@id/tv_setting_worry_setting_title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_setting_worry_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_setting_worry_setting_title"
+                tools:listitem="@layout/item_setting_worry_setting" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
