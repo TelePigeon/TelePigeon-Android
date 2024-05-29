@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.data.model.remote.response
 
-import com.dongguk.telepigeon.domain.model.UserEntity
+import com.dongguk.telepigeon.domain.model.UserModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -33,7 +33,7 @@ class ResponseGetDummyUserListDto(
         val avatar: String,
     ) {
         fun toUserEntity() =
-            UserEntity(
+            UserModel(
                 id = this.id,
                 firstName = this.firstName,
             )

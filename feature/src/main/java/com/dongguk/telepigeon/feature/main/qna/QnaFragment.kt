@@ -54,9 +54,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
             QnaType.SURVIVAL -> {
                 with(binding) {
                     ivQnaPicture.visibility = View.INVISIBLE
-                    etQnaQuestion.editText.setText(qnaViewModel.dummyCheckQuestionEntity.content)
-                    ivQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionEntity.isPenalty) View.VISIBLE else View.INVISIBLE
-                    tvQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionEntity.isPenalty) View.VISIBLE else View.INVISIBLE
+                    etQnaQuestion.editText.setText(qnaViewModel.dummyCheckQuestionModel.content)
+                    ivQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionModel.isPenalty) View.VISIBLE else View.INVISIBLE
+                    tvQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionModel.isPenalty) View.VISIBLE else View.INVISIBLE
                 }
             }
 
@@ -64,9 +64,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                 with(binding) {
                     etQnaAnswer.editText.isEnabled = false
                     layoutQnaAddPicture.visibility = View.GONE
-                    etQnaQuestion.editText.setText(qnaViewModel.dummyQuestionAnswerEntity.questionContent)
-                    etQnaAnswer.editText.setText(qnaViewModel.dummyQuestionAnswerEntity.answerContent)
-                    ivQnaPicture.load(qnaViewModel.dummyQuestionAnswerEntity.answerImage)
+                    etQnaQuestion.editText.setText(qnaViewModel.dummyQuestionAnswerModel.questionContent)
+                    etQnaAnswer.editText.setText(qnaViewModel.dummyQuestionAnswerModel.answerContent)
+                    ivQnaPicture.load(qnaViewModel.dummyQuestionAnswerModel.answerImage)
                     ivQnaWarning.visibility = View.INVISIBLE
                     tvQnaWarning.visibility = View.INVISIBLE
                 }

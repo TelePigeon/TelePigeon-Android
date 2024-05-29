@@ -3,14 +3,14 @@ package com.dongguk.telepigeon.feature.home.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.dongguk.telepigeon.domain.model.HomeRoomEntity
+import com.dongguk.telepigeon.domain.model.HomeRoomModel
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
 
 class HomeRoomAdapter(
     private val navigateToMain: (Int) -> Unit,
-) : ListAdapter<HomeRoomEntity, HomeRoomViewHolder>(
-        ItemDiffCallback<HomeRoomEntity>(
+) : ListAdapter<HomeRoomModel, HomeRoomViewHolder>(
+        ItemDiffCallback<HomeRoomModel>(
             onItemsTheSame = { old, new -> old.id == new.id },
             onContentsTheSame = { old, new -> old == new },
         ),
@@ -29,6 +29,6 @@ class HomeRoomAdapter(
         holder: HomeRoomViewHolder,
         position: Int,
     ) {
-        holder.onBind(homeRoomEntity = currentList[position])
+        holder.onBind(homeRoomModel = currentList[position])
     }
 }

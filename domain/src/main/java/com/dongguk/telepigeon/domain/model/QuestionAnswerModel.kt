@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.domain.model
 
-data class QuestionAnswerEntity(
+data class QuestionAnswerModel(
     val questionerName: String,
     val respondentName: String,
     val questionContent: String,

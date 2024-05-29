@@ -3,12 +3,12 @@ package com.dongguk.telepigeon.feature.home.modifyroom
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.dongguk.telepigeon.domain.model.HomeRoomEntity
+import com.dongguk.telepigeon.domain.model.HomeRoomModel
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
 
-class HomeModifyRoomAdapter : ListAdapter<HomeRoomEntity, HomeModifyRoomViewHolder>(
-    ItemDiffCallback<HomeRoomEntity>(
+class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolder>(
+    ItemDiffCallback<HomeRoomModel>(
         onItemsTheSame = { old, new -> old.id == new.id },
         onContentsTheSame = { old, new -> old == new },
     ),
@@ -26,9 +26,9 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomEntity, HomeModifyRoomViewHold
         position: Int,
     ) {
         if (position == _selectedItemPosition) {
-            holder.onSelectedItemBind(homeRoomEntity = currentList[position])
+            holder.onSelectedItemBind(homeRoomModel = currentList[position])
         } else {
-            holder.onUnselectedItemBind(homeRoomEntity = currentList[position])
+            holder.onUnselectedItemBind(homeRoomModel = currentList[position])
         }
 
         holder.itemView.setOnClickListener {

@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.domain.model
 
-data class CheckQuestionEntity(
+data class CheckQuestionModel(
     val id: Int,
     val content: String,
     val isPenalty: Boolean,

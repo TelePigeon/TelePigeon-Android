@@ -2,25 +2,25 @@ package com.dongguk.telepigeon.feature.home.home
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-import com.dongguk.telepigeon.domain.model.HomeRoomEntity
+import com.dongguk.telepigeon.domain.model.HomeRoomModel
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 
 class HomeRoomViewHolder(private val binding: ItemHomeRoomBinding, private val context: Context, private val navigateToMain: (Int) -> Unit) : RecyclerView.ViewHolder(binding.root) {
-    private lateinit var homeRoomEntity: HomeRoomEntity
+    private lateinit var homeRoomModel: HomeRoomModel
 
     init {
         binding.root.setOnClickListener {
-            navigateToMain(homeRoomEntity.id)
+            navigateToMain(homeRoomModel.id)
         }
     }
 
-    fun onBind(homeRoomEntity: HomeRoomEntity) {
-        this.homeRoomEntity = homeRoomEntity
+    fun onBind(homeRoomModel: HomeRoomModel) {
+        this.homeRoomModel = homeRoomModel
         with(binding) {
-            ivHomeRoomEmotion.setImageResource(homeRoomEntity.emotion)
-            tvHomeRoomName.text = homeRoomEntity.name
-            tvHomeRoomRelation.text = homeRoomEntity.relation
-            tvHomeRoomAnswerDescription.text = context.getString(homeRoomEntity.answerDescription)
+            ivHomeRoomEmotion.setImageResource(homeRoomModel.emotion)
+            tvHomeRoomName.text = homeRoomModel.name
+            tvHomeRoomRelation.text = homeRoomModel.relation
+            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.answerDescription)
         }
     }
 }
