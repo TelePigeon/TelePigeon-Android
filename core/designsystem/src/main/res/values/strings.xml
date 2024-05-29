@@ -17,7 +17,9 @@
     <string name="dialog_sentence_entered_room">이미 입장하신 방입니다.</string>
     <string name="dialog_sentence_matched_room">이미 매칭이 완료된 방입니다.</string>
     <string name="dialog_sentence_create_room">방이 생성되었습니다.</string>
-    <string name="dialog_sententce_delete_room">선택한 방을 삭제하시겠습니까?</string>
+    <string name="dialog_sentence_delete_room">선택한 방을 삭제하시겠습니까?</string>
+    <string name="dialog_sentence_copy_code">초대코드가 복사되었습니다.</string>
+    <string name="dialog_sentence_delete_worry">선택한 걱정을 삭제하시겠습니까?</string>
 
     <!-- edit text -->
     <string name="edit_text_code">초대코드</string>
