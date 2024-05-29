@@ -68,6 +68,8 @@
         <item name="cornerRadius">50dp</item>
         <item name="textStartPadding">20dp</item>
         <item name="textEndPadding">20dp</item>
+        <item name="chipBackgroundColor">@color/selector_all_chip_select_background</item>
+        <item name="android:textColor">@color/selector_all_chip_select_text_color</item>
         <item name="android:paddingVertical">6dp</item>
         <item name="android:clickable">true</item>
         <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Cap.Bold.12</item>
