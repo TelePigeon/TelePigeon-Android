@@ -1,4 +1,4 @@
-package com.dongguk.telepigeon.feature.setting
+package com.dongguk.telepigeon.feature.setting.setting
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.dongguk.telepigeon.feature.setting
+package com.dongguk.telepigeon.feature.setting.setting
 
 import androidx.recyclerview.widget.RecyclerView
 import com.dongguk.telepigeon.domain.model.RoomWorryModel

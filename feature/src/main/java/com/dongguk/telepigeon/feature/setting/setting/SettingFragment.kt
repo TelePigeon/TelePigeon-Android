@@ -1,4 +1,4 @@
-package com.dongguk.telepigeon.feature.setting
+package com.dongguk.telepigeon.feature.setting.setting
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -6,8 +6,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
+import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
@@ -24,6 +26,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         initAdapter()
         initLayout()
         setBtnSettingRoomInfoCopyClickListener()
+        setBtnSettingKeywordModifyClickListener()
     }
 
     private fun initAdapter() {
@@ -58,6 +61,12 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         }
     }
 
+    private fun setBtnSettingKeywordModifyClickListener() {
+        binding.btnSettingKeyWordModify.setOnClickListener {
+            navigateToKeywordSetting()
+        }
+    }
+
     private fun showCopyCodeBottomSheetDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
             bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.COPY_CODE
@@ -65,9 +74,11 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     }
 
     private fun copyCopyCode(code: String) {
-        (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).let { clipboardManager ->
-            clipboardManager.setPrimaryClip(ClipData.newPlainText(CODE, code))
-        }
+        (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(CODE, code))
+    }
+
+    private fun navigateToKeywordSetting() {
+        findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting)
     }
 
     companion object {
