@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonAppBar
+        android:id="@+id/appbar_keyword_setting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/btn_keyword_setting_complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_keyword_setting">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+            <TextView
+                android:id="@+id/tv_keyword_setting_total_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/keyword_setting_total_keyword"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+                android:textColor="@color/g_10"
+                app:layout_constraintStart_toStartOf="@+id/gl_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_keyword_setting_total_keyword_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/keyword_setting_total_keyword_content"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.12"
+                android:textColor="@color/g_07"
+                app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_start"
+                app:layout_constraintTop_toBottomOf="@+id/tv_keyword_setting_total_keyword" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_keyword_setting_total_keyword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:chipSpacingHorizontal="12dp"
+                app:chipSpacingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_keyword_setting_total_keyword_content" />
+
+            <TextView
+                android:id="@+id/tv_keyword_setting_keyword_extra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/setting_key_word_extra"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/cg_keyword_setting_total_keyword" />
+
+            <TextView
+                android:id="@+id/tv_keyword_setting_keyword_extra_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/keyword_setting_extra_content"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.12"
+                android:textColor="@color/g_07"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_keyword_setting_keyword_extra" />
+
+            <TextView
+                android:id="@+id/tv_keyword_setting_keyword_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/keyword_setting_user"
+                android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.20"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_keyword_setting_keyword_extra_content" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_keyword_setting_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_keyword_setting_keyword_user"
+                app:telePigeonEditTextTitle="@string/setting_key_word_extra_gender" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_keyword_setting_age_range"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/et_keyword_setting_gender"
+                app:telePigeonEditTextTitle="@string/setting_key_word_extra_age_range" />
+
+            <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+                android:id="@+id/et_keyword_setting_relation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/gl_end"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/et_keyword_setting_age_range"
+                app:layout_constraintVertical_bias="0.0"
+                app:telePigeonEditTextTitle="@string/setting_key_word_extra_relation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_keyword_setting_complete"
+        style="@style/Theme.TelePigeon.Button.Select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/button_complete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
