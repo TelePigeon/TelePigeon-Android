@@ -1,11 +1,13 @@
 package com.dongguk.telepigeon.feature.setting.keywordsetting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionAdapter
+import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
+import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
 import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
@@ -14,11 +16,15 @@ import com.google.android.material.chip.Chip
 
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
+    private val bottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
+        setEtKeywordSettingGenderClickListener()
+        setEtKeywordSettingAgeRangeClickListener()
+        setEtKeywordSettingRelationClickListener()
     }
 
     private fun initLayout() {
@@ -37,7 +43,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             }
         }
 
-        setKeywordChip(keywordSettingViewModel.dummyKeyword, keywordSettingViewModel.dummySelectedKeyword)
+        setKeywordChip(keywordSettingViewModel.dummyKeywords, keywordSettingViewModel.dummySelectedKeywords)
     }
 
     private fun setKeywordChip(keywords: List<String>, selectedKeywords: List<String>) {
@@ -52,7 +58,34 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         }
     }
 
+    private fun setEtKeywordSettingGenderClickListener() {
+        binding.etKeywordSettingGender.setOnClickListener {
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = keywordSettingViewModel.dummyGenders)
+        }
+    }
+
+    private fun setEtKeywordSettingAgeRangeClickListener() {
+        binding.etKeywordSettingAgeRange.setOnClickListener {
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = keywordSettingViewModel.dummyAgeRanges)
+        }
+    }
+
+    private fun setEtKeywordSettingRelationClickListener() {
+        binding.etKeywordSettingRelation.setOnClickListener {
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = keywordSettingViewModel.dummyRelations)
+        }
+    }
+
+    private fun showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType: BottomSheetWithSelectionType, selectionList: List<String>) {
+        BottomSheetWithSelectionDialogFragment(
+            bottomSheetWithSelectionType = bottomSheetWithSelectionType,
+            selectionList = selectionList,
+            bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter
+        ).show(childFragmentManager, SELECTION_BOTTOM_SHEET)
+    }
+
     companion object {
         const val MAX_SELECTION = 3
+        const val SELECTION_BOTTOM_SHEET = "selectionBottomSheet"
     }
 }
