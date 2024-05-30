@@ -9,6 +9,7 @@
     <!-- dialog -->
     <string name="dialog_check">확인</string>
     <string name="dialog_cancellation">취소</string>
+    <string name="dialog_apply">적용</string>
     <string name="dialog_interjection_whoops">앗,</string>
     <string name="dialog_interjection_ooh">오,</string>
     <string name="dialog_sentence_withdrawal">탈퇴하시겠습니까?</string>
