@@ -14,7 +14,6 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolde
     ),
 ) {
     private var _selectedItemPosition: Int = DEFAULT_OLD_POSITION
-    val selectedItemPosition get() = _selectedItemPosition
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
