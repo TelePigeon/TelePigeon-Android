@@ -106,4 +106,9 @@
     <string name="keyword_setting_extra_content">적절한 질문 생성을 위해 추가 정보를 입력해주세요.</string>
     <string name="keyword_setting_user">사용자</string>
 
+    <!-- worry setting -->
+    <string name="worry_setting_now">현재 걱정</string>
+    <string name="worry_setting_now_content">상대에게 보내주고 싶은 걱정을 설정해보세요.</string>
+    <string name="worry_setting_add">추가하기</string>
+
 </resources>
