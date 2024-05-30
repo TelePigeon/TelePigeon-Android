@@ -37,7 +37,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             etKeywordSettingAgeRange.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.ageRange)
             etKeywordSettingRelation.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.relation)
 
-            binding.appbarKeywordSetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(com.dongguk.telepigeon.core.design.system.R.string.home_modify))
+            binding.appbarKeywordSetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(com.dongguk.telepigeon.core.design.system.R.string.setting_key_word_title))
             binding.appbarKeywordSetting.binding.ivAppBarTelepigeonArrowLeft.setOnClickListener {
                 findNavController().popBackStack()
             }

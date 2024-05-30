@@ -9,7 +9,7 @@
         android:id="@+id/menu_all_navi_main"
         android:name="com.dongguk.telepigeon.feature.main.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_main_to_main_qna"
             app:destination="@id/menu_main_qna" />
@@ -31,11 +31,14 @@
         android:id="@+id/menu_all_navi_setting"
         android:name="com.dongguk.telepigeon.feature.setting.setting.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" >
+        tools:layout="@layout/fragment_setting">
 
         <action
             android:id="@+id/action_all_navi_setting_to_keyword_setting"
             app:destination="@id/menu_keyword_setting" />
+        <action
+            android:id="@+id/action_all_navi_setting_to_worry_setting"
+            app:destination="@id/menu_worry_setting" />
     </fragment>
 
     <fragment
@@ -43,6 +46,12 @@
         android:name="com.dongguk.telepigeon.feature.setting.keywordsetting.KeywordSettingFragment"
         android:label="fragment_keyword_setting"
         tools:layout="@layout/fragment_keyword_setting" />
+
+    <fragment
+        android:id="@+id/menu_worry_setting"
+        android:name="com.dongguk.telepigeon.feature.setting.worrysetting.WorrySettingFragment"
+        android:label="fragment_worry_setting"
+        tools:layout="@layout/fragment_worry_setting" />
 
     <fragment
         android:id="@+id/menu_home"
