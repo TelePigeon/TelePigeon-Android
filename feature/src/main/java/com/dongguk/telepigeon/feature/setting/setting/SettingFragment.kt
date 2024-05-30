@@ -27,6 +27,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         initLayout()
         setBtnSettingRoomInfoCopyClickListener()
         setBtnSettingKeywordModifyClickListener()
+        setBtnSettingWorrySettingClickListener()
     }
 
     private fun initAdapter() {
@@ -67,6 +68,12 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         }
     }
 
+    private fun setBtnSettingWorrySettingClickListener() {
+        binding.btnSettingWorrySetting.setOnClickListener {
+            navigateToWorrySetting()
+        }
+    }
+
     private fun showCopyCodeBottomSheetDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
             bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.COPY_CODE
@@ -79,6 +86,10 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
 
     private fun navigateToKeywordSetting() {
         findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting)
+    }
+
+    private fun navigateToWorrySetting() {
+        findNavController().navigate(R.id.action_all_navi_setting_to_worry_setting)
     }
 
     companion object {

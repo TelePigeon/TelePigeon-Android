@@ -9,7 +9,7 @@ import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
 
 class SettingWorrySettingAdapter : ListAdapter<RoomWorryModel, SettingWorrySettingViewHolder>(
     ItemDiffCallback<RoomWorryModel>(
-        onItemsTheSame = { old, new -> old.name == new.name },
+        onItemsTheSame = { old, new -> old.id == new.id },
         onContentsTheSame = { old, new -> old == new },
     )
 ) {
