@@ -28,4 +28,9 @@ enum class BottomSheetWithOneBtnType(
         sentence = R.string.dialog_sentence_create_room,
         btnText = R.string.dialog_check,
     ),
+    COPY_CODE(
+        interjection = R.string.dialog_interjection_ooh,
+        sentence = R.string.dialog_sentence_copy_code,
+        btnText = R.string.dialog_check,
+    ),
 }

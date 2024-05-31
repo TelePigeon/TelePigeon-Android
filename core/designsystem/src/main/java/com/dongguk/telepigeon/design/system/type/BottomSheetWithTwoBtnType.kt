@@ -23,7 +23,13 @@ enum class BottomSheetWithTwoBtnType(
     ),
     DELETE_ROOM(
         interjection = R.string.dialog_interjection_whoops,
-        sentence = R.string.dialog_sententce_delete_room,
+        sentence = R.string.dialog_sentence_delete_room,
+        leftBtnText = R.string.dialog_check,
+        rightBtnText = R.string.dialog_cancellation,
+    ),
+    DELETE_WORRY(
+        interjection = R.string.dialog_interjection_whoops,
+        sentence = R.string.dialog_sentence_delete_worry,
         leftBtnText = R.string.dialog_check,
         rightBtnText = R.string.dialog_cancellation,
     ),

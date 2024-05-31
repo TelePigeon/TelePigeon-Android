@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_dialog_bottom_sheet_with_selection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.20"
+        android:textColor="@color/g_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_dialog_bottom_sheet_with_selection_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10대" />
+
+    <ImageView
+        android:id="@+id/iv_dialog_bottom_sheet_with_selection_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_setting_check_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dialog_bottom_sheet_with_selection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_dialog_bottom_sheet_with_selection" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,14 @@
         <item name="cornerRadius">@dimen/button_corner_radius</item>
     </style>
 
+    <style name="Theme.TelePigeon.Button.Small" parent="Theme.TelePigeon.Button">
+        <item name="android:layout_height">@dimen/button_height_small</item>
+        <item name="android:paddingHorizontal">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Cap.Bold.12</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/monstera</item>
+    </style>
+
     <style name="Theme.TelePigeon.Button.Common" parent="Theme.TelePigeon.Button">
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Sub.Semi.18</item>
@@ -60,6 +68,8 @@
         <item name="cornerRadius">50dp</item>
         <item name="textStartPadding">20dp</item>
         <item name="textEndPadding">20dp</item>
+        <item name="chipBackgroundColor">@color/selector_all_chip_select_background</item>
+        <item name="android:textColor">@color/selector_all_chip_select_text_color</item>
         <item name="android:paddingVertical">6dp</item>
         <item name="android:clickable">true</item>
         <item name="android:textAppearance">@style/TextAppearance.TelePigeon.Cap.Bold.12</item>
@@ -76,11 +86,11 @@
 
     <style name="Theme.TelePigeon.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/Theme.TelePigeon.BottomSheetDialog.ShapeAppearance</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
     <style name="Theme.TelePigeon.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Theme.TelePigeon.BottomSheet</item>
-        <item name="android:backgroundTint">@color/white</item>
     </style>
 
 </resources>

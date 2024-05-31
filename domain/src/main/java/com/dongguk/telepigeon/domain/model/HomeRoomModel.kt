@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.domain.model
 
-data class HomeRoomEntity(
+data class HomeRoomModel(
     val id: Int,
     val emotion: Int,
     val name: String,

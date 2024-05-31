@@ -1,8 +1,8 @@
 package com.dongguk.telepigeon.feature.main.qna
 
 import androidx.lifecycle.ViewModel
-import com.dongguk.telepigeon.domain.model.CheckQuestionEntity
-import com.dongguk.telepigeon.domain.model.QuestionAnswerEntity
+import com.dongguk.telepigeon.domain.model.CheckQuestionModel
+import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -10,15 +10,15 @@ import javax.inject.Inject
 class QnaViewModel
     @Inject
     constructor() : ViewModel() {
-        val dummyCheckQuestionEntity =
-            CheckQuestionEntity(
+        val dummyCheckQuestionModel =
+            CheckQuestionModel(
                 id = 1,
                 content = "오늘 점심은 무슨 음식을 먹었나요?",
                 isPenalty = true,
             )
 
-        val dummyQuestionAnswerEntity =
-            QuestionAnswerEntity(
+        val dummyQuestionAnswerModel =
+            QuestionAnswerModel(
                 questionerName = "김둘기",
                 respondentName = "둘기맘",
                 questionContent = "오늘 점심은 무슨 음식을 먹었나요?",
