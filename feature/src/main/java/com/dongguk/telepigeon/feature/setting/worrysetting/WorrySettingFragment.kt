@@ -3,6 +3,7 @@ package com.dongguk.telepigeon.feature.setting.worrysetting
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithTwoBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
@@ -20,6 +21,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
 
         initAdapter()
         initLayout()
+        setBtnWorrySettingAddClickListener()
     }
 
     private fun initAdapter() {
@@ -32,6 +34,15 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private fun initLayout() {
         with(binding) {
             appbarWorrySetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(R.string.setting_worry_setting_title))
+            appbarWorrySetting.binding.ivAppBarTelepigeonArrowLeft.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private fun setBtnWorrySettingAddClickListener() {
+        binding.btnWorrySettingAdd.setOnClickListener {
+            navigateToAddWorry()
         }
     }
 
@@ -39,6 +50,10 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY
         ).show(childFragmentManager, DELETE_WORRY_BOTTOM_SHEET)
+    }
+
+    private fun navigateToAddWorry() {
+        findNavController().navigate(com.dongguk.telepigeon.feature.R.id.action_worry_setting_to_add_worry)
     }
 
     companion object {

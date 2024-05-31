@@ -32,7 +32,6 @@
         android:name="com.dongguk.telepigeon.feature.setting.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting">
-
         <action
             android:id="@+id/action_all_navi_setting_to_keyword_setting"
             app:destination="@id/menu_keyword_setting" />
@@ -51,7 +50,17 @@
         android:id="@+id/menu_worry_setting"
         android:name="com.dongguk.telepigeon.feature.setting.worrysetting.WorrySettingFragment"
         android:label="fragment_worry_setting"
-        tools:layout="@layout/fragment_worry_setting" />
+        tools:layout="@layout/fragment_worry_setting">
+        <action
+            android:id="@+id/action_worry_setting_to_add_worry"
+            app:destination="@id/menu_add_worry" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_add_worry"
+        android:name="com.dongguk.telepigeon.feature.setting.addworry.AddWorryFragment"
+        android:label="fragment_add_worry"
+        tools:layout="@layout/fragment_add_worry" />
 
     <fragment
         android:id="@+id/menu_home"
