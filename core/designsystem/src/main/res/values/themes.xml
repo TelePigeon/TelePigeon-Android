@@ -86,11 +86,11 @@
 
     <style name="Theme.TelePigeon.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/Theme.TelePigeon.BottomSheetDialog.ShapeAppearance</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
     <style name="Theme.TelePigeon.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Theme.TelePigeon.BottomSheet</item>
-        <item name="android:backgroundTint">@color/white</item>
     </style>
 
 </resources>
