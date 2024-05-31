@@ -50,7 +50,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         binding.cgKeywordSettingTotalKeyword.removeAllViews()
 
         for (item in keywords) {
-            (layoutInflater.inflate(R.layout.view_keyword_chip, null, false) as Chip).run {
+            (layoutInflater.inflate(com.dongguk.telepigeon.core.design.system.R.layout.view_keyword_chip, null, false) as Chip).run {
                 text = item
                 binding.cgKeywordSettingTotalKeyword.addView(this)
                 isChecked = item in selectedKeywords

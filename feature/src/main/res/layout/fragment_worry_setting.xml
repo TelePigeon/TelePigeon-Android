@@ -44,7 +44,7 @@
         android:id="@+id/btn_worry_setting_add"
         style="@style/Theme.TelePigeon.Button.Small"
         android:layout_width="wrap_content"
-        android:text="@string/worry_setting_add"
+        android:text="@string/setting_add"
         app:layout_constraintBottom_toBottomOf="@+id/tv_worry_setting_now"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
