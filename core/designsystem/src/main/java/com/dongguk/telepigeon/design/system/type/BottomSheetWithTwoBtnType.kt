@@ -32,5 +32,5 @@ enum class BottomSheetWithTwoBtnType(
         sentence = R.string.dialog_sentence_delete_worry,
         leftBtnText = R.string.dialog_check,
         rightBtnText = R.string.dialog_cancellation,
-    )
+    ),
 }

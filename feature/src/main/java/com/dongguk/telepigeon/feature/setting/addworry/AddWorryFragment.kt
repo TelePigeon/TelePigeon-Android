@@ -9,7 +9,10 @@ import com.dongguk.telepigeon.feature.databinding.FragmentAddWorryBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
 class AddWorryFragment : BindingFragment<FragmentAddWorryBinding>({ FragmentAddWorryBinding.inflate(it) }) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
@@ -34,7 +37,7 @@ class AddWorryFragment : BindingFragment<FragmentAddWorryBinding>({ FragmentAddW
 
     private fun showTimeBottomSheetDialogFragment() {
         BottomSheetTimeDialogFragment(
-            onDialogClosed = {time -> setEtAddWorryTimeText(time = time)}
+            onDialogClosed = { time -> setEtAddWorryTimeText(time = time) },
         ).show(childFragmentManager, TIME_BOTTOM_SHEET)
     }
 

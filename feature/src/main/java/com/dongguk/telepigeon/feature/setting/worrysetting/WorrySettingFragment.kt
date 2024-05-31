@@ -16,7 +16,10 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private val worrySettingViewModel by viewModels<WorrySettingViewModel>()
     private lateinit var worrySettingAdapter: WorrySettingAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
@@ -48,7 +51,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
 
     private fun showDeleteWorryBottomSheetDialogFragment(worryId: Int) {
         BottomSheetWithTwoBtnDialogFragment(
-            bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY
+            bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY,
         ).show(childFragmentManager, DELETE_WORRY_BOTTOM_SHEET)
     }
 

@@ -18,7 +18,10 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
     private val bottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
@@ -46,7 +49,10 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         setKeywordChip(keywordSettingViewModel.dummyKeywords, keywordSettingViewModel.dummySelectedKeywords)
     }
 
-    private fun setKeywordChip(keywords: List<String>, selectedKeywords: List<String>) {
+    private fun setKeywordChip(
+        keywords: List<String>,
+        selectedKeywords: List<String>,
+    ) {
         binding.cgKeywordSettingTotalKeyword.removeAllViews()
 
         for (item in keywords) {
@@ -76,11 +82,14 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         }
     }
 
-    private fun showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType: BottomSheetWithSelectionType, selectionList: List<String>) {
+    private fun showSelectionBottomSheetDialogFragment(
+        bottomSheetWithSelectionType: BottomSheetWithSelectionType,
+        selectionList: List<String>,
+    ) {
         BottomSheetWithSelectionDialogFragment(
             bottomSheetWithSelectionType = bottomSheetWithSelectionType,
             selectionList = selectionList,
-            bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter
+            bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter,
         ).show(childFragmentManager, SELECTION_BOTTOM_SHEET)
     }
 

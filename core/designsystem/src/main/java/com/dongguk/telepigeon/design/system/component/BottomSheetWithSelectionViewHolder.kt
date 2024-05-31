@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.dongguk.telepigeon.core.design.system.databinding.ItemDialogBottomSheetWithSelectionBinding
 
-class BottomSheetWithSelectionViewHolder(private val binding: ItemDialogBottomSheetWithSelectionBinding): RecyclerView.ViewHolder(binding.root) {
+class BottomSheetWithSelectionViewHolder(private val binding: ItemDialogBottomSheetWithSelectionBinding) : RecyclerView.ViewHolder(binding.root) {
     fun onSelectedItemBind(title: String) {
         with(binding) {
             tvDialogBottomSheetWithSelection.text = title

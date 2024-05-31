@@ -32,5 +32,5 @@ enum class BottomSheetWithOneBtnType(
         interjection = R.string.dialog_interjection_ooh,
         sentence = R.string.dialog_sentence_copy_code,
         btnText = R.string.dialog_check,
-    )
+    ),
 }

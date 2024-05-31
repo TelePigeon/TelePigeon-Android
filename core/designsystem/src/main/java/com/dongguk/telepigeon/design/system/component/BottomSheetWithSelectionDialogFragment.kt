@@ -13,9 +13,12 @@ class BottomSheetWithSelectionDialogFragment(
     private val selectionList: List<String>,
     private val bottomSheetWithSelectionAdapter: BottomSheetWithSelectionAdapter,
     private val clickBtn: () -> Unit = {},
-    private val onDialogClosed: () -> Unit = {}
+    private val onDialogClosed: () -> Unit = {},
 ) : BindingBottomSheetDialogFragment<DialogBottomSheetWithSelectionBinding>({ DialogBottomSheetWithSelectionBinding.inflate(it) }) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()

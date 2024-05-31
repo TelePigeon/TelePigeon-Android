@@ -11,13 +11,20 @@ class SettingWorrySettingAdapter : ListAdapter<RoomWorryModel, SettingWorrySetti
     ItemDiffCallback<RoomWorryModel>(
         onItemsTheSame = { old, new -> old.id == new.id },
         onContentsTheSame = { old, new -> old == new },
-    )
+    ),
 ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingWorrySettingViewHolder = SettingWorrySettingViewHolder(
-        binding = ItemSettingWorrySettingBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-    )
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): SettingWorrySettingViewHolder =
+        SettingWorrySettingViewHolder(
+            binding = ItemSettingWorrySettingBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        )
 
-    override fun onBindViewHolder(holder: SettingWorrySettingViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: SettingWorrySettingViewHolder,
+        position: Int,
+    ) {
         holder.onBind(roomWorryModel = currentList[position])
     }
 }

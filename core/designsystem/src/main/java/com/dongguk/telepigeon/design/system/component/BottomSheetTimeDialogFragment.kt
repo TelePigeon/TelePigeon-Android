@@ -2,7 +2,6 @@ package com.dongguk.telepigeon.design.system.component
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.core.design.system.databinding.DialogBottomSheetTimeBinding
@@ -14,7 +13,7 @@ import com.google.android.material.chip.Chip
 class BottomSheetTimeDialogFragment(
     private val clickBtn: () -> Unit = {},
     private val onDialogClosed: (String) -> Unit = {},
-) :BindingBottomSheetDialogFragment<DialogBottomSheetTimeBinding>({ DialogBottomSheetTimeBinding.inflate(it)}) {
+) : BindingBottomSheetDialogFragment<DialogBottomSheetTimeBinding>({ DialogBottomSheetTimeBinding.inflate(it) }) {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,

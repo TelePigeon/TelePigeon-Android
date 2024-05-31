@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dongguk.telepigeon.domain.model.RoomWorryModel
 import com.dongguk.telepigeon.feature.databinding.ItemSettingWorrySettingBinding
 
-class SettingWorrySettingViewHolder(private val binding: ItemSettingWorrySettingBinding): RecyclerView.ViewHolder(binding.root) {
+class SettingWorrySettingViewHolder(private val binding: ItemSettingWorrySettingBinding) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(roomWorryModel: RoomWorryModel) {
         with(binding) {
             tvSettingWorrySettingNameContent.text = roomWorryModel.name

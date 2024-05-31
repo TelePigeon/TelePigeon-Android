@@ -76,7 +76,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
 
     private fun showCopyCodeBottomSheetDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
-            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.COPY_CODE
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.COPY_CODE,
         ).show(childFragmentManager, COPY_CODE_BOTTOM_SHEET)
     }
 

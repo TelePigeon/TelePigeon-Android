@@ -10,24 +10,32 @@ class BottomSheetWithSelectionAdapter : ListAdapter<String, BottomSheetWithSelec
     ItemDiffCallback<String>(
         onItemsTheSame = { old, new -> old.length == new.length },
         onContentsTheSame = { old, new -> old == new },
-    )
+    ),
 ) {
-    private var _selectedItemPosition: Int = DEFAULT_OLD_POSITION
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomSheetWithSelectionViewHolder = BottomSheetWithSelectionViewHolder(
-        binding = ItemDialogBottomSheetWithSelectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
+    private var selectedItemPosition: Int = DEFAULT_OLD_POSITION
 
-    override fun onBindViewHolder(holder: BottomSheetWithSelectionViewHolder, position: Int) {
-        if (position == _selectedItemPosition) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): BottomSheetWithSelectionViewHolder =
+        BottomSheetWithSelectionViewHolder(
+            binding = ItemDialogBottomSheetWithSelectionBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        )
+
+    override fun onBindViewHolder(
+        holder: BottomSheetWithSelectionViewHolder,
+        position: Int,
+    ) {
+        if (position == selectedItemPosition) {
             holder.onSelectedItemBind(title = currentList[position])
         } else {
             holder.onUnselectedItemBind(title = currentList[position])
         }
 
         holder.itemView.setOnClickListener {
-            notifyItemChanged(_selectedItemPosition)
-            _selectedItemPosition = holder.adapterPosition
-            notifyItemChanged(_selectedItemPosition)
+            notifyItemChanged(selectedItemPosition)
+            selectedItemPosition = holder.adapterPosition
+            notifyItemChanged(selectedItemPosition)
         }
     }
 
