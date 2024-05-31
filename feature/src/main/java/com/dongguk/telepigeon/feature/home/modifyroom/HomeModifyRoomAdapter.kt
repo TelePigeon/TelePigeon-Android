@@ -13,7 +13,7 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolde
         onContentsTheSame = { old, new -> old == new },
     ),
 ) {
-    private var _selectedItemPosition: Int = DEFAULT_OLD_POSITION
+    private var selectedItemPosition: Int = DEFAULT_OLD_POSITION
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,16 +24,16 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolde
         holder: HomeModifyRoomViewHolder,
         position: Int,
     ) {
-        if (position == _selectedItemPosition) {
+        if (position == selectedItemPosition) {
             holder.onSelectedItemBind(homeRoomModel = currentList[position])
         } else {
             holder.onUnselectedItemBind(homeRoomModel = currentList[position])
         }
 
         holder.itemView.setOnClickListener {
-            notifyItemChanged(_selectedItemPosition)
-            _selectedItemPosition = holder.adapterPosition
-            notifyItemChanged(_selectedItemPosition)
+            notifyItemChanged(selectedItemPosition)
+            selectedItemPosition = holder.adapterPosition
+            notifyItemChanged(selectedItemPosition)
         }
     }
 
