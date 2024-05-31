@@ -2,6 +2,7 @@ package com.dongguk.telepigeon.design.system.component
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.core.design.system.databinding.DialogBottomSheetTimeBinding
@@ -43,6 +44,7 @@ class BottomSheetTimeDialogFragment(
             (layoutInflater.inflate(R.layout.view_keyword_chip, binding.cgBottomSheetTime, false) as Chip).run {
                 text = stringOf(time.timeRes)
                 binding.cgBottomSheetTime.addView(this)
+                isChecked = false
             }
         }
     }
@@ -51,8 +53,12 @@ class BottomSheetTimeDialogFragment(
         var times = TIME
 
         with(binding.cgBottomSheetTime) {
-            checkedChipIds.forEach { chipId ->
-                times += findViewById<Chip>(chipId).text
+            for (index in 0..childCount) {
+                ((getChildAt(index)) as? Chip)?.let { chip ->
+                    if (chip.isChecked) {
+                        times += (if (times.length > TIME.length) TIME_SPACE else "") + chip.text.toString()
+                    }
+                }
             }
         }
 
@@ -60,6 +66,7 @@ class BottomSheetTimeDialogFragment(
     }
 
     companion object {
-        const val TIME = "시간"
+        const val TIME = "매일 "
+        const val TIME_SPACE = ", "
     }
 }
