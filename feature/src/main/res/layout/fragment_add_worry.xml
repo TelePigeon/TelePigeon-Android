@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonAppBar
+        android:id="@+id/appbar_add_worry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+    <TextView
+        android:id="@+id/tv_add_worry_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_worry_title"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Title.Semi.24"
+        android:textColor="@color/g_10"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_add_worry" />
+
+    <TextView
+        android:id="@+id/tv_add_worry_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/add_worry_content"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+        android:textColor="@color/g_06"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_worry_title" />
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+        android:id="@+id/et_add_worry_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_worry_content"
+        app:telePigeonEditTextHint="@string/edit_text_add_worry_name_hint"
+        app:telePigeonEditTextTitle="@string/edit_text_add_worry_name" />
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+        android:id="@+id/et_add_worry_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/et_add_worry_name"
+        app:telePigeonEditTextHint="@string/edit_text_add_worry_content_hint"
+        app:telePigeonEditTextTitle="@string/edit_text_add_worry_content" />
+
+    <com.dongguk.telepigeon.design.system.component.TelePigeonEditText
+        android:id="@+id/et_add_worry_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/et_add_worry_content"
+        app:telePigeonEditTextHint="@string/edit_text_add_worry_time_hint"
+        app:telePigeonEditTextTitle="@string/edit_text_add_worry_time" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_worry_add"
+        style="@style/Theme.TelePigeon.Button.Select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/setting_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
