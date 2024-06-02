@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TelePigeon</string>
+    <string name="app_name">텔레피죤</string>
 
     <!-- login -->
     <string name="login_kakao">카카오 로그인</string>
