@@ -162,5 +162,6 @@
     <string name="monthly_report_rank_1">1위</string>
     <string name="monthly_report_rank_2">2위</string>
     <string name="monthly_report_rank_3">3위</string>
+    <string name="monthly_report_empty">아직 보고서가 생성되지 않았어요\n한 달이 마무리되어야 보고서가 생성돼요</string>
 
 </resources>
