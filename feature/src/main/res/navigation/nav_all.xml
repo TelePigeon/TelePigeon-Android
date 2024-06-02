@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/menu_all_navi_calender"
-        android:name="com.dongguk.telepigeon.feature.calender.CalenderFragment"
+        android:name="com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment"
         android:label="fragment_calender"
-        tools:layout="@layout/fragment_calender" />
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/menu_all_navi_setting"
