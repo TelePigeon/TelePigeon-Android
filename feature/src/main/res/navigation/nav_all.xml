@@ -12,10 +12,19 @@
         tools:layout="@layout/fragment_login">
 
         <action
-            android:id="@+id/action_login_to_home"
-            app:destination="@id/menu_home" />
+            android:id="@+id/action_login_to_notification"
+            app:destination="@id/menu_notification" />
     </fragment>
 
+    <fragment
+        android:id="@+id/menu_notification"
+        android:name="com.dongguk.telepigeon.feature.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification">
+        <action
+            android:id="@+id/action_notification_to_home"
+            app:destination="@id/menu_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/menu_all_navi_main"

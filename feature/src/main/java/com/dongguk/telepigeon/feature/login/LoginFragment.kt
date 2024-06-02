@@ -1,5 +1,6 @@
 package com.dongguk.telepigeon.feature.login
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -16,11 +17,11 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>({FragmentLoginBindin
 
     private fun setLayoutLoginKakaoClickListener() {
         binding.layoutLoginKakao.setOnClickListener {
-            navigateToHome()
+            navigateToNotification()
         }
     }
 
-    private fun navigateToHome() {
-        findNavController().navigate(R.id.action_login_to_home)
+    private fun navigateToNotification() {
+        findNavController().navigate(R.id.action_login_to_notification)
     }
 }
