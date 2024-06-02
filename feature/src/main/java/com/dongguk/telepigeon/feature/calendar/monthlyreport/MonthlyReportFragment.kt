@@ -5,13 +5,16 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.type.AppBarType
-import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telepigeon.feature.databinding.FragmentMonthlyReportBinding
+import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
 class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ FragmentMonthlyReportBinding.inflate(it) }) {
     private val monthlyReportViewModel by viewModels<MonthlyReportViewModel>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initAppBar()
