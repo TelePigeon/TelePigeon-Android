@@ -40,6 +40,7 @@
     <string name="button_delete_room">삭제하기</string>
     <string name="button_complete">완료하기</string>
     <string name="button_apply">적용</string>
+    <string name="button_check">확인하기</string>
 
     <!-- home -->
     <string name="home_title">홈</string>
@@ -146,5 +147,21 @@
     <string name="time_22">22시</string>
     <string name="time_23">23시</string>
     <string name="time_24">24시</string>
+    
+    <!-- calendar -->
+    <string name="calendar_content">원하는 날짜를 선택해 답변을 확인해보세요</string>
+    <string name="calendar_monthly_report">월간 보고</string>
+    <string name="calendar_today_answer_empty">아직 답변이 없어요\n오늘의 질문에 답변해주세요</string>
+    <string name="calendar_future_answer_empty">답변이 존재하지 않아요</string>
+
+    <!-- monthly report -->
+    <string name="monthly_report_title">%d월 보고서</string>
+    <string name="monthly_report_content">질문을 생성한 키워드의 순위를 확인해보세요</string>
+    <string name="monthly_report_positive_keyword">긍정 키워드 순위</string>
+    <string name="monthly_report_negative_keyword">부정 키워드 순위</string>
+    <string name="monthly_report_rank_1">1위</string>
+    <string name="monthly_report_rank_2">2위</string>
+    <string name="monthly_report_rank_3">3위</string>
+    <string name="monthly_report_empty">아직 보고서가 생성되지 않았어요\n한 달이 마무리되어야 보고서가 생성돼요</string>
 
 </resources>

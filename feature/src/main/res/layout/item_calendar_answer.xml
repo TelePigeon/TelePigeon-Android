@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/shape_border_radius_20"
+    android:backgroundTint="@color/marble">
+
+    <ImageView
+        android:id="@+id/iv_calendar_answer_image"
+        android:layout_width="130dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/shape_border_radius_15"
+        android:clipToOutline="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/iv_calendar_answer_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_all_question_30"
+        app:layout_constraintStart_toEndOf="@id/iv_calendar_answer_image"
+        app:layout_constraintTop_toTopOf="@id/iv_calendar_answer_image" />
+
+    <TextView
+        android:id="@+id/tv_calendar_answer_question_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.10"
+        android:textColor="@color/monstera"
+        app:layout_constraintEnd_toEndOf="@id/iv_calendar_answer_question"
+        app:layout_constraintStart_toStartOf="@id/iv_calendar_answer_question"
+        app:layout_constraintTop_toBottomOf="@id/iv_calendar_answer_question"
+        tools:text="김둘기" />
+
+    <TextView
+        android:id="@+id/tv_calendar_answer_question_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.12"
+        android:textColor="@color/g_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_calendar_answer_question"
+        app:layout_constraintTop_toTopOf="@id/iv_calendar_answer_question"
+        tools:text="오늘은 점심은 무슨 음식을 먹었나요?" />
+
+    <ImageView
+        android:id="@+id/iv_calendar_answer_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_all_answer_30"
+        app:layout_constraintStart_toStartOf="@id/tv_calendar_answer_question_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_calendar_answer_question_name" />
+
+    <TextView
+        android:id="@+id/tv_calendar_answer_answer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.10"
+        android:textColor="@color/monstera"
+        app:layout_constraintEnd_toEndOf="@id/iv_calendar_answer_answer"
+        app:layout_constraintStart_toStartOf="@id/iv_calendar_answer_answer"
+        app:layout_constraintTop_toBottomOf="@id/iv_calendar_answer_answer"
+        tools:text="둘기맘" />
+
+    <TextView
+        android:id="@+id/tv_calendar_answer_answer_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.TelePigeon.Cap.Med.12"
+        android:textColor="@color/g_10"
+        app:layout_constraintEnd_toEndOf="@id/tv_calendar_answer_question_content"
+        app:layout_constraintStart_toStartOf="@id/tv_calendar_answer_question_content"
+        app:layout_constraintTop_toTopOf="@id/iv_calendar_answer_answer"
+        tools:text="분식을 먹었어요! 떡볶이랑 튀김" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

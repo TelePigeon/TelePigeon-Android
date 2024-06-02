@@ -28,7 +28,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.activity)
 
-    // navigation
+    // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 }
