@@ -10,7 +10,7 @@ import com.dongguk.telpigeon.core.ui.base.BindingActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashActivity : BindingActivity<ActivitySplashBinding>({ActivitySplashBinding.inflate(it)}) {
+class SplashActivity : BindingActivity<ActivitySplashBinding>({ ActivitySplashBinding.inflate(it) }) {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)

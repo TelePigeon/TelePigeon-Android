@@ -13,13 +13,17 @@ import com.dongguk.telepigeon.feature.databinding.FragmentNotificationBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
 class NotificationFragment : BindingFragment<FragmentNotificationBinding>({ FragmentNotificationBinding.inflate(it) }) {
-    private val postNotificationPermissionRequest = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) {
-        navigateToHome()
-    }
+    private val postNotificationPermissionRequest =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission(),
+        ) {
+            navigateToHome()
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initLayout()
