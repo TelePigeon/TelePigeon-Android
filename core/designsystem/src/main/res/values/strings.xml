@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">TelePigeon</string>
+    <string name="app_name">텔레피죤</string>
+
+    <!-- login -->
+    <string name="login_kakao">카카오 로그인</string>
 
     <!-- all navi title -->
     <string name="all_navi_main">메인</string>
@@ -41,6 +44,13 @@
     <string name="button_complete">완료하기</string>
     <string name="button_apply">적용</string>
     <string name="button_check">확인하기</string>
+    
+    <!-- notification -->
+    <string name="notification_alert">생존신고를 보내려면 꼭 필요해요!</string>
+    <string name="notification_title">\'텔레피죤\'에서 알림을 보내고자 합니다.</string>
+    <string name="notification_content">알람 기능이 꺼져있으면 기능 사용이 어려워요</string>
+    <string name="notification_no_apply">허용 안함</string>
+    <string name="notification_apply">허용</string>
 
     <!-- home -->
     <string name="home_title">홈</string>

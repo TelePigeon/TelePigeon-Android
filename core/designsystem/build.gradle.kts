@@ -12,4 +12,7 @@ android {
 }
 dependencies {
     implementation(project(":core:ui"))
+
+    // Splash
+    implementation(libs.androidx.core.splashscreen)
 }

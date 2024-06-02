@@ -3,7 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_all"
-    app:startDestination="@id/menu_home">
+    app:startDestination="@id/menu_login">
+
+    <fragment
+        android:id="@+id/menu_login"
+        android:name="com.dongguk.telepigeon.feature.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_to_notification"
+            app:destination="@id/menu_notification" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_notification"
+        android:name="com.dongguk.telepigeon.feature.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification">
+        <action
+            android:id="@+id/action_notification_to_home"
+            app:destination="@id/menu_home"
+            app:popUpTo="@id/menu_login"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/menu_all_navi_main"
@@ -25,7 +48,7 @@
         android:id="@+id/menu_all_navi_calender"
         android:name="com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment"
         android:label="fragment_calender"
-        tools:layout="@layout/fragment_calendar" >
+        tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_all_navi_calender_to_monthly_report"
             app:destination="@id/menu_monthly_report" />

@@ -93,4 +93,15 @@
         <item name="bottomSheetStyle">@style/Theme.TelePigeon.BottomSheet</item>
     </style>
 
+    <!-- Splash -->
+    <style name="Theme.TelePigeon.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/lemon</item>
+        <item name="windowSplashScreenAnimatedIcon">@android:color/transparent</item>
+        <item name="postSplashScreenTheme">@style/Theme.TelePigeon</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
