@@ -23,7 +23,9 @@
         tools:layout="@layout/fragment_notification">
         <action
             android:id="@+id/action_notification_to_home"
-            app:destination="@id/menu_home" />
+            app:destination="@id/menu_home"
+            app:popUpTo="@id/menu_login"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -46,7 +48,7 @@
         android:id="@+id/menu_all_navi_calender"
         android:name="com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment"
         android:label="fragment_calender"
-        tools:layout="@layout/fragment_calendar" >
+        tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_all_navi_calender_to_monthly_report"
             app:destination="@id/menu_monthly_report" />
