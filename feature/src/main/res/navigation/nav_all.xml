@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_all"
-    app:startDestination="@id/menu_home">
+    app:startDestination="@id/menu_login">
+
+    <fragment
+        android:id="@+id/menu_login"
+        android:name="com.dongguk.telepigeon.feature.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/menu_home" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/menu_all_navi_main"

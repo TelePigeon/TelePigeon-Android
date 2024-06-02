@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">TelePigeon</string>
 
+    <!-- login -->
+    <string name="login_kakao">카카오 로그인</string>
+
     <!-- all navi title -->
     <string name="all_navi_main">메인</string>
     <string name="all_navi_calender">달력</string>
