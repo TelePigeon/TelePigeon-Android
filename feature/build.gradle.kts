@@ -31,4 +31,7 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+
+    // Splash
+    implementation(libs.androidx.core.splashscreen)
 }
