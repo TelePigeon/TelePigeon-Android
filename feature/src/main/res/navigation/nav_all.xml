@@ -25,7 +25,17 @@
         android:id="@+id/menu_all_navi_calender"
         android:name="com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment"
         android:label="fragment_calender"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_all_navi_calender_to_monthly_report"
+            app:destination="@id/menu_monthly_report" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_monthly_report"
+        android:name="com.dongguk.telepigeon.feature.calendar.monthlyreport.MonthlyReportFragment"
+        android:label="fragment_monthly_report"
+        tools:layout="@layout/fragment_monthly_report" />
 
     <fragment
         android:id="@+id/menu_all_navi_setting"
