@@ -9,9 +9,7 @@ import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.feature.databinding.FragmentCalendarBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
-import java.time.Instant
 import java.time.LocalDate
-import java.time.ZoneId
 
 class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCalendarBinding.inflate(it) }) {
     private val calendarViewModel by viewModels<CalendarViewModel>()

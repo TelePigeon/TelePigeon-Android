@@ -7,10 +7,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MonthlyReportViewModel
-@Inject
-constructor() : ViewModel() {
-    val dummyMonthlyReportModel : MonthlyReportModel? = MonthlyReportModel(
-        positiveKeywords = listOf("운동", "-", "-"),
-        negativeKeywords = listOf("건강", "-", "-")
-    )
-}
+    @Inject
+    constructor() : ViewModel() {
+        val dummyMonthlyReportModel: MonthlyReportModel? =
+            MonthlyReportModel(
+                positiveKeywords = listOf("운동", "-", "-"),
+                negativeKeywords = listOf("건강", "-", "-"),
+            )
+    }
