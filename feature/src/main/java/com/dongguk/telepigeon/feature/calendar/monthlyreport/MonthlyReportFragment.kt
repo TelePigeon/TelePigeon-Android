@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.type.AppBarType
+import com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment.Companion.DATE
 import com.dongguk.telepigeon.feature.databinding.FragmentMonthlyReportBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 
@@ -31,10 +32,19 @@ class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ Fr
 
     private fun initLayout() {
         with(binding) {
-            layoutMonthlyReportNegativeKeyword.visibility = View.INVISIBLE
-            layoutMonthlyReportPositiveKeyword.visibility = View.INVISIBLE
-            tvMonthlyReportPositiveKeyword.visibility = View.INVISIBLE
-            tvMonthlyReportNegativeKeyword.visibility = View.INVISIBLE
+            tvMonthlyReportTitle.text = getString(com.dongguk.telepigeon.core.design.system.R.string.monthly_report_title, requireArguments().getString(DATE)?.split("-")?.getOrNull(1)?.toIntOrNull())
+
+            ivMonthlyReportEmpty.visibility = if (monthlyReportViewModel.dummyMonthlyReportModel == null) View.VISIBLE else View.INVISIBLE
+            tvMonthlyReportEmpty.visibility = if (monthlyReportViewModel.dummyMonthlyReportModel == null) View.VISIBLE else View.INVISIBLE
+
+            monthlyReportViewModel.dummyMonthlyReportModel?.let { monthlyReportModel ->
+                tvMonthlyReportPositiveKeywordRank1.text = monthlyReportModel.positiveKeywords[0]
+                tvMonthlyReportPositiveKeywordRank2.text = monthlyReportModel.positiveKeywords[1]
+                tvMonthlyReportPositiveKeywordRank3.text = monthlyReportModel.positiveKeywords[2]
+                tvMonthlyReportNegativeKeywordRank1.text = monthlyReportModel.negativeKeywords[0]
+                tvMonthlyReportNegativeKeywordRank2.text = monthlyReportModel.positiveKeywords[1]
+                tvMonthlyReportNegativeKeywordRank3.text = monthlyReportModel.positiveKeywords[2]
+            }
         }
     }
 
