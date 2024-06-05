@@ -1,6 +1,7 @@
 package com.dongguk.telepigeon.di
 
 import com.dongguk.telepigeon.data.remote.service.ProfileService
+import com.dongguk.telepigeon.data.remote.service.QuestionAnswerService
 import com.dongguk.telepigeon.data.remote.service.RoomService
 import com.dongguk.telepigeon.di.qualifier.TelePigeon
 import dagger.Module
@@ -19,6 +20,13 @@ object ServiceModule {
         @TelePigeon retrofit: Retrofit,
     ): ProfileService =
         retrofit.create(ProfileService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesQuestionAnswerService(
+        @TelePigeon retrofit: Retrofit
+    ): QuestionAnswerService =
+        retrofit.create(QuestionAnswerService::class.java)
 
     @Provides
     @Singleton

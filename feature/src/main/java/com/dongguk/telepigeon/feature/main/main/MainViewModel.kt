@@ -8,11 +8,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel
     @Inject
-    constructor() : ViewModel() {
-        val dummyRoom =
-            RoomModel(
-                name = "디스이즈방이름",
-                number = 2,
-                days = 1,
-            )
+    constructor(
+    ) : ViewModel() {
+
     }

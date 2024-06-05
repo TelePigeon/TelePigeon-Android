@@ -8,9 +8,8 @@ import com.dongguk.telepigeon.data.remote.model.response.base.BaseResponseDto
 import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseResponseDto
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Multipart
 
-interface QuestionAnswerDataSource {
+interface QuestionAnswerRemoteDataSource {
     suspend fun getLatestRoomInfo(roomId: Int): BaseResponseDto<ResponseGetLatestRoomInfoDto>
     suspend fun getQuestion(roomId: Int): BaseResponseDto<ResponseGetQuestionDto>
     suspend fun postAnswer(roomId: Int, questionId: Int, image: MultipartBody.Part?, content: RequestBody): NullableBaseResponseDto<Unit>

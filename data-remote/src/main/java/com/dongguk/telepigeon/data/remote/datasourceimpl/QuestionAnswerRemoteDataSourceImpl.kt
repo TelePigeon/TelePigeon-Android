@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.data.remote.datasourceimpl
 
-import com.dongguk.telepigeon.data.remote.datasource.QuestionAnswerDataSource
+import com.dongguk.telepigeon.data.remote.datasource.QuestionAnswerRemoteDataSource
 import com.dongguk.telepigeon.data.remote.model.response.ResponseGetLatestRoomInfoDto
 import com.dongguk.telepigeon.data.remote.model.response.ResponseGetMonthlyReportDto
 import com.dongguk.telepigeon.data.remote.model.response.ResponseGetQuestionAnswerDto
@@ -12,9 +12,9 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-class QuestionAnswerDataSourceImpl @Inject constructor(
+class QuestionAnswerRemoteDataSourceImpl @Inject constructor(
     private val questionAnswerService: QuestionAnswerService
-) : QuestionAnswerDataSource {
+) : QuestionAnswerRemoteDataSource {
     override suspend fun getLatestRoomInfo(roomId: Int): BaseResponseDto<ResponseGetLatestRoomInfoDto> = questionAnswerService.getLatestRoomInfo(roomId = roomId)
 
     override suspend fun getQuestion(roomId: Int): BaseResponseDto<ResponseGetQuestionDto> = questionAnswerService.getQuestion(roomId = roomId)
