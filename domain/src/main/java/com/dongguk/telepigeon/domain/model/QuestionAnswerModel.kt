@@ -1,9 +1,9 @@
 package com.dongguk.telepigeon.domain.model
 
 data class QuestionAnswerModel(
-    val questionerName: String,
+    val questionName: String,
     val answerName: String,
     val questionContent: String,
     val answerContent: String,
-    val answerImage: String,
+    val answerImage: String?,
 )
