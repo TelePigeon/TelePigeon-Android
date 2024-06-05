@@ -29,6 +29,7 @@ class HomeEnterRoomFragment : BindingFragment<FragmentHomeEnterRoomBinding>({ Fr
         initAppBar()
         collectPostEntranceState()
         setBtnHomeEnterRoomClickListener()
+        setEtHomeEnterRoomCodeTextChangedListener()
     }
 
     private fun initAppBar() {
@@ -63,6 +64,12 @@ class HomeEnterRoomFragment : BindingFragment<FragmentHomeEnterRoomBinding>({ Fr
     private fun setBtnHomeEnterRoomClickListener() {
         binding.btnHomeEnterRoom.setOnClickListener {
             homeEnterRoomViewModel.postEntranceRoom(binding.etHomeEnterRoomCode.editText.text.toString())
+        }
+    }
+
+    private fun setEtHomeEnterRoomCodeTextChangedListener() {
+        binding.etHomeEnterRoomCode.setOnTextChangedListener { enterRoomCode ->
+            binding.btnHomeEnterRoom.isEnabled = enterRoomCode.isNotBlank()
         }
     }
 
