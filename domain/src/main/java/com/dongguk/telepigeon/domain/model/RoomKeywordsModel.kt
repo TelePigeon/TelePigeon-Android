@@ -1,5 +1,5 @@
 package com.dongguk.telepigeon.domain.model
 
-data class RoomKeywordModel(
+data class RoomKeywordsModel(
     val keywords: String,
 )

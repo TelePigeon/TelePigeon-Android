@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
@@ -15,6 +16,7 @@ import com.dongguk.telepigeon.feature.databinding.FragmentSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -32,6 +34,8 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         initAdapter()
         initLayout()
         collectGetRoomInfoState()
+        collectGetRoomKeywordsState()
+        collectGetRoomKeywordExtraState()
         setBtnSettingKeywordModifyClickListener()
         setBtnSettingWorrySettingClickListener()
     }
@@ -49,13 +53,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
             etSettingRoomInfoCode.editText.isEnabled = false
             etSettingRoomInfoName.editText.isEnabled = false
             etSettingKeyWordCurrent.editText.isEnabled = false
-
-            // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-            etSettingKeyWordCurrent.editText.setText(settingViewModel.dummyRoomKeywordModel.keywords)
-
-            tvSettingKeyWordExtraGenderContent.text = settingViewModel.dummyRoomExtraModel.gender
-            tvSettingKeyWordAgeGroupContent.text = settingViewModel.dummyRoomExtraModel.ageRange
-            tvSettingKeyWordRelationshipContent.text = settingViewModel.dummyRoomExtraModel.relation
         }
     }
 
@@ -72,7 +69,37 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
 
                 else -> Unit
             }
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetRoomKeywordsState() {
+        settingViewModel.getRoomKeywordsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRoomKeywordsState ->
+            when (getRoomKeywordsState) {
+                is UiState.Success -> {
+                    with(getRoomKeywordsState.data) {
+                        binding.etSettingKeyWordCurrent.editText.setText(keywords)
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetRoomKeywordExtraState() {
+        settingViewModel.getRoomKeywordExtraState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRoomKeywordExtraState ->
+            when (getRoomKeywordExtraState) {
+                is UiState.Success -> {
+                    with(getRoomKeywordExtraState.data) {
+                        binding.tvSettingKeyWordExtraGenderContent.text = gender
+                        binding.tvSettingKeyWordAgeGroupContent.text = ageRange
+                        binding.tvSettingKeyWordRelationshipContent.text = relation
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setBtnSettingRoomInfoCopyClickListener(code: String) {

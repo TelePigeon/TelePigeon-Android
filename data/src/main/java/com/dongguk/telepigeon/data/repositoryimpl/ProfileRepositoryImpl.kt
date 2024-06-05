@@ -5,7 +5,7 @@ import com.dongguk.telepigeon.data.mapper.toRoomKeywordExtraModel
 import com.dongguk.telepigeon.data.mapper.toRoomKeywordModel
 import com.dongguk.telepigeon.data.remote.datasource.ProfileRemoteDataSource
 import com.dongguk.telepigeon.domain.model.RoomExtraModel
-import com.dongguk.telepigeon.domain.model.RoomKeywordModel
+import com.dongguk.telepigeon.domain.model.RoomKeywordsModel
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.domain.repository.ProfileRepository
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private val profileRemoteDataSource: ProfileRemoteDataSource
 ) : ProfileRepository {
-    override suspend fun getRoomKeywords(roomId: Int): Result<RoomKeywordModel> = runCatching {
+    override suspend fun getRoomKeywords(roomId: Int): Result<RoomKeywordsModel> = runCatching {
         profileRemoteDataSource.getRoomKeywords(roomId = roomId).data.toRoomKeywordModel()
     }
 
