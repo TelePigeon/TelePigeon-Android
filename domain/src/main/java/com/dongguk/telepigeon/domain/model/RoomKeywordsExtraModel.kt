@@ -1,6 +1,7 @@
 package com.dongguk.telepigeon.domain.model
 
-data class RoomKeywordExtraModel(
+data class RoomKeywordsExtraModel(
+    val keywords: List<String>,
     val gender: String,
     val ageRange: String,
     val relation: String,

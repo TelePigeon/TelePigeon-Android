@@ -2,12 +2,14 @@ package com.dongguk.telepigeon.feature.setting.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dongguk.telepigeon.domain.model.RoomExtraModel
 import com.dongguk.telepigeon.domain.model.RoomInfoModel
-import com.dongguk.telepigeon.domain.model.RoomKeywordExtraModel
-import com.dongguk.telepigeon.domain.model.RoomKeywordModel
+import com.dongguk.telepigeon.domain.model.RoomKeywordsModel
 import com.dongguk.telepigeon.domain.model.RoomWorryModel
+import com.dongguk.telepigeon.domain.usecase.GetRoomExtraUseCase
 import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
 import com.dongguk.telepigeon.domain.usecase.GetRoomInfoUseCase
+import com.dongguk.telepigeon.domain.usecase.GetRoomKeywordsUseCase
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,14 +23,24 @@ class SettingViewModel
     constructor(
         private val getRoomIdUseCase: GetRoomIdUseCase,
         private val getRoomInfoUseCase: GetRoomInfoUseCase,
+        private val getRoomKeywordsUseCase: GetRoomKeywordsUseCase,
+        private val getRoomExtraUseCase: GetRoomExtraUseCase,
     ) : ViewModel() {
         private val _getRoomInfoState = MutableStateFlow<UiState<RoomInfoModel>>(UiState.Empty)
         val getRoomInfoState get() = _getRoomInfoState.asStateFlow()
 
+        private val _getRoomKeywordsState = MutableStateFlow<UiState<RoomKeywordsModel>>(UiState.Empty)
+        val getRoomKeywordsState get() = _getRoomKeywordsState.asStateFlow()
+
+        private val _getRoomKeywordExtraState = MutableStateFlow<UiState<RoomExtraModel>>(UiState.Empty)
+        val getRoomKeywordExtraState get() = _getRoomKeywordExtraState.asStateFlow()
+
+        private val roomId = getRoomIdUseCase()
+
         fun getRoomInfo() {
             viewModelScope.launch {
                 _getRoomInfoState.value = UiState.Loading
-                getRoomInfoUseCase(roomId = getRoomIdUseCase()).onSuccess { roomInfoModel ->
+                getRoomInfoUseCase(roomId = roomId).onSuccess { roomInfoModel ->
                     _getRoomInfoState.value = UiState.Success(roomInfoModel)
                 }.onFailure { exception: Throwable ->
                     _getRoomInfoState.value = UiState.Error(exception.message)
@@ -36,17 +48,27 @@ class SettingViewModel
             }
         }
 
-        val dummyRoomKeywordModel =
-            RoomKeywordModel(
-                keywords = "운동, 영양제, 밥",
-            )
+        fun getRoomKeywords() {
+            viewModelScope.launch {
+                _getRoomKeywordsState.value = UiState.Loading
+                getRoomKeywordsUseCase(roomId = roomId).onSuccess { roomKeywordsModel ->
+                    _getRoomKeywordsState.value = UiState.Success(roomKeywordsModel)
+                }.onFailure { exception: Throwable ->
+                    _getRoomKeywordsState.value = UiState.Error(exception.message)
+                }
+            }
+        }
 
-        val dummyRoomKeywordExtraModel =
-            RoomKeywordExtraModel(
-                gender = "남성",
-                ageRange = "20대",
-                relation = "자식",
-            )
+        fun getRoomKeywordExtra() {
+            viewModelScope.launch {
+                _getRoomKeywordExtraState.value = UiState.Loading
+                getRoomExtraUseCase(roomId = roomId).onSuccess { roomExtraModel ->
+                    _getRoomKeywordExtraState.value = UiState.Success(roomExtraModel)
+                }.onFailure { exception: Throwable ->
+                    _getRoomKeywordExtraState.value = UiState.Error(exception.message)
+                }
+            }
+        }
 
         val dummyRoomWorryModel =
             listOf(
