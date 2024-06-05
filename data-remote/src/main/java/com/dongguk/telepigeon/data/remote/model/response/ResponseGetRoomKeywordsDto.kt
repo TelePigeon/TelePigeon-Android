@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseGetRoomKeywordsDto(
     @SerialName("keywords")
-    val keywords: List<String>
+    val keywords: List<String>,
 )

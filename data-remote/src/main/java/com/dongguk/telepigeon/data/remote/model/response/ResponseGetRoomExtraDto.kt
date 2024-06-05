@@ -10,5 +10,5 @@ data class ResponseGetRoomExtraDto(
     @SerialName("ageRange")
     val ageRange: String,
     @SerialName("relation")
-    val relation: String
+    val relation: String,
 )

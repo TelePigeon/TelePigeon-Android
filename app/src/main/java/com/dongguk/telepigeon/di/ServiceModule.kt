@@ -16,7 +16,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun providesProfileService(
-        @TelePigeon retrofit: Retrofit
+        @TelePigeon retrofit: Retrofit,
     ): ProfileService =
         retrofit.create(ProfileService::class.java)
 

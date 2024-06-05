@@ -24,7 +24,7 @@ interface ProfileService {
     @PUT("$ROOMS/${ROOM_ID}")
     suspend fun putRoomKeywordsExtra(
         @Path("${ROOM_ID}") roomId: Int,
-        @Body requestPutRoomKeywordsExtraDto: RequestPutRoomKeywordsExtraDto
+        @Body requestPutRoomKeywordsExtraDto: RequestPutRoomKeywordsExtraDto,
     ): NullableBaseResponseDto<Unit>
 
     companion object {

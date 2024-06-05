@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetRoomKeywordsUseCase @Inject constructor(
-    private val profileRepository: ProfileRepository
-){
-    suspend operator fun invoke(roomId: Int) = profileRepository.getRoomKeywords(roomId = roomId)
-}
+class GetRoomKeywordsUseCase
+    @Inject
+    constructor(
+        private val profileRepository: ProfileRepository,
+    ) {
+        suspend operator fun invoke(roomId: Int) = profileRepository.getRoomKeywords(roomId = roomId)
+    }

@@ -8,6 +8,11 @@ import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseRespon
 
 interface ProfileRemoteDataSource {
     suspend fun getRoomKeywords(roomId: Int): BaseResponseDto<ResponseGetRoomKeywordsDto>
+
     suspend fun getRoomExtra(roomId: Int): BaseResponseDto<ResponseGetRoomExtraDto>
-    suspend fun putRoomKeywordsExtra(roomId: Int, requestPutRoomKeywordsExtraDto: RequestPutRoomKeywordsExtraDto): NullableBaseResponseDto<Unit>
+
+    suspend fun putRoomKeywordsExtra(
+        roomId: Int,
+        requestPutRoomKeywordsExtraDto: RequestPutRoomKeywordsExtraDto,
+    ): NullableBaseResponseDto<Unit>
 }

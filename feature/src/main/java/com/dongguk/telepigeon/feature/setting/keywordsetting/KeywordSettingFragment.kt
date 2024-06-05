@@ -109,12 +109,13 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private fun setBtnKeywordSettingCompleteClickListener() {
         binding.btnKeywordSettingComplete.setOnClickListener {
             keywordSettingViewModel.putRoomKeywordExtra(
-                roomKeywordsExtraModel = RoomKeywordsExtraModel(
-                    keywords = getKeywords(),
-                    gender = binding.etKeywordSettingGender.editText.text.toString(),
-                    ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
-                    relation = binding.etKeywordSettingRelation.editText.text.toString()
-                )
+                roomKeywordsExtraModel =
+                    RoomKeywordsExtraModel(
+                        keywords = getKeywords(),
+                        gender = binding.etKeywordSettingGender.editText.text.toString(),
+                        ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
+                        relation = binding.etKeywordSettingRelation.editText.text.toString(),
+                    ),
             )
         }
     }
