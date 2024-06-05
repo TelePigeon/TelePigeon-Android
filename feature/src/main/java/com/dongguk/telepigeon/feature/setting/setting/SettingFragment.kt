@@ -28,7 +28,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        settingViewModel.getRoomInfo(roomId =)
+        settingViewModel.getRoomInfo()
         initAdapter()
         initLayout()
         collectGetRoomInfoState()
