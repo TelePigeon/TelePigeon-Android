@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.feature.home.createroom
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -60,7 +59,6 @@ class HomeCreateRoomFragment : BindingFragment<FragmentHomeCreateRoomBinding>({ 
     private fun setEtHomeCreateRoomCodeTextChangedListener() {
         binding.etHomeCreateRoomCode.setOnTextChangedListener { createRoomCode ->
             binding.btnHomeCreateRoom.isEnabled = createRoomCode.isNotBlank()
-            Log.e("ㅋㅋ", createRoomCode)
         }
     }
 

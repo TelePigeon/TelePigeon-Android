@@ -8,5 +8,7 @@ data class BaseResponseDto<T>(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val data: T
+    val data: T,
+    @SerialName("message")
+    val message: String? = null
 )

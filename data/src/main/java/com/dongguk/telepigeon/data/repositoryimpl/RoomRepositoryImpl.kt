@@ -23,8 +23,8 @@ class RoomRepositoryImpl @Inject constructor(
         roomRemoteDataSource.postRoom(requestPostRoomDto = RequestPostRoomDto(name = name))
     }
 
-    override suspend fun postEntranceRoom(code: String): Result<Unit> = runCatching {
-        roomRemoteDataSource.postEntranceRoom(requestPostEntranceRoomDto = RequestPostEntranceRoomDto(code = code))
+    override suspend fun postEntranceRoom(code: String): Result<String> = runCatching {
+        roomRemoteDataSource.postEntranceRoom(requestPostEntranceRoomDto = RequestPostEntranceRoomDto(code = code)).code
     }
 
     override suspend fun deleteRoom(roomId: Int): Result<Unit> = runCatching {
