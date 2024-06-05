@@ -3,7 +3,7 @@ package com.dongguk.telepigeon.feature.setting.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dongguk.telepigeon.domain.model.RoomInfoModel
-import com.dongguk.telepigeon.domain.model.RoomKeywordExtraModel
+import com.dongguk.telepigeon.domain.model.RoomExtraModel
 import com.dongguk.telepigeon.domain.model.RoomKeywordModel
 import com.dongguk.telepigeon.domain.model.RoomWorryModel
 import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
@@ -41,8 +41,8 @@ class SettingViewModel
                 keywords = "운동, 영양제, 밥",
             )
 
-        val dummyRoomKeywordExtraModel =
-            RoomKeywordExtraModel(
+        val dummyRoomExtraModel =
+            RoomExtraModel(
                 gender = "남성",
                 ageRange = "20대",
                 relation = "자식",

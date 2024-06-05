@@ -53,9 +53,9 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
             // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
             etSettingKeyWordCurrent.editText.setText(settingViewModel.dummyRoomKeywordModel.keywords)
 
-            tvSettingKeyWordExtraGenderContent.text = settingViewModel.dummyRoomKeywordExtraModel.gender
-            tvSettingKeyWordAgeGroupContent.text = settingViewModel.dummyRoomKeywordExtraModel.ageRange
-            tvSettingKeyWordRelationshipContent.text = settingViewModel.dummyRoomKeywordExtraModel.relation
+            tvSettingKeyWordExtraGenderContent.text = settingViewModel.dummyRoomExtraModel.gender
+            tvSettingKeyWordAgeGroupContent.text = settingViewModel.dummyRoomExtraModel.ageRange
+            tvSettingKeyWordRelationshipContent.text = settingViewModel.dummyRoomExtraModel.relation
         }
     }
 
