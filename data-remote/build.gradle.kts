@@ -9,9 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":data"))
-
     // Third Party
     implementation(libs.bundles.retrofit)
 }
