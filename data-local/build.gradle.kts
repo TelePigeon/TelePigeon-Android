@@ -9,4 +9,6 @@ android {
 }
 
 dependencies {
+    // Security
+    implementation(libs.androidx.security)
 }

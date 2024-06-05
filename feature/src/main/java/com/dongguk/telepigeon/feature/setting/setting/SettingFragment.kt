@@ -6,13 +6,18 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
 import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettingBinding.inflate(it) }) {
     private val settingViewModel by viewModels<SettingViewModel>()
     private lateinit var settingWorrySettingAdapter: SettingWorrySettingAdapter
@@ -23,9 +28,10 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        settingViewModel.getRoomInfo(roomId =)
         initAdapter()
         initLayout()
-        setBtnSettingRoomInfoCopyClickListener()
+        collectGetRoomInfoState()
         setBtnSettingKeywordModifyClickListener()
         setBtnSettingWorrySettingClickListener()
     }
@@ -45,8 +51,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
             etSettingKeyWordCurrent.editText.isEnabled = false
 
             // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-            etSettingRoomInfoCode.editText.setText(settingViewModel.dummyRoomInfoModel.code)
-            etSettingRoomInfoName.editText.setText(settingViewModel.dummyRoomInfoModel.name)
             etSettingKeyWordCurrent.editText.setText(settingViewModel.dummyRoomKeywordModel.keywords)
 
             tvSettingKeyWordExtraGenderContent.text = settingViewModel.dummyRoomKeywordExtraModel.gender
@@ -55,9 +59,25 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         }
     }
 
-    private fun setBtnSettingRoomInfoCopyClickListener() {
+    private fun collectGetRoomInfoState() {
+        settingViewModel.getRoomInfoState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRoomInfoState ->
+            when (getRoomInfoState) {
+                is UiState.Success -> {
+                    with(getRoomInfoState.data) {
+                        binding.etSettingRoomInfoCode.editText.setText(code)
+                        binding.etSettingRoomInfoName.editText.setText(name)
+                        setBtnSettingRoomInfoCopyClickListener(code = code)
+                    }
+                }
+
+                else -> Unit
+            }
+        }
+    }
+
+    private fun setBtnSettingRoomInfoCopyClickListener(code: String) {
         binding.btnSettingRoomInfoCopy.setOnClickListener {
-            copyCopyCode(settingViewModel.dummyRoomInfoModel.code)
+            copyCopyCode(code)
             showCopyCodeBottomSheetDialogFragment()
         }
     }

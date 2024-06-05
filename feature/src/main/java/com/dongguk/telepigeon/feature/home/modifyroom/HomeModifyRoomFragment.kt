@@ -13,9 +13,11 @@ import com.dongguk.telepigeon.feature.databinding.FragmentHomeModifyRoomBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class HomeModifyRoomFragment : BindingFragment<FragmentHomeModifyRoomBinding>({ FragmentHomeModifyRoomBinding.inflate(it) }) {
     private val homeModifyRoomViewModel by viewModels<HomeModifyRoomViewModel>()
     private lateinit var homeModifyRoomAdapter: HomeModifyRoomAdapter
