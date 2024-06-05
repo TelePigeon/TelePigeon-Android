@@ -5,5 +5,5 @@ data class HomeRoomModel(
     val emotion: Int,
     val name: String,
     val relation: String,
-    val answerDescription: Int,
+    val sentence: Int,
 )

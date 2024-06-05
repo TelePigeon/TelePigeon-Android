@@ -1,6 +1,6 @@
 package com.dongguk.telepigeon.di
 
-import com.dongguk.telepigeon.data.remote.service.DummyService
+import com.dongguk.telepigeon.data.remote.service.RoomService
 import com.dongguk.telepigeon.di.qualifier.TelePigeon
 import dagger.Module
 import dagger.Provides
@@ -14,8 +14,8 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun providesDummyService(
+    fun providesRoomService(
         @TelePigeon retrofit: Retrofit,
-    ): DummyService =
-        retrofit.create(DummyService::class.java)
+    ): RoomService =
+        retrofit.create(RoomService::class.java)
 }

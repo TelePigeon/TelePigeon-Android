@@ -17,21 +17,21 @@ class HomeModifyRoomViewModel
                     emotion = R.drawable.ic_character_angry,
                     name = "디스이즈방이름",
                     relation = "김둘기(관계없음/관계없음)",
-                    answerDescription = R.string.answer_description_done,
+                    sentence = R.string.answer_description_done,
                 ),
                 HomeRoomModel(
                     id = 1,
                     emotion = R.drawable.ic_character_letter,
                     name = "구구네 집",
                     relation = "구구구(부모/자식)",
-                    answerDescription = R.string.answer_description_check_answer,
+                    sentence = R.string.answer_description_check_answer,
                 ),
                 HomeRoomModel(
                     id = 2,
                     emotion = R.drawable.ic_character_oh,
                     name = "살아있냐",
                     relation = "꼬꼬꼬우(친구/친구)",
-                    answerDescription = R.string.answer_description_not_yet,
+                    sentence = R.string.answer_description_not_yet,
                 ),
             )
     }

@@ -1,7 +1,7 @@
 package com.dongguk.telepigeon.di
 
-import com.dongguk.telepigeon.data.repositoryimpl.DummyRepositoryImpl
-import com.dongguk.telepigeon.domain.repository.DummyRepository
+import com.dongguk.telepigeon.data.repositoryimpl.RoomRepositoryImpl
+import com.dongguk.telepigeon.domain.repository.RoomRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindsDummyRepository(dummyRepositoryImpl: DummyRepositoryImpl): DummyRepository
+    abstract fun bindsRoomRepository(roomRepositoryImpl: RoomRepositoryImpl): RoomRepository
 }

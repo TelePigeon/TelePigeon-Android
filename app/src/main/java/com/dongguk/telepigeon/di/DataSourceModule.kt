@@ -1,9 +1,7 @@
 package com.dongguk.telepigeon.di
 
-import com.dongguk.telepigeon.data.datasource.local.DummyLocalDataSource
-import com.dongguk.telepigeon.data.datasource.remote.DummyRemoteDataSource
-import com.dongguk.telepigeon.data.local.datasourceimpl.DummyLocalDataSourceImpl
-import com.dongguk.telepigeon.data.remote.datasourceimpl.DummyRemoteDataSourceImpl
+import com.dongguk.telepigeon.data.remote.datasource.RoomRemoteDataSource
+import com.dongguk.telepigeon.data.remote.datasourceimpl.RoomRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,9 +13,5 @@ import javax.inject.Singleton
 abstract class DataSourceModule {
     @Binds
     @Singleton
-    abstract fun bindsDummyLocalDataSource(dummyLocalDataSourceImpl: DummyLocalDataSourceImpl): DummyLocalDataSource
-
-    @Binds
-    @Singleton
-    abstract fun bindsDummyRemoteDataSource(dummyRemoteDataSourceImpl: DummyRemoteDataSourceImpl): DummyRemoteDataSource
+    abstract fun bindsRoomRemoteDataSource(roomRemoteDataSourceImpl: RoomRemoteDataSourceImpl): RoomRemoteDataSource
 }
