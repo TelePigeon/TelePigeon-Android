@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SetIsLoginUseCase(
-    private val telePigeonRepository: TelePigeonRepository
-){
+    private val telePigeonRepository: TelePigeonRepository,
+) {
     operator fun invoke(isLogin: Boolean) = telePigeonRepository.setIsLogin(isLogin = isLogin)
 }

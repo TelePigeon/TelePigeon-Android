@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetRoomsUseCase @Inject constructor(
-    private val roomRepository: RoomRepository
-) {
-    suspend operator fun invoke() = roomRepository.getRooms()
-}
+class GetRoomsUseCase
+    @Inject
+    constructor(
+        private val roomRepository: RoomRepository,
+    ) {
+        suspend operator fun invoke() = roomRepository.getRooms()
+    }

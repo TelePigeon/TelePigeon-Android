@@ -68,19 +68,19 @@ class HomeEnterRoomFragment : BindingFragment<FragmentHomeEnterRoomBinding>({ Fr
 
     private fun showWrongCodeBottomSheerDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
-            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.WRONG_CODE
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.WRONG_CODE,
         ).show(childFragmentManager, WRONG_CODE_BOTTOM_SHEET)
     }
 
     private fun showEnteredRoomBottomSheerDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
-            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.ENTERED_ROOM
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.ENTERED_ROOM,
         ).show(childFragmentManager, ENTERED_ROOM_BOTTOM_SHEET)
     }
 
     private fun showMatchedRoomBottomSheerDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
-            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.MATCHED_ROOM
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.MATCHED_ROOM,
         ).show(childFragmentManager, MATCHED_ROOM_BOTTOM_SHEET)
     }
 

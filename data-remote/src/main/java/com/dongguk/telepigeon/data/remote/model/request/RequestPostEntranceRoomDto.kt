@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RequestPostEntranceRoomDto(
     @SerialName("code")
-    val code: String
+    val code: String,
 )

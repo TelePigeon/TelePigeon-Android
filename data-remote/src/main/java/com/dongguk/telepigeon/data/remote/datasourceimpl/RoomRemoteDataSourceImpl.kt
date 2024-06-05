@@ -10,16 +10,18 @@ import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseRespon
 import com.dongguk.telepigeon.data.remote.service.RoomService
 import javax.inject.Inject
 
-class RoomRemoteDataSourceImpl @Inject constructor(
-    private val roomService: RoomService
-) : RoomRemoteDataSource {
-    override suspend fun getRooms(): BaseResponseDto<ResponseGetRoomsDto> = roomService.getRooms()
+class RoomRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val roomService: RoomService,
+    ) : RoomRemoteDataSource {
+        override suspend fun getRooms(): BaseResponseDto<ResponseGetRoomsDto> = roomService.getRooms()
 
-    override suspend fun postRoom(requestPostRoomDto: RequestPostRoomDto): NullableBaseResponseDto<Unit> = roomService.postRoom(requestPostRoomDto = requestPostRoomDto)
+        override suspend fun postRoom(requestPostRoomDto: RequestPostRoomDto): NullableBaseResponseDto<Unit> = roomService.postRoom(requestPostRoomDto = requestPostRoomDto)
 
-    override suspend fun postEntranceRoom(requestPostEntranceRoomDto: RequestPostEntranceRoomDto): NullableBaseResponseDto<Unit> = roomService.postEntranceRoom(requestPostEntranceRoomDto = requestPostEntranceRoomDto)
+        override suspend fun postEntranceRoom(requestPostEntranceRoomDto: RequestPostEntranceRoomDto): NullableBaseResponseDto<Unit> = roomService.postEntranceRoom(requestPostEntranceRoomDto = requestPostEntranceRoomDto)
 
-    override suspend fun deleteRoom(roomId: Int): NullableBaseResponseDto<Unit> = roomService.deleteRoom(roomId = roomId)
+        override suspend fun deleteRoom(roomId: Int): NullableBaseResponseDto<Unit> = roomService.deleteRoom(roomId = roomId)
 
-    override suspend fun getRoomInfo(roomId: Int): BaseResponseDto<ResponseGetRoomInfoDto> = getRoomInfo(roomId = roomId)
-}
+        override suspend fun getRoomInfo(roomId: Int): BaseResponseDto<ResponseGetRoomInfoDto> = getRoomInfo(roomId = roomId)
+    }

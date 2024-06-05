@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SetRefreshTokenUseCase(
-    private val telePigeonRepository: TelePigeonRepository
-){
+    private val telePigeonRepository: TelePigeonRepository,
+) {
     operator fun invoke(refreshToken: String) = telePigeonRepository.setRefreshToken(refreshToken = refreshToken)
 }

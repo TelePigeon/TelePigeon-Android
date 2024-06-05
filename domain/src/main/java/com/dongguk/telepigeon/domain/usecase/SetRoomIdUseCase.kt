@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SetRoomIdUseCase(
-    private val telePigeonRepository: TelePigeonRepository
+    private val telePigeonRepository: TelePigeonRepository,
 ) {
     operator fun invoke(roomId: Int) = telePigeonRepository.setRoomId(roomId = roomId)
 }

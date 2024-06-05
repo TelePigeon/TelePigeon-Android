@@ -18,22 +18,22 @@ interface RoomService {
 
     @POST(ROOMS)
     suspend fun postRoom(
-        @Body requestPostRoomDto: RequestPostRoomDto
+        @Body requestPostRoomDto: RequestPostRoomDto,
     ): NullableBaseResponseDto<Unit>
 
     @POST("$ROOMS/$ENTRANCE")
     suspend fun postEntranceRoom(
-        @Body requestPostEntranceRoomDto: RequestPostEntranceRoomDto
+        @Body requestPostEntranceRoomDto: RequestPostEntranceRoomDto,
     ): NullableBaseResponseDto<Unit>
 
     @DELETE("$ROOMS/{$ROOM_ID}")
     suspend fun deleteRoom(
-        @Path("$ROOM_ID") roomId: Int
+        @Path("$ROOM_ID") roomId: Int,
     ): NullableBaseResponseDto<Unit>
 
     @GET("$ROOMS/{$ROOM_ID}/$INFO")
     suspend fun getRoomInfo(
-        @Path("$ROOM_ID") roomId: Int
+        @Path("$ROOM_ID") roomId: Int,
     ): BaseResponseDto<ResponseGetRoomInfoDto>
 
     companion object {

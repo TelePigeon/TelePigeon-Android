@@ -94,9 +94,12 @@ class HomeModifyRoomFragment : BindingFragment<FragmentHomeModifyRoomBinding>({ 
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_ROOM,
             clickLeftBtn = {
-                homeModifyRoomViewModel.deleteRoom(roomId = with(homeModifyRoomAdapter) {
-                    currentList[selectedItemPosition.value].id
-                })
+                homeModifyRoomViewModel.deleteRoom(
+                    roomId =
+                        with(homeModifyRoomAdapter) {
+                            currentList[selectedItemPosition.value].id
+                        },
+                )
             },
         ).show(childFragmentManager, DELETE_ROOM_BOTTOM_SHEET)
     }

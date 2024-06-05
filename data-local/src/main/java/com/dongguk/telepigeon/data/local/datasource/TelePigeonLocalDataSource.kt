@@ -5,5 +5,6 @@ interface TelePigeonLocalDataSource {
     var accessToken: String
     var refreshToken: String
     var roomId: Int
+
     fun clear(): Unit
 }

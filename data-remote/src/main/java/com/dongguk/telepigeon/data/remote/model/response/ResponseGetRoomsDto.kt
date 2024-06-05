@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class ResponseGetRoomsDto(
     @SerialName("rooms")
-    val rooms: List<ResponseGetRoomDto>
+    val rooms: List<ResponseGetRoomDto>,
 ) {
     @Serializable
     class ResponseGetRoomDto(
@@ -23,6 +23,6 @@ class ResponseGetRoomsDto(
         @SerialName("sentence")
         val sentence: Int,
         @SerialName("emotion")
-        val emotion: Int
+        val emotion: Int,
     )
 }

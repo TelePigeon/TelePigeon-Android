@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetIsLoginUseCase @Inject constructor(
-    private val telePigeonRepository: TelePigeonRepository
-){
-    operator fun invoke() = telePigeonRepository.getIsLogin()
-}
+class GetIsLoginUseCase
+    @Inject
+    constructor(
+        private val telePigeonRepository: TelePigeonRepository,
+    ) {
+        operator fun invoke() = telePigeonRepository.getIsLogin()
+    }

@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DeleteRoomUseCase @Inject constructor(
-    private val roomRepository: RoomRepository
-) {
-    suspend operator fun invoke(roomId: Int) = roomRepository.deleteRoom(roomId = roomId)
-}
+class DeleteRoomUseCase
+    @Inject
+    constructor(
+        private val roomRepository: RoomRepository,
+    ) {
+        suspend operator fun invoke(roomId: Int) = roomRepository.deleteRoom(roomId = roomId)
+    }
