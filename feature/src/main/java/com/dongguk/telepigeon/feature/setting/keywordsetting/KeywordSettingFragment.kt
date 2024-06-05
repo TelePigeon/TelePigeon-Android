@@ -3,16 +3,21 @@ package com.dongguk.telepigeon.feature.setting.keywordsetting
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionAdapter
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
-import com.dongguk.telepigeon.feature.R
+import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
+import com.dongguk.telpigeon.core.ui.util.view.UiState
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
@@ -24,10 +29,22 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        intAppBar()
         initLayout()
+        collectPutRoomKeywordExtraState()
         setEtKeywordSettingGenderClickListener()
         setEtKeywordSettingAgeRangeClickListener()
         setEtKeywordSettingRelationClickListener()
+        setBtnKeywordSettingCompleteClickListener()
+    }
+
+    private fun intAppBar() {
+        with(binding) {
+            appbarKeywordSetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(com.dongguk.telepigeon.core.design.system.R.string.setting_key_word_title))
+            appbarKeywordSetting.binding.ivAppBarTelepigeonArrowLeft.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun initLayout() {
@@ -39,14 +56,21 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             etKeywordSettingGender.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.gender)
             etKeywordSettingAgeRange.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.ageRange)
             etKeywordSettingRelation.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.relation)
-
-            binding.appbarKeywordSetting.initLayout(appBarType = AppBarType.TITLE, title = stringOf(com.dongguk.telepigeon.core.design.system.R.string.setting_key_word_title))
-            binding.appbarKeywordSetting.binding.ivAppBarTelepigeonArrowLeft.setOnClickListener {
-                findNavController().popBackStack()
-            }
         }
 
         setKeywordChip(keywordSettingViewModel.dummyKeywords, keywordSettingViewModel.dummySelectedKeywords)
+    }
+
+    private fun collectPutRoomKeywordExtraState() {
+        keywordSettingViewModel.putRoomKeywordExtraState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { putRoomKeywordExtraState ->
+            when (putRoomKeywordExtraState) {
+                is UiState.Success -> {
+                    findNavController().popBackStack()
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setKeywordChip(
@@ -82,6 +106,19 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         }
     }
 
+    private fun setBtnKeywordSettingCompleteClickListener() {
+        binding.btnKeywordSettingComplete.setOnClickListener {
+            keywordSettingViewModel.putRoomKeywordExtra(
+                roomKeywordsExtraModel = RoomKeywordsExtraModel(
+                    keywords = getKeywords(),
+                    gender = binding.etKeywordSettingGender.editText.text.toString(),
+                    ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
+                    relation = binding.etKeywordSettingRelation.editText.text.toString()
+                )
+            )
+        }
+    }
+
     private fun showSelectionBottomSheetDialogFragment(
         bottomSheetWithSelectionType: BottomSheetWithSelectionType,
         selectionList: List<String>,
@@ -91,6 +128,20 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             selectionList = selectionList,
             bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter,
         ).show(childFragmentManager, SELECTION_BOTTOM_SHEET)
+    }
+
+    private fun getKeywords(): List<String> {
+        val keywords = mutableListOf<String>()
+        with(binding.cgKeywordSettingTotalKeyword) {
+            for (index in 0..childCount) {
+                ((getChildAt(index)) as? Chip)?.let { chip ->
+                    if (chip.isChecked) {
+                        keywords.add(chip.text.toString())
+                    }
+                }
+            }
+        }
+        return keywords
     }
 
     companion object {
