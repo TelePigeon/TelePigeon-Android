@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
@@ -13,6 +14,7 @@ import com.dongguk.telepigeon.feature.databinding.FragmentHomeCreateRoomBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -47,7 +49,7 @@ class HomeCreateRoomFragment : BindingFragment<FragmentHomeCreateRoomBinding>({ 
 
                 else -> Unit
             }
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setBtnHomeCreateRoomClickListener() {

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.dongguk.telepigeon.domain.model.HomeRoomModel
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolder>(
     ItemDiffCallback<HomeRoomModel>(
@@ -13,7 +15,8 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolde
         onContentsTheSame = { old, new -> old == new },
     ),
 ) {
-    private var selectedItemPosition: Int = DEFAULT_OLD_POSITION
+    private var _selectedItemPosition = MutableStateFlow(DEFAULT_OLD_POSITION)
+    val selectedItemPosition get() = _selectedItemPosition.asStateFlow()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,16 +27,16 @@ class HomeModifyRoomAdapter : ListAdapter<HomeRoomModel, HomeModifyRoomViewHolde
         holder: HomeModifyRoomViewHolder,
         position: Int,
     ) {
-        if (position == selectedItemPosition) {
+        if (position == _selectedItemPosition.value) {
             holder.onSelectedItemBind(homeRoomModel = currentList[position])
         } else {
             holder.onUnselectedItemBind(homeRoomModel = currentList[position])
         }
 
         holder.itemView.setOnClickListener {
-            notifyItemChanged(selectedItemPosition)
-            selectedItemPosition = holder.adapterPosition
-            notifyItemChanged(selectedItemPosition)
+            notifyItemChanged(_selectedItemPosition.value)
+            _selectedItemPosition.value = holder.adapterPosition
+            notifyItemChanged(_selectedItemPosition.value)
         }
     }
 

@@ -5,12 +5,14 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentHomeBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -57,7 +59,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
 
                 else -> Unit
             }
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setIvHomeSettingClickListener() {
