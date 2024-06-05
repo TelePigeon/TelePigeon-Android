@@ -17,16 +17,16 @@ import javax.inject.Inject
 class HomeCreateRoomViewModel @Inject constructor(
     private val postRoomUseCase: PostRoomUseCase
 ) : ViewModel() {
-    private val _postRoomState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
-    val postRoomState get() = _postRoomState.asStateFlow()
+    private val _postRoomState = MutableSharedFlow<UiState<Unit>>()
+    val postRoomState get() = _postRoomState.asSharedFlow()
 
     fun postRoom(name: String) {
         viewModelScope.launch {
-            _postRoomState.value = UiState.Loading
+            _postRoomState.emit(UiState.Loading)
             postRoomUseCase(name = name).onSuccess {
-                _postRoomState.value = UiState.Success(Unit)
+                _postRoomState.emit(UiState.Success(Unit))
             }.onFailure { exception: Throwable ->
-                _postRoomState.value = UiState.Error(exception.message)
+                _postRoomState.emit(UiState.Error(exception.message))
             }
         }
     }
