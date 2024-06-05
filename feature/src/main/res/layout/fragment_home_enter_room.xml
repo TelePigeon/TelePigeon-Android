@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="@string/button_enter_room"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start" />
