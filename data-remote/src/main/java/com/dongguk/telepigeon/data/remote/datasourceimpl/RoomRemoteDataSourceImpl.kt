@@ -23,5 +23,5 @@ class RoomRemoteDataSourceImpl
 
         override suspend fun deleteRoom(roomId: Int): NullableBaseResponseDto<Unit> = roomService.deleteRoom(roomId = roomId)
 
-        override suspend fun getRoomInfo(roomId: Int): BaseResponseDto<ResponseGetRoomInfoDto> = getRoomInfo(roomId = roomId)
+        override suspend fun getRoomInfo(roomId: Int): BaseResponseDto<ResponseGetRoomInfoDto> = roomService.getRoomInfo(roomId = roomId)
     }
