@@ -3,6 +3,7 @@
     <declare-styleable name="TelePigeonEditText">
         <attr name="telePigeonEditTextTitle" format="reference|string" />
         <attr name="telePigeonEditTextHint" format="reference|string" />
+        <attr name="telePigeonTextMaxLength" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="TelePigeonQnaEditText">

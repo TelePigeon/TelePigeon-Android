@@ -14,7 +14,7 @@ class HomeModifyRoomViewHolder(private val binding: ItemHomeRoomBinding, private
             ivHomeRoomEmotion.setImageResource(homeRoomModel.emotion)
             tvHomeRoomName.text = homeRoomModel.name
             tvHomeRoomRelation.text = homeRoomModel.relation
-            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.answerDescription)
+            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.sentence)
             tvHomeRoomName.setTextColor(context.colorOf(R.color.white))
             tvHomeRoomRelation.setTextColor(context.colorOf(R.color.g_02))
             tvHomeRoomAnswerDescription.setTextColor(context.colorOf(R.color.g_02))
@@ -27,7 +27,7 @@ class HomeModifyRoomViewHolder(private val binding: ItemHomeRoomBinding, private
             ivHomeRoomEmotion.setImageResource(homeRoomModel.emotion)
             tvHomeRoomName.text = homeRoomModel.name
             tvHomeRoomRelation.text = homeRoomModel.relation
-            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.answerDescription)
+            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.sentence)
             tvHomeRoomName.setTextColor(context.colorOf(R.color.g_10))
             tvHomeRoomRelation.setTextColor(context.colorOf(R.color.g_06))
             tvHomeRoomAnswerDescription.setTextColor(context.colorOf(R.color.g_09))

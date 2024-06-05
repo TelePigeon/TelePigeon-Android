@@ -1,22 +1,40 @@
 package com.dongguk.telepigeon.feature.setting.setting
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dongguk.telepigeon.domain.model.RoomInfoModel
 import com.dongguk.telepigeon.domain.model.RoomKeywordExtraModel
 import com.dongguk.telepigeon.domain.model.RoomKeywordModel
 import com.dongguk.telepigeon.domain.model.RoomWorryModel
+import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
+import com.dongguk.telepigeon.domain.usecase.GetRoomInfoUseCase
+import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel
     @Inject
-    constructor() : ViewModel() {
-        val dummyRoomInfoModel =
-            RoomInfoModel(
-                code = "1233972abdce",
-                name = "디스이즈방이름",
-            )
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val getRoomInfoUseCase: GetRoomInfoUseCase,
+    ) : ViewModel() {
+        private val _getRoomInfoState = MutableStateFlow<UiState<RoomInfoModel>>(UiState.Empty)
+        val getRoomInfoState get() = _getRoomInfoState.asStateFlow()
+
+        fun getRoomInfo() {
+            viewModelScope.launch {
+                _getRoomInfoState.value = UiState.Loading
+                getRoomInfoUseCase(roomId = getRoomIdUseCase()).onSuccess { roomInfoModel ->
+                    _getRoomInfoState.value = UiState.Success(roomInfoModel)
+                }.onFailure { exception: Throwable ->
+                    _getRoomInfoState.value = UiState.Error(exception.message)
+                }
+            }
+        }
 
         val dummyRoomKeywordModel =
             RoomKeywordModel(

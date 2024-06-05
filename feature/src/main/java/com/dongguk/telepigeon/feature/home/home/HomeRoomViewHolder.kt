@@ -20,7 +20,7 @@ class HomeRoomViewHolder(private val binding: ItemHomeRoomBinding, private val c
             ivHomeRoomEmotion.setImageResource(homeRoomModel.emotion)
             tvHomeRoomName.text = homeRoomModel.name
             tvHomeRoomRelation.text = homeRoomModel.relation
-            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.answerDescription)
+            tvHomeRoomAnswerDescription.text = context.getString(homeRoomModel.sentence)
         }
     }
 }

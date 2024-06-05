@@ -34,4 +34,7 @@ dependencies {
 
     // Splash
     implementation(libs.androidx.core.splashscreen)
+
+    // Network
+    implementation(libs.retrofit)
 }

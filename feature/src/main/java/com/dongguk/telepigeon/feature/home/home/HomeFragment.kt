@@ -4,11 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentHomeBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.inflate(it) }) {
     private val homeViewModel by viewModels<HomeViewModel>()
     private lateinit var homeRoomAdapter: HomeRoomAdapter
@@ -19,7 +26,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeViewModel.getRooms()
         initAdapter()
+        collectGetRoomsState()
         setIvHomeSettingClickListener()
         setTvHomeAddRoomClickListener()
         setTvHomeModifyClickListener()
@@ -33,15 +42,24 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
     private fun initAdapter() {
         homeRoomAdapter = HomeRoomAdapter(navigateToMain = ::navigateToMain)
         binding.rvHomeRoom.adapter = homeRoomAdapter
+    }
 
-        // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-        (homeViewModel.dummyHomeRoom.isNotEmpty()).let { homeRoomVisibility ->
-            with(binding) {
-                ivHomeRoomEmpty.visibility = if (homeRoomVisibility) View.GONE else View.VISIBLE
-                tvHomeRoomEmpty.visibility = if (homeRoomVisibility) View.GONE else View.VISIBLE
+    private fun collectGetRoomsState() {
+        homeViewModel.getRoomsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRoomState ->
+            when (getRoomState) {
+                is UiState.Success -> {
+                    (getRoomState.data.isNotEmpty()).let { homeRoomVisibility ->
+                        with(binding) {
+                            ivHomeRoomEmpty.visibility = if (homeRoomVisibility) View.GONE else View.VISIBLE
+                            tvHomeRoomEmpty.visibility = if (homeRoomVisibility) View.GONE else View.VISIBLE
+                        }
+                    }
+                    homeRoomAdapter.submitList(getRoomState.data)
+                }
+
+                else -> Unit
             }
-            homeRoomAdapter.submitList(homeViewModel.dummyHomeRoom)
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setIvHomeSettingClickListener() {

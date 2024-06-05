@@ -10,6 +10,9 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":data-local"))
+    implementation(project(":data-remote"))
+    implementation(project(":core:designsystem"))
 
     // Third Party
     implementation(libs.bundles.retrofit)
