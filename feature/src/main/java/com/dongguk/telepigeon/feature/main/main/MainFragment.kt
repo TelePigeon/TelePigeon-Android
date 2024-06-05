@@ -15,8 +15,10 @@ import com.dongguk.telepigeon.feature.databinding.FragmentMainBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.inflate(it) }) {
     private val mainViewModel by viewModels<MainViewModel>()
 
@@ -26,6 +28,7 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        mainViewModel.getLatestRoomInfo()
         collectGetLatestRoomInfoState()
     }
 

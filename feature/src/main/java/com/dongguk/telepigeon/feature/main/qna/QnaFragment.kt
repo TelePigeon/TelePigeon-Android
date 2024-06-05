@@ -3,6 +3,8 @@ package com.dongguk.telepigeon.feature.main.qna
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.dongguk.telepigeon.design.system.mapper.toQnaType
@@ -13,7 +15,12 @@ import com.dongguk.telepigeon.feature.databinding.FragmentQnaBinding
 import com.dongguk.telepigeon.feature.main.main.MainFragment.Companion.QNA_TYPE
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inflate(it) }) {
     private val qnaViewModel by viewModels<QnaViewModel>()
 
@@ -26,6 +33,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         initLayout()
         setAppBar()
         requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { setQnaType(it) }
+        collectGetQuestionState()
     }
 
     private fun initLayout() {
@@ -53,10 +61,8 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         when (qnaType) {
             QnaType.SURVIVAL -> {
                 with(binding) {
+                    qnaViewModel.getQuestion()
                     ivQnaPicture.visibility = View.INVISIBLE
-                    etQnaQuestion.editText.setText(qnaViewModel.dummyCheckQuestionModel.content)
-                    ivQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionModel.isPenalty) View.VISIBLE else View.INVISIBLE
-                    tvQnaWarning.visibility = if (qnaViewModel.dummyCheckQuestionModel.isPenalty) View.VISIBLE else View.INVISIBLE
                 }
             }
 
@@ -74,6 +80,22 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         }
 
         setBtnQnaClickListener(qnaType = qnaType)
+    }
+
+    private fun collectGetQuestionState() {
+        qnaViewModel.getQuestionState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getQuestionState ->
+            when(getQuestionState) {
+                is UiState.Success -> {
+                    with(getQuestionState.data) {
+                        binding.etQnaQuestion.editText.setText(content)
+                        binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
+                        binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setBtnQnaClickListener(qnaType: QnaType) {
