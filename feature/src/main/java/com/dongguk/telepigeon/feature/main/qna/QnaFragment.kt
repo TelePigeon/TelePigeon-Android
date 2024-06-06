@@ -3,7 +3,6 @@ package com.dongguk.telepigeon.feature.main.qna
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
@@ -120,7 +119,6 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
             when (postAnswerState) {
                 is UiState.Success -> findNavController().popBackStack()
-                is UiState.Error -> Log.e("http", postAnswerState.message.toString())
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
