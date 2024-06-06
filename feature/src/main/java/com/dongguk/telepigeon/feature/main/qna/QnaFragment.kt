@@ -28,9 +28,6 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inflate(it) }) {
     private val qnaViewModel by viewModels<QnaViewModel>()
-
-    private var imageUri = Uri.EMPTY
-
     private lateinit var getGalleryLauncher: ActivityResultLauncher<String>
     private lateinit var getPhotoPickerLauncher: ActivityResultLauncher<PickVisualMediaRequest>
 
@@ -48,6 +45,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         collectGetQuestionState()
         collectPostAnswerState()
         collectGetQuestionAnswerState()
+        collectImageUri()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -107,7 +105,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
 
                         binding.btnQna.setOnClickListener {
-                            qnaViewModel.postAnswer(questionId = id, image = imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
+                            qnaViewModel.postAnswer(questionId = id, image = qnaViewModel.imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
                     }
                 }
@@ -136,7 +134,18 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.ivQnaPicture.load(answerImage)
                     }
                 }
+
                 else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectImageUri() {
+        qnaViewModel.imageUri.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { uri ->
+            with(binding) {
+                ivQnaPicture.visibility = if (uri == Uri.EMPTY) View.GONE else View.VISIBLE
+                ivQnaPicture.load(uri)
+
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -157,8 +166,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         getPhotoPickerLauncher =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
                 imageUri?.let {
-                    this.imageUri = it
-                    binding.ivQnaPicture.load(it)
+                    qnaViewModel.setImageUri(it)
                 }
             }
     }
@@ -167,8 +175,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         getGalleryLauncher =
             registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
                 imageUri?.let {
-                    this.imageUri = it
-                    binding.ivQnaPicture.load(it)
+                    qnaViewModel.setImageUri(it)
                 }
             }
     }
