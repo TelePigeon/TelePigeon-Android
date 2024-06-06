@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dongguk.telepigeon.domain.model.CheckQuestionModel
 import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
+import com.dongguk.telepigeon.domain.usecase.GetQuestionAnswerUseCase
 import com.dongguk.telepigeon.domain.usecase.GetQuestionUseCase
 import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
 import com.dongguk.telepigeon.domain.usecase.PostAnswerUseCase
@@ -22,13 +23,17 @@ class QnaViewModel
 constructor(
     private val getRoomIdUseCase: GetRoomIdUseCase,
     private val getQuestionUseCase: GetQuestionUseCase,
-    private val postAnswerUseCase: PostAnswerUseCase
+    private val postAnswerUseCase: PostAnswerUseCase,
+    private val getQuestionAnswerUseCase: GetQuestionAnswerUseCase
 ) : ViewModel() {
     private val _getQuestionState = MutableStateFlow<UiState<CheckQuestionModel>>(UiState.Empty)
     val getQuestionState get() = _getQuestionState.asStateFlow()
 
     private val _postAnswerState = MutableSharedFlow<UiState<Unit>>()
     val postAnswerState get() = _postAnswerState.asSharedFlow()
+
+    private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
+    val getQuestionAnswerState get() = _getQuestionAnswerState.asStateFlow()
 
     private val roomId = getRoomIdUseCase()
 
@@ -54,12 +59,14 @@ constructor(
         }
     }
 
-    val dummyQuestionAnswerModel =
-        QuestionAnswerModel(
-            questionName = "김둘기",
-            answerName = "둘기맘",
-            questionContent = "오늘 점심은 무슨 음식을 먹었나요?",
-            answerContent = "분식을 먹었어요! 맛있었어요!",
-            answerImage = "https://avatars.githubusercontent.com/u/103172971?v=4",
-        )
+    fun getQuestionAnswer() {
+        viewModelScope.launch {
+            _getQuestionAnswerState.value = UiState.Loading
+            getQuestionAnswerUseCase(roomId = roomId, date = null, respondent = true).onSuccess { questionAnswerModels ->
+                _getQuestionAnswerState.value = UiState.Success(questionAnswerModels)
+            }.onFailure { exception: Throwable ->
+                _getQuestionAnswerState.value = UiState.Error(exception.message)
+            }
+        }
+    }
 }

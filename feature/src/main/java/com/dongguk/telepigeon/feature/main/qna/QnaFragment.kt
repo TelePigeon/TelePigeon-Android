@@ -46,6 +46,8 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         setAppBar()
         requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { setQnaType(it) }
         collectGetQuestionState()
+        collectPostAnswerState()
+        collectGetQuestionAnswerState()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -81,11 +83,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
 
             QnaType.CHECK_ANSWER -> {
                 with(binding) {
+                    qnaViewModel.getQuestionAnswer()
                     etQnaAnswer.editText.isEnabled = false
                     layoutQnaAddPicture.visibility = View.GONE
-                    etQnaQuestion.editText.setText(qnaViewModel.dummyQuestionAnswerModel.questionContent)
-                    etQnaAnswer.editText.setText(qnaViewModel.dummyQuestionAnswerModel.answerContent)
-                    ivQnaPicture.load(qnaViewModel.dummyQuestionAnswerModel.answerImage)
                     ivQnaWarning.visibility = View.INVISIBLE
                     tvQnaWarning.visibility = View.INVISIBLE
 
@@ -112,6 +112,30 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     }
                 }
 
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectPostAnswerState() {
+        qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
+            when(postAnswerState) {
+                is UiState.Success -> findNavController().popBackStack()
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetQuestionAnswerState() {
+        qnaViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach {getQuestionAnswerState ->
+            when(getQuestionAnswerState) {
+                is UiState.Success -> {
+                    with(getQuestionAnswerState.data[0]) {
+                        binding.etQnaQuestion.editText.setText(questionContent)
+                        binding.etQnaAnswer.editText.setText(answerContent)
+                        binding.ivQnaPicture.load(answerImage)
+                    }
+                }
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
