@@ -10,5 +10,5 @@ interface QuestionAnswerRepository {
     suspend fun getQuestion(roomId: Int): Result<CheckQuestionModel>
     suspend fun postAnswer(roomId: Int, questionId: Int, image: String?, content: String): Result<Unit>
     suspend fun getQuestionAnswer(roomId: Int, date: String?, respondent: Boolean): Result<List<QuestionAnswerModel>>
-    suspend fun getMonthlyReport(roomId: Int, date: String): Result<MonthlyReportModel>
+    suspend fun getMonthlyReport(roomId: Int, date: String): Result<MonthlyReportModel?>
 }

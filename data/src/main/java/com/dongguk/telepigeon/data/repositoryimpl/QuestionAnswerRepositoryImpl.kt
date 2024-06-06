@@ -39,7 +39,7 @@ class QuestionAnswerRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getMonthlyReport(roomId: Int, date: String): Result<MonthlyReportModel> = runCatching {
-        questionAnswerRemoteDataSource.getMonthlyReport(roomId = roomId, date = date).data.toMonthlyReportModel()
+    override suspend fun getMonthlyReport(roomId: Int, date: String): Result<MonthlyReportModel?> = runCatching {
+        questionAnswerRemoteDataSource.getMonthlyReport(roomId = roomId, date = date).data?.toMonthlyReportModel()
     }
 }

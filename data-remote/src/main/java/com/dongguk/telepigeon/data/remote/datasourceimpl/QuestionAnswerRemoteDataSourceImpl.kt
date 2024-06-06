@@ -23,5 +23,5 @@ class QuestionAnswerRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getQuestionAnswer(roomId: Int, date: String?, respondent: Boolean): BaseResponseDto<ResponseGetQuestionAnswerDto> = questionAnswerService.getQuestionAnswer(roomId = roomId, date = date, respondent = respondent)
 
-    override suspend fun getMonthlyReport(roomId: Int, date: String): BaseResponseDto<ResponseGetMonthlyReportDto> = questionAnswerService.getMonthlyReport(roomId = roomId, date = date)
+    override suspend fun getMonthlyReport(roomId: Int, date: String): NullableBaseResponseDto<ResponseGetMonthlyReportDto> = questionAnswerService.getMonthlyReport(roomId = roomId, date = date)
 }

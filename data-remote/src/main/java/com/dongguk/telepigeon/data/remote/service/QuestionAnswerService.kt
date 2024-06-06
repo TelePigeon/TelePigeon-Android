@@ -44,7 +44,7 @@ interface QuestionAnswerService {
     suspend fun getMonthlyReport(
         @Path("$ROOM_ID") roomId: Int,
         @Query("$DATE") date: String
-    ): BaseResponseDto<ResponseGetMonthlyReportDto>
+    ): NullableBaseResponseDto<ResponseGetMonthlyReportDto>
 
     companion object {
         const val ROOMS = "rooms"

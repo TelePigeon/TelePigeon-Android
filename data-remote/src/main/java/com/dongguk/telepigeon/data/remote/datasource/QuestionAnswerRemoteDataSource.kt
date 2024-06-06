@@ -14,5 +14,5 @@ interface QuestionAnswerRemoteDataSource {
     suspend fun getQuestion(roomId: Int): BaseResponseDto<ResponseGetQuestionDto>
     suspend fun postAnswer(roomId: Int, questionId: Int, image: MultipartBody.Part?, content: RequestBody): NullableBaseResponseDto<Unit>
     suspend fun getQuestionAnswer(roomId: Int, date: String?, respondent: Boolean): BaseResponseDto<ResponseGetQuestionAnswerDto>
-    suspend fun getMonthlyReport(roomId: Int, date: String): BaseResponseDto<ResponseGetMonthlyReportDto>
+    suspend fun getMonthlyReport(roomId: Int, date: String): NullableBaseResponseDto<ResponseGetMonthlyReportDto>
 }
