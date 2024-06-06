@@ -6,8 +6,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PostWorryUseCase @Inject constructor(
-    private val worryRepository: WorryRepository
-) {
-    suspend operator fun invoke(roomId: Int, worryModel: WorryModel) = worryRepository.postWorry(roomId = roomId, worryModel = worryModel)
-}
+class PostWorryUseCase
+    @Inject
+    constructor(
+        private val worryRepository: WorryRepository,
+    ) {
+        suspend operator fun invoke(
+            roomId: Int,
+            worryModel: WorryModel,
+        ) = worryRepository.postWorry(roomId = roomId, worryModel = worryModel)
+    }

@@ -47,7 +47,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun providesWorryService(
-        @TelePigeon retrofit: Retrofit
+        @TelePigeon retrofit: Retrofit,
     ): WorryService =
         retrofit.create(WorryService::class.java)
 }

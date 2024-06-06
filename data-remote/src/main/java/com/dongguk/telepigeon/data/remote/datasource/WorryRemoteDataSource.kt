@@ -7,6 +7,11 @@ import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseRespon
 
 interface WorryRemoteDataSource {
     suspend fun getWorries(roomId: Int): BaseResponseDto<ResponseGetWorriesDto>
-    suspend fun postWorry(roomId: Int, requestPostWorryDto: RequestPostWorryDto): NullableBaseResponseDto<Unit>
+
+    suspend fun postWorry(
+        roomId: Int,
+        requestPostWorryDto: RequestPostWorryDto,
+    ): NullableBaseResponseDto<Unit>
+
     suspend fun deleteWorry(worryId: Int): NullableBaseResponseDto<Unit>
 }

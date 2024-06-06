@@ -13,23 +13,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddWorryViewModel @Inject constructor(
-    private val getRoomIdUseCase: GetRoomIdUseCase,
-    private val postWorryUseCase: PostWorryUseCase
-) : ViewModel() {
-    private val _postWorryState = MutableSharedFlow<UiState<Unit>>()
-    val postWorryState get() = _postWorryState.asSharedFlow()
+class AddWorryViewModel
+    @Inject
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val postWorryUseCase: PostWorryUseCase,
+    ) : ViewModel() {
+        private val _postWorryState = MutableSharedFlow<UiState<Unit>>()
+        val postWorryState get() = _postWorryState.asSharedFlow()
 
-    private val roomId = getRoomIdUseCase()
+        private val roomId = getRoomIdUseCase()
 
-    fun postWorry(worryModel: WorryModel) {
-        viewModelScope.launch {
-            _postWorryState.emit(UiState.Empty)
-            postWorryUseCase(roomId = roomId, worryModel = worryModel).onSuccess {
-                _postWorryState.emit(UiState.Success(Unit))
-            }.onFailure { exception: Throwable ->
-                _postWorryState.emit(UiState.Error(exception.message))
+        fun postWorry(worryModel: WorryModel) {
+            viewModelScope.launch {
+                _postWorryState.emit(UiState.Empty)
+                postWorryUseCase(roomId = roomId, worryModel = worryModel).onSuccess {
+                    _postWorryState.emit(UiState.Success(Unit))
+                }.onFailure { exception: Throwable ->
+                    _postWorryState.emit(UiState.Error(exception.message))
+                }
             }
         }
     }
-}

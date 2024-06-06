@@ -12,9 +12,11 @@ import com.dongguk.telepigeon.domain.model.WorryModel
 import com.dongguk.telepigeon.feature.databinding.FragmentAddWorryBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class AddWorryFragment : BindingFragment<FragmentAddWorryBinding>({ FragmentAddWorryBinding.inflate(it) }) {
     private val addWorryViewModel by viewModels<AddWorryViewModel>()
 
@@ -52,14 +54,16 @@ class AddWorryFragment : BindingFragment<FragmentAddWorryBinding>({ FragmentAddW
         }
     }
 
-
     private fun setBtnAddWorryAddClickListener() {
         binding.btnAddWorryAdd.setOnClickListener {
-            addWorryViewModel.postWorry(worryModel = WorryModel(
-                name = binding.etAddWorryName.editText.text.toString(),
-                content = binding.etAddWorryContent.editText.text.toString(),
-                times = binding.etAddWorryTime.editText.text.toString()
-            ))
+            addWorryViewModel.postWorry(
+                worryModel =
+                    WorryModel(
+                        name = binding.etAddWorryName.editText.text.toString(),
+                        content = binding.etAddWorryContent.editText.text.toString(),
+                        times = binding.etAddWorryTime.editText.text.toString(),
+                    ),
+            )
         }
     }
 

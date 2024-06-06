@@ -19,12 +19,12 @@ interface WorryService {
     @POST("$ROOMS/{$ROOM_ID}/$WORRIES")
     suspend fun postWorry(
         @Path("${ROOM_ID}") roomId: Int,
-        @Body requestPostWorryDto: RequestPostWorryDto
+        @Body requestPostWorryDto: RequestPostWorryDto,
     ): NullableBaseResponseDto<Unit>
 
     @DELETE("$WORRIES/{$WORRY_ID}")
     suspend fun deleteWorry(
-        @Path("${WORRY_ID}") worryId: Int
+        @Path("${WORRY_ID}") worryId: Int,
     ): NullableBaseResponseDto<Unit>
 
     companion object {

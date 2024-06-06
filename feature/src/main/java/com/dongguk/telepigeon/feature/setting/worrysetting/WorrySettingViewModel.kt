@@ -17,39 +17,39 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WorrySettingViewModel
-@Inject
-constructor(
-    private val getRoomIdUseCase: GetRoomIdUseCase,
-    private val getWorriesUseCase: GetWorriesUseCase,
-    private val deleteWorryUseCase: DeleteWorryUseCase
-) : ViewModel() {
-    private val _getWorriesState = MutableStateFlow<UiState<List<RoomWorryModel>>>(UiState.Empty)
-    val getWorriesState get() = _getWorriesState.asStateFlow()
+    @Inject
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val getWorriesUseCase: GetWorriesUseCase,
+        private val deleteWorryUseCase: DeleteWorryUseCase,
+    ) : ViewModel() {
+        private val _getWorriesState = MutableStateFlow<UiState<List<RoomWorryModel>>>(UiState.Empty)
+        val getWorriesState get() = _getWorriesState.asStateFlow()
 
-    private val _deleteWorryState = MutableSharedFlow<UiState<Unit>>()
-    val deleteWorryState get() = _deleteWorryState.asSharedFlow()
+        private val _deleteWorryState = MutableSharedFlow<UiState<Unit>>()
+        val deleteWorryState get() = _deleteWorryState.asSharedFlow()
 
-    private val roomId = getRoomIdUseCase()
+        private val roomId = getRoomIdUseCase()
 
-    fun getWorries() {
-        viewModelScope.launch {
-            _getWorriesState.value = UiState.Loading
-            getWorriesUseCase(roomId = roomId).onSuccess { roomWorryModels ->
-                _getWorriesState.value = UiState.Success(roomWorryModels)
-            }.onFailure { exception: Throwable ->
-                _getWorriesState.value = UiState.Error(exception.message)
+        fun getWorries() {
+            viewModelScope.launch {
+                _getWorriesState.value = UiState.Loading
+                getWorriesUseCase(roomId = roomId).onSuccess { roomWorryModels ->
+                    _getWorriesState.value = UiState.Success(roomWorryModels)
+                }.onFailure { exception: Throwable ->
+                    _getWorriesState.value = UiState.Error(exception.message)
+                }
+            }
+        }
+
+        fun deleteWorry(worryId: Int) {
+            viewModelScope.launch {
+                _deleteWorryState.emit(UiState.Loading)
+                deleteWorryUseCase(worryId = worryId).onSuccess {
+                    _deleteWorryState.emit(UiState.Success(Unit))
+                }.onFailure { exception: Throwable ->
+                    _deleteWorryState.emit(UiState.Error(exception.message))
+                }
             }
         }
     }
-
-    fun deleteWorry(worryId: Int) {
-        viewModelScope.launch {
-            _deleteWorryState.emit(UiState.Loading)
-            deleteWorryUseCase(worryId = worryId).onSuccess {
-                _deleteWorryState.emit(UiState.Success(Unit))
-            }.onFailure {  exception: Throwable ->
-                _deleteWorryState.emit(UiState.Error(exception.message))
-            }
-        }
-    }
-}

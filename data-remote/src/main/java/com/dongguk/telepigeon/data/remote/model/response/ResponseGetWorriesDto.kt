@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseGetWorriesDto(
     @SerialName("worries")
-    val worries: List<ResponseGetWorryDto>
+    val worries: List<ResponseGetWorryDto>,
 ) {
     @Serializable
     data class ResponseGetWorryDto(

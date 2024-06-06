@@ -5,6 +5,11 @@ import com.dongguk.telepigeon.domain.model.WorryModel
 
 interface WorryRepository {
     suspend fun getWorries(roomId: Int): Result<List<RoomWorryModel>>
-    suspend fun postWorry(roomId: Int, worryModel: WorryModel): Result<Unit>
+
+    suspend fun postWorry(
+        roomId: Int,
+        worryModel: WorryModel,
+    ): Result<Unit>
+
     suspend fun deleteWorry(worryId: Int): Result<Unit>
 }

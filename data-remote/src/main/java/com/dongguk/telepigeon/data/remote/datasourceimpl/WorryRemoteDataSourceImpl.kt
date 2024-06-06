@@ -8,12 +8,17 @@ import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseRespon
 import com.dongguk.telepigeon.data.remote.service.WorryService
 import javax.inject.Inject
 
-class WorryRemoteDataSourceImpl @Inject constructor(
-    private val worryService: WorryService
-) : WorryRemoteDataSource {
-    override suspend fun getWorries(roomId: Int): BaseResponseDto<ResponseGetWorriesDto> = worryService.getWorries(roomId = roomId)
+class WorryRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val worryService: WorryService,
+    ) : WorryRemoteDataSource {
+        override suspend fun getWorries(roomId: Int): BaseResponseDto<ResponseGetWorriesDto> = worryService.getWorries(roomId = roomId)
 
-    override suspend fun postWorry(roomId: Int, requestPostWorryDto: RequestPostWorryDto): NullableBaseResponseDto<Unit> = worryService.postWorry(roomId = roomId, requestPostWorryDto = requestPostWorryDto)
+        override suspend fun postWorry(
+            roomId: Int,
+            requestPostWorryDto: RequestPostWorryDto,
+        ): NullableBaseResponseDto<Unit> = worryService.postWorry(roomId = roomId, requestPostWorryDto = requestPostWorryDto)
 
-    override suspend fun deleteWorry(worryId: Int): NullableBaseResponseDto<Unit> = worryService.deleteWorry(worryId = worryId)
-}
+        override suspend fun deleteWorry(worryId: Int): NullableBaseResponseDto<Unit> = worryService.deleteWorry(worryId = worryId)
+    }
