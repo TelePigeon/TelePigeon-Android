@@ -10,7 +10,8 @@ class AuthInterceptor
         override fun intercept(chain: Interceptor.Chain): Response {
             val originalRequest = chain.request()
             val authRequest =
-                originalRequest.newBuilder().addHeader(ACCESS_TOKEN, "").build()
+
+                originalRequest.newBuilder().addHeader(AUTHORIZATION, "Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsImlhdCI6MTcxNzY1NTQ1MCwiZXhwIjoxNzE4ODY1MDUwfQ.Yzsslyb6Iait3Pa2Uxfuuvk7mC7oxCjgxg_KOVDqLLar436EcgRwY7BJfXRrTeNqnF7mUMsf9S-zM017IOs68Q").build()
             val response = chain.proceed(authRequest)
 
             when (response.code) {
@@ -22,6 +23,6 @@ class AuthInterceptor
         }
 
         companion object {
-            const val ACCESS_TOKEN = "accessToken"
+            const val AUTHORIZATION = "Authorization"
         }
     }

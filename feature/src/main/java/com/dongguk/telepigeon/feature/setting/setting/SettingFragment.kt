@@ -31,11 +31,15 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         super.onViewCreated(view, savedInstanceState)
 
         settingViewModel.getRoomInfo()
+        settingViewModel.getRoomKeywords()
+        settingViewModel.getRoomKeywordExtra()
+        settingViewModel.getWorries()
         initAdapter()
         initLayout()
         collectGetRoomInfoState()
         collectGetRoomKeywordsState()
         collectGetRoomKeywordExtraState()
+        collectGetWorriesState()
         setBtnSettingKeywordModifyClickListener()
         setBtnSettingWorrySettingClickListener()
     }
@@ -43,9 +47,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     private fun initAdapter() {
         settingWorrySettingAdapter = SettingWorrySettingAdapter()
         binding.rvSettingWorrySetting.adapter = settingWorrySettingAdapter
-
-        // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-        settingWorrySettingAdapter.submitList(settingViewModel.dummyRoomWorryModel)
     }
 
     private fun initLayout() {
@@ -97,6 +98,17 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
                     }
                 }
 
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetWorriesState() {
+        settingViewModel.getWorriesState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getWorriesState ->
+            when (getWorriesState) {
+                is UiState.Success -> {
+                    settingWorrySettingAdapter.submitList(getWorriesState.data)
+                }
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
