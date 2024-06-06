@@ -106,7 +106,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
-                            qnaViewModel.postAnswer(questionId = id, image = qnaViewModel.imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
+                            qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
                     }
                 }
@@ -120,6 +120,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
             when (postAnswerState) {
                 is UiState.Success -> findNavController().popBackStack()
+                is UiState.Error -> Log.e("http", postAnswerState.message.toString())
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -144,9 +145,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     private fun collectImageUri() {
         qnaViewModel.imageUri.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { uri ->
             with(binding) {
-                ivQnaPicture.visibility = if (uri == Uri.EMPTY) View.GONE else View.VISIBLE
-                ivQnaPicture.load(uri)
-                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() && uri != Uri.EMPTY
+                ivQnaPicture.visibility = if (uri == null) View.GONE else View.VISIBLE
+                if (uri != null) ivQnaPicture.load(Uri.parse(uri))
+                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() && uri != null
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -165,7 +166,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
 
     private fun setEtQnaAnswerTextChangedListener(isPenalty: Boolean) {
         binding.etQnaAnswer.setOnTextChangedListener { answer ->
-            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != Uri.EMPTY && answer.isNotBlank() else answer.isNotBlank()
+            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && answer.isNotBlank() else answer.isNotBlank()
         }
     }
 
@@ -173,7 +174,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         getPhotoPickerLauncher =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
                 imageUri?.let {
-                    qnaViewModel.setImageUri(it)
+                    qnaViewModel.setImageUri(it.toString())
                 }
             }
     }
@@ -182,7 +183,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         getGalleryLauncher =
             registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
                 imageUri?.let {
-                    qnaViewModel.setImageUri(it)
+                    qnaViewModel.setImageUri(it.toString())
                 }
             }
     }

@@ -36,7 +36,7 @@ constructor(
     private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
     val getQuestionAnswerState get() = _getQuestionAnswerState.asStateFlow()
 
-    private val _imageUri = MutableStateFlow(Uri.EMPTY)
+    private val _imageUri = MutableStateFlow<String?>(null)
     val imageUri get() = _imageUri.asStateFlow()
 
     private val roomId = getRoomIdUseCase()
@@ -78,7 +78,7 @@ constructor(
         }
     }
 
-    fun setImageUri(uri: Uri) {
+    fun setImageUri(uri: String?) {
         _imageUri.value = uri
     }
 }
