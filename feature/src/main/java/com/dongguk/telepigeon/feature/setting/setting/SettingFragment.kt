@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -144,7 +145,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     }
 
     private fun navigateToKeywordSetting() {
-        findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting)
+        findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting, bundleOf(KEYWORDS to binding.etSettingKeyWordCurrent.editText.text.toString()))
     }
 
     private fun navigateToWorrySetting() {
@@ -154,5 +155,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     companion object {
         private const val COPY_CODE_BOTTOM_SHEET = "copyCodeBottomSheet"
         private const val CODE = "code"
+        const val KEYWORDS = "keywords"
     }
 }
