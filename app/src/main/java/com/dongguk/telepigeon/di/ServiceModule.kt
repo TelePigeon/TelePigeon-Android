@@ -26,7 +26,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun providesHurryService(
-        @TelePigeon retrofit: Retrofit
+        @TelePigeon retrofit: Retrofit,
     ): HurryService =
         retrofit.create(HurryService::class.java)
 
