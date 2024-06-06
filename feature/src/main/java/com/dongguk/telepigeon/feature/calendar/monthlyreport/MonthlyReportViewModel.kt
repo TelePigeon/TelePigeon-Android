@@ -14,24 +14,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MonthlyReportViewModel
-@Inject
-constructor(
-    private val getRoomIdUseCase: GetRoomIdUseCase,
-    private val getMonthlyReportUseCase: GetMonthlyReportUseCase
-) : ViewModel() {
-    private val _getMonthlyReportState = MutableStateFlow<UiState<MonthlyReportModel?>>(UiState.Empty)
-    val getMonthlyReportState get() = _getMonthlyReportState.asStateFlow()
+    @Inject
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val getMonthlyReportUseCase: GetMonthlyReportUseCase,
+    ) : ViewModel() {
+        private val _getMonthlyReportState = MutableStateFlow<UiState<MonthlyReportModel?>>(UiState.Empty)
+        val getMonthlyReportState get() = _getMonthlyReportState.asStateFlow()
 
-    private val roomId = getRoomIdUseCase()
+        private val roomId = getRoomIdUseCase()
 
-    fun getMonthlyReport(date: String) {
-        viewModelScope.launch {
-            _getMonthlyReportState.value = UiState.Loading
-            getMonthlyReportUseCase(roomId = roomId, date = date).onSuccess { monthlyReportModel ->
-                _getMonthlyReportState.value = UiState.Success(monthlyReportModel)
-            }.onFailure { exception: Throwable ->
-                _getMonthlyReportState.value = UiState.Error(exception.message)
+        fun getMonthlyReport(date: String) {
+            viewModelScope.launch {
+                _getMonthlyReportState.value = UiState.Loading
+                getMonthlyReportUseCase(roomId = roomId, date = date).onSuccess { monthlyReportModel ->
+                    _getMonthlyReportState.value = UiState.Success(monthlyReportModel)
+                }.onFailure { exception: Throwable ->
+                    _getMonthlyReportState.value = UiState.Error(exception.message)
+                }
             }
         }
     }
-}

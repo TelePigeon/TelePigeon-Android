@@ -14,25 +14,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel
-@Inject
-constructor(
-    private val getRoomIdUseCase: GetRoomIdUseCase,
-    private val getLatestRoomInfoUseCase: GetLatestRoomInfoUseCase
-) : ViewModel() {
-    private val _getLatestRoomInfoState = MutableStateFlow<UiState<RoomModel>>(UiState.Empty)
-    val getLatestRoomInfoState get() = _getLatestRoomInfoState.asStateFlow()
+    @Inject
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val getLatestRoomInfoUseCase: GetLatestRoomInfoUseCase,
+    ) : ViewModel() {
+        private val _getLatestRoomInfoState = MutableStateFlow<UiState<RoomModel>>(UiState.Empty)
+        val getLatestRoomInfoState get() = _getLatestRoomInfoState.asStateFlow()
 
-    private val roomId = getRoomIdUseCase()
+        private val roomId = getRoomIdUseCase()
 
-    fun getLatestRoomInfo() {
-        viewModelScope.launch {
-            _getLatestRoomInfoState.value = UiState.Loading
-            getLatestRoomInfoUseCase(roomId = roomId).onSuccess { roomModel ->
-                _getLatestRoomInfoState.value = UiState.Success(roomModel)
-            }.onFailure { exception: Throwable ->
-                _getLatestRoomInfoState.value = UiState.Error(exception.message)
+        fun getLatestRoomInfo() {
+            viewModelScope.launch {
+                _getLatestRoomInfoState.value = UiState.Loading
+                getLatestRoomInfoUseCase(roomId = roomId).onSuccess { roomModel ->
+                    _getLatestRoomInfoState.value = UiState.Success(roomModel)
+                }.onFailure { exception: Throwable ->
+                    _getLatestRoomInfoState.value = UiState.Error(exception.message)
+                }
             }
         }
     }
-
-}

@@ -32,7 +32,10 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
         collectGetLatestRoomInfoState()
     }
 
-    private fun setHomeType(mainType: MainType, number: Int) {
+    private fun setHomeType(
+        mainType: MainType,
+        number: Int,
+    ) {
         with(binding) {
             tvMainSpeechBubble.text = if (mainType == MainType.NOT_SEND_SURVIVAL) getString(mainType.speechBubbleText, number) else stringOf(mainType.speechBubbleText)
             ivMainCharacter.setImageResource(mainType.character)

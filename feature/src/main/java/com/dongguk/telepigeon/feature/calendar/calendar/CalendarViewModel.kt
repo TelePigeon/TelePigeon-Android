@@ -14,24 +14,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CalendarViewModel
-@Inject
-constructor(
-    private val getRoomIdUseCase: GetRoomIdUseCase,
-    private val getQuestionAnswerUseCase: GetQuestionAnswerUseCase
-) : ViewModel() {
-    private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
-    val getQuestionAnswerState get() = _getQuestionAnswerState.asStateFlow()
+    @Inject
+    constructor(
+        private val getRoomIdUseCase: GetRoomIdUseCase,
+        private val getQuestionAnswerUseCase: GetQuestionAnswerUseCase,
+    ) : ViewModel() {
+        private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
+        val getQuestionAnswerState get() = _getQuestionAnswerState.asStateFlow()
 
-    private val roomId = getRoomIdUseCase()
+        private val roomId = getRoomIdUseCase()
 
-    fun getQuestionAnswer(date: String) {
-        viewModelScope.launch {
-            _getQuestionAnswerState.value = UiState.Loading
-            getQuestionAnswerUseCase(roomId = roomId, date = date, respondent = false).onSuccess { questionAnswerModels ->
-                _getQuestionAnswerState.value = UiState.Success(questionAnswerModels)
-            }.onFailure { exception: Throwable ->
-                _getQuestionAnswerState.value = UiState.Error(exception.message)
+        fun getQuestionAnswer(date: String) {
+            viewModelScope.launch {
+                _getQuestionAnswerState.value = UiState.Loading
+                getQuestionAnswerUseCase(roomId = roomId, date = date, respondent = false).onSuccess { questionAnswerModels ->
+                    _getQuestionAnswerState.value = UiState.Success(questionAnswerModels)
+                }.onFailure { exception: Throwable ->
+                    _getQuestionAnswerState.value = UiState.Error(exception.message)
+                }
             }
         }
     }
-}

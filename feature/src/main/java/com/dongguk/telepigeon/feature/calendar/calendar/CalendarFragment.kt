@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.load
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.feature.databinding.FragmentCalendarBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
@@ -40,8 +39,8 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCale
     }
 
     private fun collectGetQuestionAnswerState() {
-        calendarViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach {getQuestionAnswerState ->
-            when(getQuestionAnswerState) {
+        calendarViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getQuestionAnswerState ->
+            when (getQuestionAnswerState) {
                 is UiState.Success -> {
                     with(getQuestionAnswerState.data) {
                         calendarAnswerAdapter.submitList(this)

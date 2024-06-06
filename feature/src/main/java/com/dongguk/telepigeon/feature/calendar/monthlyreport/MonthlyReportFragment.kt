@@ -50,7 +50,6 @@ class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ Fr
                         binding.ivMonthlyReportEmpty.visibility = if (this == null) View.VISIBLE else View.INVISIBLE
                         binding.tvMonthlyReportEmpty.visibility = if (this == null) View.VISIBLE else View.INVISIBLE
 
-
                         this?.let {
                             binding.tvMonthlyReportPositiveKeywordRank1.text = positiveKeywords[0]
                             binding.tvMonthlyReportPositiveKeywordRank2.text = positiveKeywords[1]

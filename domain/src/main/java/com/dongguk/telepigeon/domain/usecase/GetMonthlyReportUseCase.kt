@@ -5,7 +5,10 @@ import javax.inject.Singleton
 
 @Singleton
 class GetMonthlyReportUseCase(
-    private val questionAnswerRepository: QuestionAnswerRepository
+    private val questionAnswerRepository: QuestionAnswerRepository,
 ) {
-    suspend operator fun invoke(roomId: Int, date: String) = questionAnswerRepository.getMonthlyReport(roomId = roomId, date = date)
+    suspend operator fun invoke(
+        roomId: Int,
+        date: String,
+    ) = questionAnswerRepository.getMonthlyReport(roomId = roomId, date = date)
 }

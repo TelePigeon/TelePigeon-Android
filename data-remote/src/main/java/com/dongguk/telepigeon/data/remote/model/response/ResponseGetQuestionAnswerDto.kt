@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseGetQuestionAnswerDto(
     @SerialName("sets")
-    val sets: List<ResponseGetQuestionAnswerSetDto>
+    val sets: List<ResponseGetQuestionAnswerSetDto>,
 ) {
     @Serializable
     data class ResponseGetQuestionAnswerSetDto(
@@ -19,6 +19,6 @@ data class ResponseGetQuestionAnswerDto(
         @SerialName("answerContent")
         val answerContent: String,
         @SerialName("answerImage")
-        val answerImage: String?
+        val answerImage: String?,
     )
 }

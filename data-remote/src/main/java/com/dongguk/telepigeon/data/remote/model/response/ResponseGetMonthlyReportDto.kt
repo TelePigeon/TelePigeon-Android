@@ -8,5 +8,5 @@ data class ResponseGetMonthlyReportDto(
     @SerialName("positiveKeywords")
     val positiveKeywords: List<String>,
     @SerialName("negativeKeywords")
-    val negativeKeywords: List<String>
+    val negativeKeywords: List<String>,
 )

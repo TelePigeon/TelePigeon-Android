@@ -24,7 +24,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun providesQuestionAnswerService(
-        @TelePigeon retrofit: Retrofit
+        @TelePigeon retrofit: Retrofit,
     ): QuestionAnswerService =
         retrofit.create(QuestionAnswerService::class.java)
 

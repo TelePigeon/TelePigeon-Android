@@ -30,20 +30,20 @@ interface QuestionAnswerService {
         @Path("$ROOM_ID") roomId: Int,
         @Path("$QUESTIONS_ID") questionsId: Int,
         @Part image: MultipartBody.Part?,
-        @Part("$CONTENT") content: RequestBody
+        @Part("$CONTENT") content: RequestBody,
     ): NullableBaseResponseDto<Unit>
 
     @GET("$ROOMS/{$ROOM_ID}/$TALKS")
     suspend fun getQuestionAnswer(
         @Path("$ROOM_ID") roomId: Int,
         @Query("$DATE") date: String?,
-        @Query("$RESPONDENT") respondent: Boolean
+        @Query("$RESPONDENT") respondent: Boolean,
     ): BaseResponseDto<ResponseGetQuestionAnswerDto>
 
     @GET("$ROOMS/{$ROOM_ID}/$REPORTS")
     suspend fun getMonthlyReport(
         @Path("$ROOM_ID") roomId: Int,
-        @Query("$DATE") date: String
+        @Query("$DATE") date: String,
     ): NullableBaseResponseDto<ResponseGetMonthlyReportDto>
 
     companion object {

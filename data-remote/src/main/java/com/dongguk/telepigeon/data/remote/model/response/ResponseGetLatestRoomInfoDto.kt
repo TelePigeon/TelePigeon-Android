@@ -10,5 +10,5 @@ data class ResponseGetLatestRoomInfoDto(
     @SerialName("number")
     val number: Int,
     @SerialName("days")
-    val days: Int
+    val days: Int,
 )

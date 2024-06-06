@@ -12,16 +12,30 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-class QuestionAnswerRemoteDataSourceImpl @Inject constructor(
-    private val questionAnswerService: QuestionAnswerService
-) : QuestionAnswerRemoteDataSource {
-    override suspend fun getLatestRoomInfo(roomId: Int): BaseResponseDto<ResponseGetLatestRoomInfoDto> = questionAnswerService.getLatestRoomInfo(roomId = roomId)
+class QuestionAnswerRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val questionAnswerService: QuestionAnswerService,
+    ) : QuestionAnswerRemoteDataSource {
+        override suspend fun getLatestRoomInfo(roomId: Int): BaseResponseDto<ResponseGetLatestRoomInfoDto> = questionAnswerService.getLatestRoomInfo(roomId = roomId)
 
-    override suspend fun getQuestion(roomId: Int): BaseResponseDto<ResponseGetQuestionDto> = questionAnswerService.getQuestion(roomId = roomId)
+        override suspend fun getQuestion(roomId: Int): BaseResponseDto<ResponseGetQuestionDto> = questionAnswerService.getQuestion(roomId = roomId)
 
-    override suspend fun postAnswer(roomId: Int, questionId: Int, image: MultipartBody.Part?, content: RequestBody): NullableBaseResponseDto<Unit> = questionAnswerService.postAnswer(roomId = roomId, questionsId = questionId, image = image, content = content)
+        override suspend fun postAnswer(
+            roomId: Int,
+            questionId: Int,
+            image: MultipartBody.Part?,
+            content: RequestBody,
+        ): NullableBaseResponseDto<Unit> = questionAnswerService.postAnswer(roomId = roomId, questionsId = questionId, image = image, content = content)
 
-    override suspend fun getQuestionAnswer(roomId: Int, date: String?, respondent: Boolean): BaseResponseDto<ResponseGetQuestionAnswerDto> = questionAnswerService.getQuestionAnswer(roomId = roomId, date = date, respondent = respondent)
+        override suspend fun getQuestionAnswer(
+            roomId: Int,
+            date: String?,
+            respondent: Boolean,
+        ): BaseResponseDto<ResponseGetQuestionAnswerDto> = questionAnswerService.getQuestionAnswer(roomId = roomId, date = date, respondent = respondent)
 
-    override suspend fun getMonthlyReport(roomId: Int, date: String): NullableBaseResponseDto<ResponseGetMonthlyReportDto> = questionAnswerService.getMonthlyReport(roomId = roomId, date = date)
-}
+        override suspend fun getMonthlyReport(
+            roomId: Int,
+            date: String,
+        ): NullableBaseResponseDto<ResponseGetMonthlyReportDto> = questionAnswerService.getMonthlyReport(roomId = roomId, date = date)
+    }

@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.data.util
 
 import android.content.ContentResolver
-import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
 import okhttp3.MediaType

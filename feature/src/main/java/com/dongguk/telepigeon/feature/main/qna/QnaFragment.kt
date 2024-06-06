@@ -119,7 +119,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
 
     private fun collectPostAnswerState() {
         qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
-            when(postAnswerState) {
+            when (postAnswerState) {
                 is UiState.Success -> findNavController().popBackStack()
                 else -> Unit
             }
@@ -127,8 +127,8 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     }
 
     private fun collectGetQuestionAnswerState() {
-        qnaViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach {getQuestionAnswerState ->
-            when(getQuestionAnswerState) {
+        qnaViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getQuestionAnswerState ->
+            when (getQuestionAnswerState) {
                 is UiState.Success -> {
                     with(getQuestionAnswerState.data[0]) {
                         binding.etQnaQuestion.editText.setText(questionContent)
@@ -147,7 +147,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                 getGalleryLauncher.launch("image/*")
             } else {
                 getPhotoPickerLauncher.launch(
-                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
                 )
             }
         }
