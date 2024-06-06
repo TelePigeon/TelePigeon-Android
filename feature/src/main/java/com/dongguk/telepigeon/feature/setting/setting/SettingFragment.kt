@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,11 +34,13 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         settingViewModel.getRoomInfo()
         settingViewModel.getRoomKeywords()
         settingViewModel.getRoomKeywordExtra()
+        settingViewModel.getWorries()
         initAdapter()
         initLayout()
         collectGetRoomInfoState()
         collectGetRoomKeywordsState()
         collectGetRoomKeywordExtraState()
+        collectGetWorriesState()
         setBtnSettingKeywordModifyClickListener()
         setBtnSettingWorrySettingClickListener()
     }
@@ -45,9 +48,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     private fun initAdapter() {
         settingWorrySettingAdapter = SettingWorrySettingAdapter()
         binding.rvSettingWorrySetting.adapter = settingWorrySettingAdapter
-
-        // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-        settingWorrySettingAdapter.submitList(settingViewModel.dummyRoomWorryModel)
     }
 
     private fun initLayout() {
@@ -104,6 +104,17 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
+    private fun collectGetWorriesState() {
+        settingViewModel.getWorriesState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getWorriesState ->
+            when (getWorriesState) {
+                is UiState.Success -> {
+                    settingWorrySettingAdapter.submitList(getWorriesState.data)
+                }
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
     private fun setBtnSettingRoomInfoCopyClickListener(code: String) {
         binding.btnSettingRoomInfoCopy.setOnClickListener {
             copyCopyCode(code)
@@ -134,7 +145,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     }
 
     private fun navigateToKeywordSetting() {
-        findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting)
+        findNavController().navigate(R.id.action_all_navi_setting_to_keyword_setting, bundleOf(KEYWORDS to binding.etSettingKeyWordCurrent.editText.text.toString()))
     }
 
     private fun navigateToWorrySetting() {
@@ -144,5 +155,6 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
     companion object {
         private const val COPY_CODE_BOTTOM_SHEET = "copyCodeBottomSheet"
         private const val CODE = "code"
+        const val KEYWORDS = "keywords"
     }
 }

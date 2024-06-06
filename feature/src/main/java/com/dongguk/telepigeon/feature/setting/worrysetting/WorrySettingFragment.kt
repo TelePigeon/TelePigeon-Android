@@ -3,6 +3,8 @@ package com.dongguk.telepigeon.feature.setting.worrysetting
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithTwoBtnDialogFragment
@@ -11,7 +13,12 @@ import com.dongguk.telepigeon.design.system.type.BottomSheetWithTwoBtnType
 import com.dongguk.telepigeon.feature.databinding.FragmentWorrySettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ FragmentWorrySettingBinding.inflate(it) }) {
     private val worrySettingViewModel by viewModels<WorrySettingViewModel>()
     private lateinit var worrySettingAdapter: WorrySettingAdapter
@@ -22,16 +29,16 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        worrySettingViewModel.getWorries()
         initAdapter()
         initLayout()
+        collectGetWorriesState()
         setBtnWorrySettingAddClickListener()
     }
 
     private fun initAdapter() {
         worrySettingAdapter = WorrySettingAdapter(showDeleteWorryBottomSheetDialogFragment = ::showDeleteWorryBottomSheetDialogFragment)
         binding.rvWorrySetting.adapter = worrySettingAdapter
-
-        worrySettingAdapter.submitList(worrySettingViewModel.dummyRoomWorryModel)
     }
 
     private fun initLayout() {
@@ -43,6 +50,30 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
         }
     }
 
+    private fun collectGetWorriesState() {
+        worrySettingViewModel.getWorriesState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getWorriesState ->
+            when (getWorriesState) {
+                is UiState.Success -> {
+                    worrySettingAdapter.submitList(getWorriesState.data)
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun deleteWorryState() {
+        worrySettingViewModel.deleteWorryState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { deleteWorryState ->
+            when (deleteWorryState) {
+                is UiState.Success -> {
+                    worrySettingViewModel.getWorries()
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
     private fun setBtnWorrySettingAddClickListener() {
         binding.btnWorrySettingAdd.setOnClickListener {
             navigateToAddWorry()
@@ -52,6 +83,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private fun showDeleteWorryBottomSheetDialogFragment(worryId: Int) {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY,
+            clickRightBtn = { worrySettingViewModel.deleteWorry(worryId = worryId) },
         ).show(childFragmentManager, DELETE_WORRY_BOTTOM_SHEET)
     }
 
