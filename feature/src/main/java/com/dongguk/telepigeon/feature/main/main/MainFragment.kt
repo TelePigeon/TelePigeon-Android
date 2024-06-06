@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.type.MainType
 import com.dongguk.telepigeon.design.system.type.QnaType
@@ -16,6 +17,7 @@ import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -30,6 +32,7 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
 
         mainViewModel.getLatestRoomInfo()
         collectGetLatestRoomInfoState()
+        collectPostHurryState()
     }
 
     private fun setHomeType(
@@ -77,7 +80,22 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
 
                 else -> Unit
             }
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectPostHurryState() {
+        mainViewModel.postHurryState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postHurryState ->
+            when (postHurryState) {
+                is UiState.Success -> {
+                    when (postHurryState.data) {
+                        SUCCESS -> mainViewModel.getLatestRoomInfo()
+                        CONFLICT -> Unit
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setTvMainButtonClickListener(
@@ -87,6 +105,7 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
             when (btnText) {
                 com.dongguk.telepigeon.core.design.system.R.string.main_btn_text_check_answer -> navigateToQna(qnaType = QnaType.CHECK_ANSWER)
                 com.dongguk.telepigeon.core.design.system.R.string.main_btn_text_answer_question -> navigateToQna(qnaType = QnaType.SURVIVAL)
+                com.dongguk.telepigeon.core.design.system.R.string.main_btn_text_hurry -> mainViewModel.postHurry()
             }
         }
     }
@@ -98,5 +117,7 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
     companion object {
         private const val DAYS_THRESHOLD = 2
         const val QNA_TYPE = "qnaType"
+        private const val SUCCESS = "success"
+        private const val CONFLICT = "conflict"
     }
 }
