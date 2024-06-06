@@ -4,13 +4,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.feature.databinding.FragmentCalendarBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import java.time.LocalDate
 
+@AndroidEntryPoint
 class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCalendarBinding.inflate(it) }) {
     private val calendarViewModel by viewModels<CalendarViewModel>()
     private lateinit var calendarAnswerAdapter: CalendarAnswerAdapter
@@ -21,7 +28,9 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCale
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        calendarViewModel.getQuestionAnswer(LocalDate.now().year.toString() + "-" + LocalDate.now().monthValue)
         initAdapter()
+        collectGetQuestionAnswerState()
         setCvCalendarDateChangeListener()
         setBtnCalendarMonthlyReportClickListener(LocalDate.now().year.toString() + "-" + LocalDate.now().monthValue)
     }
@@ -29,22 +38,33 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCale
     private fun initAdapter() {
         calendarAnswerAdapter = CalendarAnswerAdapter()
         binding.rvCalendarAnswer.adapter = calendarAnswerAdapter
+    }
 
-        // TODO 서버통신 구현 후 collectData 함수로 해당 로직 이동
-        calendarAnswerAdapter.submitList(calendarViewModel.dummyQuestionAnswerModels)
+    private fun collectGetQuestionAnswerState() {
+        calendarViewModel.getQuestionAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getQuestionAnswerState ->
+            when (getQuestionAnswerState) {
+                is UiState.Success -> {
+                    with(getQuestionAnswerState.data) {
+                        calendarAnswerAdapter.submitList(this)
 
-        (calendarViewModel.dummyQuestionAnswerModels.isEmpty()).let { isEmpty ->
-            with(binding) {
-                ivCalendarEmpty.visibility = if (isEmpty) View.VISIBLE else View.INVISIBLE
-                tvCalendarEmpty.visibility = if (isEmpty) View.VISIBLE else View.INVISIBLE
+                        (this.isEmpty()).let { isEmpty ->
+                            with(binding) {
+                                ivCalendarEmpty.visibility = if (isEmpty) View.VISIBLE else View.INVISIBLE
+                                tvCalendarEmpty.visibility = if (isEmpty) View.VISIBLE else View.INVISIBLE
+                            }
+                        }
+                    }
+                }
+                else -> Unit
             }
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setCvCalendarDateChangeListener() {
         binding.cvCalendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             binding.tvCalendarEmpty.text = if (LocalDate.now() == LocalDate.of(year, month + 1, dayOfMonth)) stringOf(R.string.calendar_today_answer_empty) else stringOf(R.string.calendar_future_answer_empty)
 
+            calendarViewModel.getQuestionAnswer(year.toString() + "-" + (month + 1))
             setBtnCalendarMonthlyReportClickListener(year.toString() + "-" + (month + 1))
         }
     }

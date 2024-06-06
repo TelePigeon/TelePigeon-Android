@@ -6,6 +6,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.type.MainType
 import com.dongguk.telepigeon.design.system.type.QnaType
@@ -13,7 +14,11 @@ import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentMainBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
+import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.inflate(it) }) {
     private val mainViewModel by viewModels<MainViewModel>()
 
@@ -22,42 +27,55 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-        initLayout()
+
+        mainViewModel.getLatestRoomInfo()
+        collectGetLatestRoomInfoState()
     }
 
-    private fun initLayout() {
+    private fun setHomeType(
+        mainType: MainType,
+        number: Int,
+    ) {
         with(binding) {
-            tvMainRoomName.text = mainViewModel.dummyRoom.name
-
-            when (mainViewModel.dummyRoom.number) {
-                1 -> MainType.SENT_HURRY
-                2 -> MainType.ARRIVE_SURVIVAL
-                3 -> MainType.WAIT_SURVIVAL
-                4 -> MainType.GOT_SURVIVAL
-                5 -> MainType.GOT_QUESTION
-                else -> {
-                    mainViewModel.dummyRoom.days?.let { days ->
-                        if (days >= DAYS_THRESHOLD) {
-                            MainType.NOT_SEND_SURVIVAL
-                        } else {
-                            MainType.GOT_QUESTION
-                        }
-                    }
-                }
-            }?.let { mainType ->
-                setHomeType(mainType = mainType)
-            }
-        }
-    }
-
-    private fun setHomeType(mainType: MainType) {
-        with(binding) {
-            tvMainSpeechBubble.text = if (mainType == MainType.NOT_SEND_SURVIVAL) getString(mainType.speechBubbleText, mainViewModel.dummyRoom.number) else stringOf(mainType.speechBubbleText)
+            tvMainSpeechBubble.text = if (mainType == MainType.NOT_SEND_SURVIVAL) getString(mainType.speechBubbleText, number) else stringOf(mainType.speechBubbleText)
             ivMainCharacter.setImageResource(mainType.character)
             mainType.btnText?.let { btnText ->
                 tvMainButton.text = stringOf(btnText)
                 tvMainButton.paintFlags = Paint.UNDERLINE_TEXT_FLAG
                 setTvMainButtonClickListener(btnText)
+            }
+        }
+    }
+
+    private fun collectGetLatestRoomInfoState() {
+        mainViewModel.getLatestRoomInfoState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getLatestRoomInfoState ->
+            when (getLatestRoomInfoState) {
+                is UiState.Success -> {
+                    with(getLatestRoomInfoState.data) {
+                        binding.tvMainRoomName.text = name
+
+                        when (number) {
+                            1 -> MainType.SENT_HURRY
+                            2 -> MainType.ARRIVE_SURVIVAL
+                            3 -> MainType.WAIT_SURVIVAL
+                            4 -> MainType.GOT_SURVIVAL
+                            5 -> MainType.GOT_QUESTION
+                            else -> {
+                                days?.let { days ->
+                                    if (days >= DAYS_THRESHOLD) {
+                                        MainType.NOT_SEND_SURVIVAL
+                                    } else {
+                                        MainType.GOT_QUESTION
+                                    }
+                                }
+                            }
+                        }?.let { mainType ->
+                            setHomeType(mainType = mainType, number = number)
+                        }
+                    }
+                }
+
+                else -> Unit
             }
         }
     }

@@ -3,8 +3,10 @@ package com.dongguk.telepigeon.di
 import com.dongguk.telepigeon.data.local.datasource.TelePigeonLocalDataSource
 import com.dongguk.telepigeon.data.local.datasourceimpl.TelePigeonLocalDataSourceImpl
 import com.dongguk.telepigeon.data.remote.datasource.ProfileRemoteDataSource
+import com.dongguk.telepigeon.data.remote.datasource.QuestionAnswerRemoteDataSource
 import com.dongguk.telepigeon.data.remote.datasource.RoomRemoteDataSource
 import com.dongguk.telepigeon.data.remote.datasourceimpl.ProfileRemoteDataSourceImpl
+import com.dongguk.telepigeon.data.remote.datasourceimpl.QuestionAnswerRemoteDataSourceImpl
 import com.dongguk.telepigeon.data.remote.datasourceimpl.RoomRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -22,6 +24,10 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindsProfileRemoteDataSource(profileRemoteDataSourceImpl: ProfileRemoteDataSourceImpl): ProfileRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsQuestionAnswerRemoteDataSource(questionAnswerRemoteDataSourceImpl: QuestionAnswerRemoteDataSourceImpl): QuestionAnswerRemoteDataSource
 
     @Binds
     @Singleton

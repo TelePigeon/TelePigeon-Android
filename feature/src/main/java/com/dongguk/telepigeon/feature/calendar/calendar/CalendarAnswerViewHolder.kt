@@ -9,7 +9,7 @@ class CalendarAnswerViewHolder(private val binding: ItemCalendarAnswerBinding) :
     fun onBind(questionAnswerModel: QuestionAnswerModel) {
         with(binding) {
             ivCalendarAnswerImage.load(questionAnswerModel.answerImage)
-            tvCalendarAnswerQuestionName.text = questionAnswerModel.questionerName
+            tvCalendarAnswerQuestionName.text = questionAnswerModel.questionName
             tvCalendarAnswerQuestionContent.text = questionAnswerModel.questionContent
             tvCalendarAnswerAnswerName.text = questionAnswerModel.answerName
             tvCalendarAnswerAnswerContent.text = questionAnswerModel.answerContent
