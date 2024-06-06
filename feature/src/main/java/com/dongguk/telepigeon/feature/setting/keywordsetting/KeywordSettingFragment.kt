@@ -16,9 +16,11 @@ import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
     private val bottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()

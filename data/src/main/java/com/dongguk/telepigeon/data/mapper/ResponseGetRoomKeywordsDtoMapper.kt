@@ -5,5 +5,5 @@ import com.dongguk.telepigeon.domain.model.RoomKeywordsModel
 
 fun ResponseGetRoomKeywordsDto.toRoomKeywordModel() =
     RoomKeywordsModel(
-        keywords = this.keywords.joinToString { ", " },
+        keywords = this.keywords.joinToString(", ") { it.trim() }
     )
