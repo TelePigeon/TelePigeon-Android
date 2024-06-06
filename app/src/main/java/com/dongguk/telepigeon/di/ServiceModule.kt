@@ -1,5 +1,6 @@
 package com.dongguk.telepigeon.di
 
+import com.dongguk.telepigeon.data.remote.service.HurryService
 import com.dongguk.telepigeon.data.remote.service.ProfileService
 import com.dongguk.telepigeon.data.remote.service.QuestionAnswerService
 import com.dongguk.telepigeon.data.remote.service.RoomService
@@ -9,6 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -20,6 +22,13 @@ object ServiceModule {
         @TelePigeon retrofit: Retrofit,
     ): ProfileService =
         retrofit.create(ProfileService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesHurryService(
+        @TelePigeon retrofit: Retrofit,
+    ): HurryService =
+        retrofit.create(HurryService::class.java)
 
     @Provides
     @Singleton

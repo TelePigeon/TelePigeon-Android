@@ -2,9 +2,11 @@ package com.dongguk.telepigeon.di
 
 import com.dongguk.telepigeon.data.local.datasource.TelePigeonLocalDataSource
 import com.dongguk.telepigeon.data.local.datasourceimpl.TelePigeonLocalDataSourceImpl
+import com.dongguk.telepigeon.data.remote.datasource.HurryRemoteDataSource
 import com.dongguk.telepigeon.data.remote.datasource.ProfileRemoteDataSource
 import com.dongguk.telepigeon.data.remote.datasource.QuestionAnswerRemoteDataSource
 import com.dongguk.telepigeon.data.remote.datasource.RoomRemoteDataSource
+import com.dongguk.telepigeon.data.remote.datasourceimpl.HurryRemoteDataSourceImpl
 import com.dongguk.telepigeon.data.remote.datasourceimpl.ProfileRemoteDataSourceImpl
 import com.dongguk.telepigeon.data.remote.datasourceimpl.QuestionAnswerRemoteDataSourceImpl
 import com.dongguk.telepigeon.data.remote.datasourceimpl.RoomRemoteDataSourceImpl
@@ -20,6 +22,10 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindsTelePigeonLocalDataSource(telePigeonLocalDataSourceImpl: TelePigeonLocalDataSourceImpl): TelePigeonLocalDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsHurryRemoteDataSource(hurryRemoteDataSourceImpl: HurryRemoteDataSourceImpl): HurryRemoteDataSource
 
     @Binds
     @Singleton
