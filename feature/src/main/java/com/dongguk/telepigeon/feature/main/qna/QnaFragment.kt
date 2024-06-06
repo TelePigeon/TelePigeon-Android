@@ -3,6 +3,7 @@ package com.dongguk.telepigeon.feature.main.qna
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
@@ -103,7 +104,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
-
+                        setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
                             qnaViewModel.postAnswer(questionId = id, image = qnaViewModel.imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
@@ -145,7 +146,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
             with(binding) {
                 ivQnaPicture.visibility = if (uri == Uri.EMPTY) View.GONE else View.VISIBLE
                 ivQnaPicture.load(uri)
-
+                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() && uri != Uri.EMPTY
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -159,6 +160,12 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
                 )
             }
+        }
+    }
+
+    private fun setEtQnaAnswerTextChangedListener(isPenalty: Boolean) {
+        binding.etQnaAnswer.setOnTextChangedListener { answer ->
+            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != Uri.EMPTY && answer.isNotBlank() else answer.isNotBlank()
         }
     }
 

@@ -168,6 +168,7 @@
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="전송하기" />
 </androidx.constraintlayout.widget.ConstraintLayout>
