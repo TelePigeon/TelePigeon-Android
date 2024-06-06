@@ -9,14 +9,16 @@ import com.dongguk.telepigeon.data.remote.model.response.base.BaseResponseDto
 import com.dongguk.telepigeon.data.remote.service.CommonService
 import javax.inject.Inject
 
-class CommonRemoteDataSourceImpl @Inject constructor(
-    private val commonService: CommonService
-) : CommonRemoteDataSource {
-    override suspend fun getKeywords(): BaseResponseDto<ResponseGetKeywordsDto> = commonService.getKeywords()
+class CommonRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val commonService: CommonService,
+    ) : CommonRemoteDataSource {
+        override suspend fun getKeywords(): BaseResponseDto<ResponseGetKeywordsDto> = commonService.getKeywords()
 
-    override suspend fun getGenders(): BaseResponseDto<ResponseGetGendersDto> = commonService.getGenders()
+        override suspend fun getGenders(): BaseResponseDto<ResponseGetGendersDto> = commonService.getGenders()
 
-    override suspend fun getAgeRanges(): BaseResponseDto<ResponseGetAgeRangesDto> = commonService.getAgeRanges()
+        override suspend fun getAgeRanges(): BaseResponseDto<ResponseGetAgeRangesDto> = commonService.getAgeRanges()
 
-    override suspend fun getRelations(): BaseResponseDto<ResponseGetRelationsDto> = commonService.getRelations()
-}
+        override suspend fun getRelations(): BaseResponseDto<ResponseGetRelationsDto> = commonService.getRelations()
+    }

@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetAgeRangesUseCase @Inject constructor(
-    private val commonRepository: CommonRepository
-){
-    suspend operator fun invoke() = commonRepository.getAgeRanges()
-}
+class GetAgeRangesUseCase
+    @Inject
+    constructor(
+        private val commonRepository: CommonRepository,
+    ) {
+        suspend operator fun invoke() = commonRepository.getAgeRanges()
+    }

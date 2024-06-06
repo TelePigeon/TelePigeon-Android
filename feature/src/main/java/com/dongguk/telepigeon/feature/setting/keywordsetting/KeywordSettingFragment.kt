@@ -12,14 +12,14 @@ import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
+import com.dongguk.telepigeon.feature.setting.setting.SettingFragment.Companion.KEYWORDS
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import com.dongguk.telepigeon.feature.setting.setting.SettingFragment.Companion.KEYWORDS
-import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
@@ -96,7 +96,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun collectGetKeywordsState() {
         keywordSettingViewModel.getKeywordsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getKeywordsState ->
-            when(getKeywordsState) {
+            when (getKeywordsState) {
                 is UiState.Success -> requireArguments().getString(KEYWORDS)?.split(", ")?.let { setKeywordChip(getKeywordsState.data, it.toList()) }
                 else -> Unit
             }
@@ -105,7 +105,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun collectGetGendersState() {
         keywordSettingViewModel.getGendersState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getGendersState ->
-            when(getGendersState) {
+            when (getGendersState) {
                 is UiState.Success -> setEtKeywordSettingGenderClickListener(genders = getGendersState.data)
                 else -> Unit
             }
@@ -114,7 +114,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun collectGetAgeRangesState() {
         keywordSettingViewModel.getAgeRangesState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getAgeRangesState ->
-            when(getAgeRangesState) {
+            when (getAgeRangesState) {
                 is UiState.Success -> setEtKeywordSettingAgeRangeClickListener(ageRanges = getAgeRangesState.data)
                 else -> Unit
             }
@@ -123,7 +123,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun collectGetRelationsState() {
         keywordSettingViewModel.getRelationsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRelationsState ->
-            when(getRelationsState) {
+            when (getRelationsState) {
                 is UiState.Success -> setEtKeywordSettingRelationClickListener(relations = getRelationsState.data)
                 else -> Unit
             }

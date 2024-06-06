@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseGetRelationsDto(
     @SerialName("relations")
-    val relations: List<String>
+    val relations: List<String>,
 )

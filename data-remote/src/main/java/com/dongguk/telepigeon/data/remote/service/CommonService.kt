@@ -9,16 +9,16 @@ import retrofit2.http.GET
 
 interface CommonService {
     @GET(KEYWORDS)
-    suspend fun getKeywords():BaseResponseDto<ResponseGetKeywordsDto>
+    suspend fun getKeywords(): BaseResponseDto<ResponseGetKeywordsDto>
 
     @GET(GENDERS)
-    suspend fun getGenders():BaseResponseDto<ResponseGetGendersDto>
+    suspend fun getGenders(): BaseResponseDto<ResponseGetGendersDto>
 
     @GET(AGE_RANGES)
-    suspend fun getAgeRanges():BaseResponseDto<ResponseGetAgeRangesDto>
+    suspend fun getAgeRanges(): BaseResponseDto<ResponseGetAgeRangesDto>
 
     @GET(RELATIONS)
-    suspend fun getRelations():BaseResponseDto<ResponseGetRelationsDto>
+    suspend fun getRelations(): BaseResponseDto<ResponseGetRelationsDto>
 
     companion object {
         const val KEYWORDS = "keywords"

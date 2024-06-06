@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseGetGendersDto(
     @SerialName("gender")
-    val gender: List<String>
+    val gender: List<String>,
 )
