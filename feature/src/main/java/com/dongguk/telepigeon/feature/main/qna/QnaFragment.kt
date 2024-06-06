@@ -1,7 +1,12 @@
 package com.dongguk.telepigeon.feature.main.qna
 
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -24,16 +29,24 @@ import kotlinx.coroutines.flow.onEach
 class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inflate(it) }) {
     private val qnaViewModel by viewModels<QnaViewModel>()
 
+    private var imageUri = Uri.EMPTY
+
+    private lateinit var getGalleryLauncher: ActivityResultLauncher<String>
+    private lateinit var getPhotoPickerLauncher: ActivityResultLauncher<PickVisualMediaRequest>
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        initGalleryLauncher()
+        initPhotoPickerLauncher()
         initLayout()
         setAppBar()
         requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { setQnaType(it) }
         collectGetQuestionState()
+        setLayoutQnaAddPictureClickListener()
     }
 
     private fun initLayout() {
@@ -75,21 +88,27 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     ivQnaPicture.load(qnaViewModel.dummyQuestionAnswerModel.answerImage)
                     ivQnaWarning.visibility = View.INVISIBLE
                     tvQnaWarning.visibility = View.INVISIBLE
+
+                    binding.btnQna.setOnClickListener {
+                        findNavController().popBackStack()
+                    }
                 }
             }
         }
-
-        setBtnQnaClickListener(qnaType = qnaType)
     }
 
     private fun collectGetQuestionState() {
         qnaViewModel.getQuestionState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getQuestionState ->
-            when(getQuestionState) {
+            when (getQuestionState) {
                 is UiState.Success -> {
                     with(getQuestionState.data) {
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
+
+                        binding.btnQna.setOnClickListener {
+                            qnaViewModel.postAnswer(questionId = id, image = imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
+                        }
                     }
                 }
 
@@ -98,12 +117,35 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun setBtnQnaClickListener(qnaType: QnaType) {
-        binding.btnQna.setOnClickListener {
-            when (qnaType) {
-                QnaType.CHECK_ANSWER -> findNavController().popBackStack()
-                QnaType.SURVIVAL -> Unit
+    private fun setLayoutQnaAddPictureClickListener() {
+        binding.layoutQnaAddPicture.setOnClickListener {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                getGalleryLauncher.launch("image/*")
+            } else {
+                getPhotoPickerLauncher.launch(
+                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                )
             }
         }
+    }
+
+    private fun initPhotoPickerLauncher() {
+        getPhotoPickerLauncher =
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
+                imageUri?.let {
+                    this.imageUri = it
+                    binding.ivQnaPicture.load(it)
+                }
+            }
+    }
+
+    private fun initGalleryLauncher() {
+        getGalleryLauncher =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
+                imageUri?.let {
+                    this.imageUri = it
+                    binding.ivQnaPicture.load(it)
+                }
+            }
     }
 }
