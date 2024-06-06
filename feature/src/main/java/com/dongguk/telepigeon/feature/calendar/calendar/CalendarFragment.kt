@@ -12,10 +12,12 @@ import com.dongguk.telepigeon.feature.databinding.FragmentCalendarBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.time.LocalDate
 
+@AndroidEntryPoint
 class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCalendarBinding.inflate(it) }) {
     private val calendarViewModel by viewModels<CalendarViewModel>()
     private lateinit var calendarAnswerAdapter: CalendarAnswerAdapter

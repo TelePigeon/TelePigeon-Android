@@ -11,9 +11,11 @@ import com.dongguk.telepigeon.feature.calendar.calendar.CalendarFragment.Compani
 import com.dongguk.telepigeon.feature.databinding.FragmentMonthlyReportBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ FragmentMonthlyReportBinding.inflate(it) }) {
     private val monthlyReportViewModel by viewModels<MonthlyReportViewModel>()
 
