@@ -12,13 +12,16 @@ import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
+import com.dongguk.telepigeon.feature.setting.setting.SettingFragment.Companion.KEYWORDS
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
     private val bottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
@@ -29,12 +32,20 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        keywordSettingViewModel.getRoomKeywordExtra()
+        keywordSettingViewModel.getKeywords()
+        keywordSettingViewModel.getGenders()
+        keywordSettingViewModel.getAgeRanges()
+        keywordSettingViewModel.getRelations()
+
         intAppBar()
         initLayout()
         collectPutRoomKeywordExtraState()
-        setEtKeywordSettingGenderClickListener()
-        setEtKeywordSettingAgeRangeClickListener()
-        setEtKeywordSettingRelationClickListener()
+        collectGetRoomKeywordExtraState()
+        collectGetKeywordsState()
+        collectGetGendersState()
+        collectGetAgeRangesState()
+        collectGetRelationsState()
         setBtnKeywordSettingCompleteClickListener()
     }
 
@@ -52,13 +63,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             etKeywordSettingGender.editText.isEnabled = false
             etKeywordSettingAgeRange.editText.isEnabled = false
             etKeywordSettingRelation.editText.isEnabled = false
-
-            etKeywordSettingGender.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.gender)
-            etKeywordSettingAgeRange.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.ageRange)
-            etKeywordSettingRelation.editText.setText(keywordSettingViewModel.dummyKeywordExtraModel.relation)
         }
-
-        setKeywordChip(keywordSettingViewModel.dummyKeywords, keywordSettingViewModel.dummySelectedKeywords)
     }
 
     private fun collectPutRoomKeywordExtraState() {
@@ -68,6 +73,58 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                     findNavController().popBackStack()
                 }
 
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetRoomKeywordExtraState() {
+        keywordSettingViewModel.getRoomKeywordExtraState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRoomKeywordExtraState ->
+            when (getRoomKeywordExtraState) {
+                is UiState.Success -> {
+                    with(getRoomKeywordExtraState.data) {
+                        binding.etKeywordSettingGender.editText.setText(gender)
+                        binding.etKeywordSettingAgeRange.editText.setText(ageRange)
+                        binding.etKeywordSettingRelation.editText.setText(relation)
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetKeywordsState() {
+        keywordSettingViewModel.getKeywordsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getKeywordsState ->
+            when (getKeywordsState) {
+                is UiState.Success -> requireArguments().getString(KEYWORDS)?.split(", ")?.let { setKeywordChip(getKeywordsState.data, it.toList()) }
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetGendersState() {
+        keywordSettingViewModel.getGendersState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getGendersState ->
+            when (getGendersState) {
+                is UiState.Success -> setEtKeywordSettingGenderClickListener(genders = getGendersState.data)
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetAgeRangesState() {
+        keywordSettingViewModel.getAgeRangesState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getAgeRangesState ->
+            when (getAgeRangesState) {
+                is UiState.Success -> setEtKeywordSettingAgeRangeClickListener(ageRanges = getAgeRangesState.data)
+                else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetRelationsState() {
+        keywordSettingViewModel.getRelationsState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getRelationsState ->
+            when (getRelationsState) {
+                is UiState.Success -> setEtKeywordSettingRelationClickListener(relations = getRelationsState.data)
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -88,21 +145,21 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         }
     }
 
-    private fun setEtKeywordSettingGenderClickListener() {
+    private fun setEtKeywordSettingGenderClickListener(genders: List<String>) {
         binding.etKeywordSettingGender.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = keywordSettingViewModel.dummyGenders)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = genders)
         }
     }
 
-    private fun setEtKeywordSettingAgeRangeClickListener() {
+    private fun setEtKeywordSettingAgeRangeClickListener(ageRanges: List<String>) {
         binding.etKeywordSettingAgeRange.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = keywordSettingViewModel.dummyAgeRanges)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = ageRanges)
         }
     }
 
-    private fun setEtKeywordSettingRelationClickListener() {
+    private fun setEtKeywordSettingRelationClickListener(relations: List<String>) {
         binding.etKeywordSettingRelation.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = keywordSettingViewModel.dummyRelations)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = relations)
         }
     }
 

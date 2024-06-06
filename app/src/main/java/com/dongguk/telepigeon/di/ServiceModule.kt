@@ -1,5 +1,6 @@
 package com.dongguk.telepigeon.di
 
+import com.dongguk.telepigeon.data.remote.service.CommonService
 import com.dongguk.telepigeon.data.remote.service.HurryService
 import com.dongguk.telepigeon.data.remote.service.ProfileService
 import com.dongguk.telepigeon.data.remote.service.QuestionAnswerService
@@ -18,10 +19,10 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun providesProfileService(
+    fun providesCommonService(
         @TelePigeon retrofit: Retrofit,
-    ): ProfileService =
-        retrofit.create(ProfileService::class.java)
+    ): CommonService =
+        retrofit.create(CommonService::class.java)
 
     @Provides
     @Singleton
@@ -29,6 +30,13 @@ object ServiceModule {
         @TelePigeon retrofit: Retrofit,
     ): HurryService =
         retrofit.create(HurryService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesProfileService(
+        @TelePigeon retrofit: Retrofit,
+    ): ProfileService =
+        retrofit.create(ProfileService::class.java)
 
     @Provides
     @Singleton
