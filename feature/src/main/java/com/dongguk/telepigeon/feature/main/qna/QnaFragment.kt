@@ -87,6 +87,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     ivQnaWarning.visibility = View.INVISIBLE
                     tvQnaWarning.visibility = View.INVISIBLE
 
+                    binding.btnQna.isEnabled = true
                     binding.btnQna.setOnClickListener {
                         findNavController().popBackStack()
                     }
