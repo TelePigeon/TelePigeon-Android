@@ -14,26 +14,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel
-@Inject
-constructor(
-    private val setRoomIdUseCase: SetRoomIdUseCase,
-    private val getRoomsUseCase: GetRoomsUseCase,
-) : ViewModel() {
-    private val _getRoomsState = MutableStateFlow<UiState<List<HomeRoomModel>>>(UiState.Empty)
-    val getRoomsState get() = _getRoomsState.asStateFlow()
+    @Inject
+    constructor(
+        private val setRoomIdUseCase: SetRoomIdUseCase,
+        private val getRoomsUseCase: GetRoomsUseCase,
+    ) : ViewModel() {
+        private val _getRoomsState = MutableStateFlow<UiState<List<HomeRoomModel>>>(UiState.Empty)
+        val getRoomsState get() = _getRoomsState.asStateFlow()
 
-    fun getRooms() {
-        viewModelScope.launch {
-            _getRoomsState.value = UiState.Loading
-            getRoomsUseCase().onSuccess { homeRoomModels ->
-                _getRoomsState.value = UiState.Success(homeRoomModels)
-            }.onFailure { exception: Throwable ->
-                _getRoomsState.value = UiState.Error(exception.message)
+        fun getRooms() {
+            viewModelScope.launch {
+                _getRoomsState.value = UiState.Loading
+                getRoomsUseCase().onSuccess { homeRoomModels ->
+                    _getRoomsState.value = UiState.Success(homeRoomModels)
+                }.onFailure { exception: Throwable ->
+                    _getRoomsState.value = UiState.Error(exception.message)
+                }
             }
         }
-    }
 
-    fun setRoomId(roomId: Int) {
-        setRoomIdUseCase(roomId = roomId)
+        fun setRoomId(roomId: Int) {
+            setRoomIdUseCase(roomId = roomId)
+        }
     }
-}

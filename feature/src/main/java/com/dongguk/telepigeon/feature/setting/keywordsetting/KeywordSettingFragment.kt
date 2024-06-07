@@ -183,13 +183,13 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private fun showSelectionBottomSheetDialogFragment(
         bottomSheetWithSelectionType: BottomSheetWithSelectionType,
         selectionList: List<String>,
-        onDialogClosed: (String) -> Unit = {}
-     ) {
+        onDialogClosed: (String) -> Unit = {},
+    ) {
         BottomSheetWithSelectionDialogFragment(
             bottomSheetWithSelectionType = bottomSheetWithSelectionType,
             selectionList = selectionList,
             bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter,
-            onDialogClosed = onDialogClosed
+            onDialogClosed = onDialogClosed,
         ).show(childFragmentManager, SELECTION_BOTTOM_SHEET)
     }
 

@@ -12,12 +12,12 @@ enum class MainType(
     WAITING(
         speechBubbleText = R.string.main_speech_bubble_text_waiting,
         character = R.drawable.ic_character,
-        btnText = null
+        btnText = null,
     ),
     COMPLETED(
         speechBubbleText = R.string.main_speech_bubble_text_completed,
         character = R.drawable.ic_character,
-        btnText = null
+        btnText = null,
     ),
     SENT_HURRY(
         speechBubbleText = R.string.main_speech_bubble_text_sent_hurry,
