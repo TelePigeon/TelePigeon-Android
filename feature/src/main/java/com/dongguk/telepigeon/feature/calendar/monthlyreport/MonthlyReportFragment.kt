@@ -28,6 +28,7 @@ class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ Fr
         requireArguments().getString(DATE)?.let { monthlyReportViewModel.getMonthlyReport(it) }
         initAppBar()
         initLayout()
+        collectGetMonthlyReportState()
         setBtnMonthlyReportCheckClickListener()
     }
 
@@ -44,7 +45,7 @@ class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ Fr
         }
     }
 
-    private fun collectState() {
+    private fun collectGetMonthlyReportState() {
         monthlyReportViewModel.getMonthlyReportState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { getMonthlyReportState ->
             when (getMonthlyReportState) {
                 is UiState.Success -> {
@@ -57,8 +58,8 @@ class MonthlyReportFragment : BindingFragment<FragmentMonthlyReportBinding>({ Fr
                             binding.tvMonthlyReportPositiveKeywordRank2.text = positiveKeywords[1]
                             binding.tvMonthlyReportPositiveKeywordRank3.text = positiveKeywords[2]
                             binding.tvMonthlyReportNegativeKeywordRank1.text = negativeKeywords[0]
-                            binding.tvMonthlyReportNegativeKeywordRank2.text = positiveKeywords[1]
-                            binding.tvMonthlyReportNegativeKeywordRank3.text = positiveKeywords[2]
+                            binding.tvMonthlyReportNegativeKeywordRank2.text = negativeKeywords[1]
+                            binding.tvMonthlyReportNegativeKeywordRank3.text = negativeKeywords[2]
                         }
                     }
                 }
