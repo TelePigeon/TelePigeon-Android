@@ -9,8 +9,8 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource
 ): AuthRepository{
-    override suspend fun postLogin(): Result<AuthTokenModel> = runCatching {
-        authRemoteDataSource.postLogin().data.toAuthTokenModel()
+    override suspend fun postLogin(authorization: String): Result<AuthTokenModel> = runCatching {
+        authRemoteDataSource.postLogin(authorization = authorization).data.toAuthTokenModel()
     }
 
     override suspend fun deleteLogin(): Result<Unit> = runCatching {

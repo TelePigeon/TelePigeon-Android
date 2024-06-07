@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class AuthRemoteDataSourceImpl @Inject constructor(
     private val authService: AuthService
-) : AuthRemoteDataSource{
-    override suspend fun postLogin(): BaseResponseDto<ResponsePostLoginDto> = authService.postLogin()
+) : AuthRemoteDataSource {
+    override suspend fun postLogin(authorization: String): BaseResponseDto<ResponsePostLoginDto> = authService.postLogin(authorization = authorization)
 
     override suspend fun deleteLogin(): NullableBaseResponseDto<Unit> = authService.deleteLogout()
 

@@ -8,5 +8,5 @@ import javax.inject.Singleton
 class PostLoginUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke() = authRepository.postLogin()
+    suspend operator fun invoke(authorization: String) = authRepository.postLogin(authorization = authorization)
 }

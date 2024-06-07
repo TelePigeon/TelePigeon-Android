@@ -1,11 +1,13 @@
 package com.dongguk.telepigeon
 
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.dongguk.telepigeon.BuildConfig.KAKAO_NATIVE_APP_KEY
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.util.Utility
 
 @HiltAndroidApp
 class TelePigeonApp : Application() {

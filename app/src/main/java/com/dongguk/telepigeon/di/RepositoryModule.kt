@@ -1,5 +1,6 @@
 package com.dongguk.telepigeon.di
 
+import com.dongguk.telepigeon.data.repositoryimpl.AuthKakaoRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.AuthRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.CommonRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.HurryRepositoryImpl
@@ -8,6 +9,7 @@ import com.dongguk.telepigeon.data.repositoryimpl.QuestionAnswerRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.RoomRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.TelePigeonRepositoryImpl
 import com.dongguk.telepigeon.data.repositoryimpl.WorryRepositoryImpl
+import com.dongguk.telepigeon.domain.repository.AuthKakaoRepository
 import com.dongguk.telepigeon.domain.repository.AuthRepository
 import com.dongguk.telepigeon.domain.repository.CommonRepository
 import com.dongguk.telepigeon.domain.repository.HurryRepository
@@ -25,6 +27,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
+    @Binds
+    @Singleton
+    abstract fun bindsAuthKakaoRepository(authKakaoRepositoryImpl: AuthKakaoRepositoryImpl): AuthKakaoRepository
+
     @Binds
     @Singleton
     abstract fun bindsAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
