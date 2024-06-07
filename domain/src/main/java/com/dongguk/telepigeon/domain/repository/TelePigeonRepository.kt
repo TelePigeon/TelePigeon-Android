@@ -17,5 +17,9 @@ interface TelePigeonRepository {
 
     fun setRoomId(roomId: Int)
 
+    fun getDeviceToken(): String
+
+    fun setDeviceToken(deviceToken: String)
+
     fun clear(): Unit
 }

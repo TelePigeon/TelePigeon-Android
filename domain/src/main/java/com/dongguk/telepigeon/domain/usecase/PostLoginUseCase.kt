@@ -10,5 +10,5 @@ class PostLoginUseCase
     constructor(
         private val authRepository: AuthRepository,
     ) {
-        suspend operator fun invoke(authorization: String) = authRepository.postLogin(authorization = authorization)
+        suspend operator fun invoke(authorization: String, fcmToken: String) = authRepository.postLogin(authorization = authorization, fcmToken = fcmToken)
     }

@@ -8,6 +8,7 @@ import retrofit2.Response
 interface AuthRemoteDataSource {
     suspend fun postLogin(
         authorization: String,
+        fcmToken: String
     ): BaseResponseDto<ResponsePostLoginDto>
 
     suspend fun deleteLogout(): Response<Unit?>

@@ -75,5 +75,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.crashlytics)
+    implementation(libs.google.firebase.analytics.ktx)
+    implementation(libs.google.firebase.messaging)
     implementation(libs.kakao)
 }

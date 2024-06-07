@@ -37,4 +37,8 @@ dependencies {
 
     // Network
     implementation(libs.retrofit)
+
+    // Firebase Messaging
+    implementation(libs.google.firebase.messaging)
+    implementation(libs.google.firebase.messaging.ktx)
 }

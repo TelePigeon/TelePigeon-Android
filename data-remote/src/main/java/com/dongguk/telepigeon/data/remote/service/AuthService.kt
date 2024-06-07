@@ -12,6 +12,7 @@ interface AuthService {
     @POST("$AUTH/$LOGIN/$KAKAO")
     suspend fun postLogin(
         @Header("$AUTHORIZATION") authorization: String,
+        @Header("$FCM_TOKEN") fcmToken: String
     ): BaseResponseDto<ResponsePostLoginDto>
 
     @DELETE("$AUTH/$LOGOUT")
@@ -31,5 +32,6 @@ interface AuthService {
         const val WITHDRAWAL = "withdrawal"
         const val REISSUE = "reissue"
         const val AUTHORIZATION = "Authorization"
+        const val FCM_TOKEN = "FcmToken"
     }
 }
