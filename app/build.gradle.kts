@@ -28,7 +28,7 @@ android {
         buildConfigField(
             "String",
             "KAKAO_NATIVE_APP_KEY",
-            properties["kakao.native.app.key"].toString()
+            properties["kakao.native.app.key"].toString(),
         )
 
         manifestPlaceholders["KAKAO_NATIVE_APP_KEY_MANIFEST"] = properties["kakao.native.app.key.manifest"] as String
@@ -75,4 +75,5 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.crashlytics)
+    implementation(libs.kakao)
 }
