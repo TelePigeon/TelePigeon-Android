@@ -10,5 +10,5 @@ class ClearTelePigeonLocalDataUseCase
     constructor(
         private val telePigeonRepository: TelePigeonRepository,
     ) {
-        operator fun invoke(roomId: Int) = telePigeonRepository.clear()
+        operator fun invoke() = telePigeonRepository.clear()
     }

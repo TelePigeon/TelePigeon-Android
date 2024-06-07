@@ -5,8 +5,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DeleteLoginUseCase @Inject constructor(
+class DeleteLogoutUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke() = authRepository.deleteLogin()
+    suspend operator fun invoke() = authRepository.deleteLogout()
 }

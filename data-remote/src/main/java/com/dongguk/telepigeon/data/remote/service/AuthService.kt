@@ -3,6 +3,7 @@ package com.dongguk.telepigeon.data.remote.service
 import com.dongguk.telepigeon.data.remote.model.response.ResponsePostLoginDto
 import com.dongguk.telepigeon.data.remote.model.response.base.BaseResponseDto
 import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseResponseDto
+import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -14,10 +15,10 @@ interface AuthService {
     ):BaseResponseDto<ResponsePostLoginDto>
 
     @DELETE("$AUTH/$LOGOUT")
-    suspend fun deleteLogout(): NullableBaseResponseDto<Unit>
+    suspend fun deleteLogout(): Response<Unit?>
 
     @DELETE("$AUTH/$WITHDRAWAL")
-    suspend fun deleteWithdrawal(): NullableBaseResponseDto<Unit>
+    suspend fun deleteWithdrawal(): Response<Unit?>
 
     @POST("$AUTH/$REISSUE")
     suspend fun postReissue(): NullableBaseResponseDto<Unit>

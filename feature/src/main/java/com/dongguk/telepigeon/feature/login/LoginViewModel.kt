@@ -3,6 +3,7 @@ package com.dongguk.telepigeon.feature.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dongguk.telepigeon.domain.usecase.GetIsLoginUseCase
 import com.dongguk.telepigeon.domain.usecase.PostLoginUseCase
 import com.dongguk.telepigeon.domain.usecase.SetAccessTokenUseCase
 import com.dongguk.telepigeon.domain.usecase.SetIsLoginUseCase
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
+    private val getIsLoginUseCase: GetIsLoginUseCase,
     private val setIsLoginUseCase: SetIsLoginUseCase,
     private val setAccessTokenUseCase: SetAccessTokenUseCase,
     private val setRefreshTokenUseCase: SetRefreshTokenUseCase,
@@ -25,6 +27,8 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     private val _postLoginState = MutableSharedFlow<UiState<Unit>>()
     val postLoginState get() = _postLoginState.asSharedFlow()
+
+    fun getIsLogin() = getIsLoginUseCase()
 
     fun postLogin(authorization: String) {
         viewModelScope.launch {

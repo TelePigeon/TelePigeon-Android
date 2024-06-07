@@ -13,8 +13,8 @@ class AuthRepositoryImpl @Inject constructor(
         authRemoteDataSource.postLogin(authorization = authorization).data.toAuthTokenModel()
     }
 
-    override suspend fun deleteLogin(): Result<Unit> = runCatching {
-        authRemoteDataSource.deleteLogin()
+    override suspend fun deleteLogout(): Result<Unit> = runCatching {
+        authRemoteDataSource.deleteLogout()
     }
 
     override suspend fun deleteWithdrawal(): Result<Unit> = runCatching {

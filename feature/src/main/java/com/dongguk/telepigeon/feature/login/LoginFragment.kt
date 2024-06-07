@@ -23,8 +23,15 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>({ FragmentLoginBindi
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        initLayout()
         setLayoutLoginKakaoClickListener()
         collectPostLoginState()
+    }
+
+    private fun initLayout() {
+        if (loginViewModel.getIsLogin()) {
+            navigateToNotification()
+        }
     }
 
     private fun setLayoutLoginKakaoClickListener() {
