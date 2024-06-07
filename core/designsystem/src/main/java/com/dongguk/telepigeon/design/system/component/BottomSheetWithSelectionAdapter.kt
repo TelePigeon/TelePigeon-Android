@@ -12,7 +12,8 @@ class BottomSheetWithSelectionAdapter : ListAdapter<String, BottomSheetWithSelec
         onContentsTheSame = { old, new -> old == new },
     ),
 ) {
-    private var selectedItemPosition: Int = DEFAULT_OLD_POSITION
+    private var _selectedItemPosition: Int = DEFAULT_OLD_POSITION
+    val selectedItemPosition get() = _selectedItemPosition
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,16 +27,16 @@ class BottomSheetWithSelectionAdapter : ListAdapter<String, BottomSheetWithSelec
         holder: BottomSheetWithSelectionViewHolder,
         position: Int,
     ) {
-        if (position == selectedItemPosition) {
+        if (position == _selectedItemPosition) {
             holder.onSelectedItemBind(title = currentList[position])
         } else {
             holder.onUnselectedItemBind(title = currentList[position])
         }
 
         holder.itemView.setOnClickListener {
-            notifyItemChanged(selectedItemPosition)
-            selectedItemPosition = holder.adapterPosition
-            notifyItemChanged(selectedItemPosition)
+            notifyItemChanged(_selectedItemPosition)
+            _selectedItemPosition = holder.adapterPosition
+            notifyItemChanged(_selectedItemPosition)
         }
     }
 

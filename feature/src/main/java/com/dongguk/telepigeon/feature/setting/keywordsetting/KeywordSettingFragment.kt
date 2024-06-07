@@ -1,6 +1,7 @@
 package com.dongguk.telepigeon.feature.setting.keywordsetting
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -72,6 +73,8 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                 is UiState.Success -> {
                     findNavController().popBackStack()
                 }
+
+                is UiState.Error -> Log.e("ㅋㅋ", putRoomKeywordExtraState.message.toString())
 
                 else -> Unit
             }
@@ -147,19 +150,19 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun setEtKeywordSettingGenderClickListener(genders: List<String>) {
         binding.etKeywordSettingGender.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = genders)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = genders, onDialogClosed = ::setEtKeywordSettingGenderText)
         }
     }
 
     private fun setEtKeywordSettingAgeRangeClickListener(ageRanges: List<String>) {
         binding.etKeywordSettingAgeRange.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = ageRanges)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = ageRanges, onDialogClosed = ::setEtKeywordSettingAgeRangeText)
         }
     }
 
     private fun setEtKeywordSettingRelationClickListener(relations: List<String>) {
         binding.etKeywordSettingRelation.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = relations)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = relations, onDialogClosed = ::setEtKeywordSettingRelationText)
         }
     }
 
@@ -180,11 +183,13 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private fun showSelectionBottomSheetDialogFragment(
         bottomSheetWithSelectionType: BottomSheetWithSelectionType,
         selectionList: List<String>,
+        onDialogClosed: (String) -> Unit = {},
     ) {
         BottomSheetWithSelectionDialogFragment(
             bottomSheetWithSelectionType = bottomSheetWithSelectionType,
             selectionList = selectionList,
             bottomSheetWithSelectionAdapter = bottomSheetWithSelectionAdapter,
+            onDialogClosed = onDialogClosed,
         ).show(childFragmentManager, SELECTION_BOTTOM_SHEET)
     }
 
@@ -200,6 +205,18 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             }
         }
         return keywords
+    }
+
+    private fun setEtKeywordSettingGenderText(gender: String) {
+        binding.etKeywordSettingGender.editText.setText(gender)
+    }
+
+    private fun setEtKeywordSettingAgeRangeText(ageRange: String) {
+        binding.etKeywordSettingAgeRange.editText.setText(ageRange)
+    }
+
+    private fun setEtKeywordSettingRelationText(relation: String) {
+        binding.etKeywordSettingRelation.editText.setText(relation)
     }
 
     companion object {

@@ -20,5 +20,5 @@ class WorryRemoteDataSourceImpl
             requestPostWorryDto: RequestPostWorryDto,
         ): NullableBaseResponseDto<Unit> = worryService.postWorry(roomId = roomId, requestPostWorryDto = requestPostWorryDto)
 
-        override suspend fun deleteWorry(worryId: Int): NullableBaseResponseDto<Unit> = worryService.deleteWorry(worryId = worryId)
+        override suspend fun deleteWorry(worryId: Int) = worryService.deleteWorry(worryId = worryId).body()
     }

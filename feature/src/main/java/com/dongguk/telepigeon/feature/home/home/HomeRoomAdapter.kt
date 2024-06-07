@@ -8,7 +8,8 @@ import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 import com.dongguk.telpigeon.core.ui.util.view.ItemDiffCallback
 
 class HomeRoomAdapter(
-    private val navigateToMain: (Int) -> Unit,
+    private val navigateToMain: () -> Unit,
+    private val setRoomId: (Int) -> Unit,
 ) : ListAdapter<HomeRoomModel, HomeRoomViewHolder>(
         ItemDiffCallback<HomeRoomModel>(
             onItemsTheSame = { old, new -> old.id == new.id },
@@ -23,6 +24,7 @@ class HomeRoomAdapter(
             binding = ItemHomeRoomBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             context = parent.context,
             navigateToMain = navigateToMain,
+            setRoomId = setRoomId,
         )
 
     override fun onBindViewHolder(

@@ -59,11 +59,11 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
 
                         when (number) {
                             1 -> MainType.SENT_HURRY
-                            2 -> MainType.ARRIVE_SURVIVAL
-                            3 -> MainType.WAIT_SURVIVAL
-                            4 -> MainType.GOT_SURVIVAL
-                            5 -> MainType.GOT_QUESTION
-                            else -> {
+                            2 -> MainType.GOT_SURVIVAL
+                            3 -> MainType.ARRIVE_SURVIVAL
+                            4 -> MainType.COMPLETED
+                            5 -> MainType.WAIT_SURVIVAL
+                            6 -> {
                                 days?.let { days ->
                                     if (days >= DAYS_THRESHOLD) {
                                         MainType.NOT_SEND_SURVIVAL
@@ -72,6 +72,7 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
                                     }
                                 }
                             }
+                            else -> MainType.WAITING
                         }?.let { mainType ->
                             setHomeType(mainType = mainType, number = number)
                         }

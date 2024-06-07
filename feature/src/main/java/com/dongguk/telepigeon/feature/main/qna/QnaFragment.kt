@@ -28,9 +28,6 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inflate(it) }) {
     private val qnaViewModel by viewModels<QnaViewModel>()
-
-    private var imageUri = Uri.EMPTY
-
     private lateinit var getGalleryLauncher: ActivityResultLauncher<String>
     private lateinit var getPhotoPickerLauncher: ActivityResultLauncher<PickVisualMediaRequest>
 
@@ -48,6 +45,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         collectGetQuestionState()
         collectPostAnswerState()
         collectGetQuestionAnswerState()
+        collectImageUri()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -88,8 +86,8 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     layoutQnaAddPicture.visibility = View.GONE
                     ivQnaWarning.visibility = View.INVISIBLE
                     tvQnaWarning.visibility = View.INVISIBLE
-
-                    binding.btnQna.setOnClickListener {
+                    btnQna.isEnabled = true
+                    btnQna.setOnClickListener {
                         findNavController().popBackStack()
                     }
                 }
@@ -105,9 +103,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
-
+                        setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
-                            qnaViewModel.postAnswer(questionId = id, image = imageUri.toString(), content = binding.etQnaAnswer.editText.text.toString())
+                            qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
                     }
                 }
@@ -136,7 +134,18 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.ivQnaPicture.load(answerImage)
                     }
                 }
+
                 else -> Unit
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectImageUri() {
+        qnaViewModel.imageUri.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { uri ->
+            with(binding) {
+                ivQnaPicture.visibility = if (uri == null) View.GONE else View.VISIBLE
+                if (uri != null) ivQnaPicture.load(Uri.parse(uri))
+                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() && uri != null
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -153,12 +162,17 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         }
     }
 
+    private fun setEtQnaAnswerTextChangedListener(isPenalty: Boolean) {
+        binding.etQnaAnswer.setOnTextChangedListener { answer ->
+            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && answer.isNotBlank() else answer.isNotBlank()
+        }
+    }
+
     private fun initPhotoPickerLauncher() {
         getPhotoPickerLauncher =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { imageUri ->
                 imageUri?.let {
-                    this.imageUri = it
-                    binding.ivQnaPicture.load(it)
+                    qnaViewModel.setImageUri(it.toString())
                 }
             }
     }
@@ -167,8 +181,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         getGalleryLauncher =
             registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
                 imageUri?.let {
-                    this.imageUri = it
-                    binding.ivQnaPicture.load(it)
+                    qnaViewModel.setImageUri(it.toString())
                 }
             }
     }
