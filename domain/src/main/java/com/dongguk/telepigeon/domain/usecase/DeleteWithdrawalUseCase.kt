@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DeleteWithdrawalUseCase @Inject constructor(
-    private val authRepository: AuthRepository
-) {
-    suspend operator fun invoke() = authRepository.deleteWithdrawal()
-}
+class DeleteWithdrawalUseCase
+    @Inject
+    constructor(
+        private val authRepository: AuthRepository,
+    ) {
+        suspend operator fun invoke() = authRepository.deleteWithdrawal()
+    }

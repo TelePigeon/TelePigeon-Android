@@ -13,7 +13,7 @@ class AuthInterceptor
     constructor(
         private val context: Application,
         private val getAccessTokenUseCase: GetAccessTokenUseCase,
-        private val getIsLoginUseCase: GetIsLoginUseCase
+        private val getIsLoginUseCase: GetIsLoginUseCase,
     ) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val originalRequest = chain.request()
@@ -29,8 +29,8 @@ class AuthInterceptor
             return response
         }
 
-    private fun Request.newAuthBuilder() =
-        this.newBuilder().addHeader(AUTHORIZATION, getAccessTokenUseCase()).build()
+        private fun Request.newAuthBuilder() =
+            this.newBuilder().addHeader(AUTHORIZATION, getAccessTokenUseCase()).build()
 
         companion object {
             const val CODE_TOKEN_EXPIRE = 401

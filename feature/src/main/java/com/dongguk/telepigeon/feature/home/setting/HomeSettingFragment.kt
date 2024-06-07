@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.feature.home.setting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -45,7 +44,7 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
 
     private fun collectDeleteWithdrawalState() {
         homeSettingViewModel.deleteWithdrawalState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { deleteWithdrawalState ->
-            when(deleteWithdrawalState) {
+            when (deleteWithdrawalState) {
                 is UiState.Success -> {
                     navigateToLogin()
                 }
@@ -56,7 +55,7 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
 
     private fun collectDeleteLogoutState() {
         homeSettingViewModel.deleteLogoutState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { deleteLogoutState ->
-            when(deleteLogoutState) {
+            when (deleteLogoutState) {
                 is UiState.Success -> {
                     navigateToLogin()
                 }
@@ -80,14 +79,14 @@ class HomeSettingFragment : BindingFragment<FragmentHomeSettingBinding>({ Fragme
     private fun showWithdrawalBottomSheetDialogFragment() {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.WITHDRAWAL,
-            clickLeftBtn = homeSettingViewModel::deleteWithdrawal
+            clickLeftBtn = homeSettingViewModel::deleteWithdrawal,
         ).show(childFragmentManager, WITHDRAWAL_BOTTOM_SHEET)
     }
 
     private fun showLogoutBottomSheetDialogFragment() {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.LOGOUT,
-            clickLeftBtn = homeSettingViewModel::deleteLogout
+            clickLeftBtn = homeSettingViewModel::deleteLogout,
         ).show(childFragmentManager, LOGOUT_BOTTOM_SHEET)
     }
 

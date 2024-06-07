@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PostReissueUseCase @Inject constructor(
-    private val authRepository: AuthRepository
-) {
-    suspend operator fun invoke() = authRepository.postReissue()
-}
+class PostReissueUseCase
+    @Inject
+    constructor(
+        private val authRepository: AuthRepository,
+    ) {
+        suspend operator fun invoke() = authRepository.postReissue()
+    }

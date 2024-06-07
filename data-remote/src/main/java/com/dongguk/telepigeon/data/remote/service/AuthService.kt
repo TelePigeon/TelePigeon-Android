@@ -11,8 +11,8 @@ import retrofit2.http.POST
 interface AuthService {
     @POST("$AUTH/$LOGIN/$KAKAO")
     suspend fun postLogin(
-        @Header("$AUTHORIZATION") authorization: String
-    ):BaseResponseDto<ResponsePostLoginDto>
+        @Header("$AUTHORIZATION") authorization: String,
+    ): BaseResponseDto<ResponsePostLoginDto>
 
     @DELETE("$AUTH/$LOGOUT")
     suspend fun deleteLogout(): Response<Unit?>

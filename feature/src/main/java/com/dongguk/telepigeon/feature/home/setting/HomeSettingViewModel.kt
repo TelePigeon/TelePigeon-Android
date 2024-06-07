@@ -13,38 +13,40 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeSettingViewModel @Inject constructor(
-    private val deleteWithdrawalUseCase: DeleteWithdrawalUseCase,
-    private val deleteLogoutUseCase: DeleteLogoutUseCase,
-    private val clearTelePigeonLocalDataUseCase: ClearTelePigeonLocalDataUseCase
-) : ViewModel() {
-    private val _deleteWithdrawalState = MutableSharedFlow<UiState<Unit>>()
-    val deleteWithdrawalState get() = _deleteWithdrawalState.asSharedFlow()
+class HomeSettingViewModel
+    @Inject
+    constructor(
+        private val deleteWithdrawalUseCase: DeleteWithdrawalUseCase,
+        private val deleteLogoutUseCase: DeleteLogoutUseCase,
+        private val clearTelePigeonLocalDataUseCase: ClearTelePigeonLocalDataUseCase,
+    ) : ViewModel() {
+        private val _deleteWithdrawalState = MutableSharedFlow<UiState<Unit>>()
+        val deleteWithdrawalState get() = _deleteWithdrawalState.asSharedFlow()
 
-    private val _deleteLogoutState = MutableSharedFlow<UiState<Unit>>()
-    val deleteLogoutState get() = _deleteLogoutState.asSharedFlow()
+        private val _deleteLogoutState = MutableSharedFlow<UiState<Unit>>()
+        val deleteLogoutState get() = _deleteLogoutState.asSharedFlow()
 
-    fun deleteWithdrawal() {
-        viewModelScope.launch {
-            _deleteWithdrawalState.emit(UiState.Loading)
-            deleteWithdrawalUseCase().onSuccess {
-                _deleteWithdrawalState.emit(UiState.Success(Unit))
-                clearTelePigeonLocalDataUseCase()
-            }.onFailure { exception: Throwable ->
-                _deleteWithdrawalState.emit(UiState.Error(exception.message))
+        fun deleteWithdrawal() {
+            viewModelScope.launch {
+                _deleteWithdrawalState.emit(UiState.Loading)
+                deleteWithdrawalUseCase().onSuccess {
+                    _deleteWithdrawalState.emit(UiState.Success(Unit))
+                    clearTelePigeonLocalDataUseCase()
+                }.onFailure { exception: Throwable ->
+                    _deleteWithdrawalState.emit(UiState.Error(exception.message))
+                }
+            }
+        }
+
+        fun deleteLogout() {
+            viewModelScope.launch {
+                _deleteLogoutState.emit(UiState.Loading)
+                deleteLogoutUseCase().onSuccess {
+                    _deleteLogoutState.emit(UiState.Success(Unit))
+                    clearTelePigeonLocalDataUseCase()
+                }.onFailure { exception: Throwable ->
+                    _deleteLogoutState.emit(UiState.Error(exception.message))
+                }
             }
         }
     }
-
-    fun deleteLogout() {
-        viewModelScope.launch {
-            _deleteLogoutState.emit(UiState.Loading)
-            deleteLogoutUseCase().onSuccess {
-                _deleteLogoutState.emit(UiState.Success(Unit))
-                clearTelePigeonLocalDataUseCase()
-            }.onFailure { exception: Throwable ->
-                _deleteLogoutState.emit(UiState.Error(exception.message))
-            }
-        }
-    }
-}

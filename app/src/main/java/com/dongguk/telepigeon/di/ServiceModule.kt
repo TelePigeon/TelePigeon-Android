@@ -14,7 +14,6 @@ import com.kakao.sdk.user.UserApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
@@ -28,13 +27,13 @@ object ServiceModule {
     @Singleton
     fun providesAuthKakaoService(
         @ApplicationContext context: Context,
-        userApiClient: UserApiClient
+        userApiClient: UserApiClient,
     ): AuthKakaoService = AuthKakaoService(context = context, userApiClient)
 
     @Provides
     @Singleton
     fun providesAuthService(
-        @TelePigeon retrofit: Retrofit
+        @TelePigeon retrofit: Retrofit,
     ): AuthService =
         retrofit.create(AuthService::class.java)
 

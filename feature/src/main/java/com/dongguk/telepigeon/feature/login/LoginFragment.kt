@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class LoginFragment : BindingFragment<FragmentLoginBinding>({ FragmentLoginBinding.inflate(it) }) {
     private val loginViewModel by viewModels<LoginViewModel>()
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,

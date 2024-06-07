@@ -5,8 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StartKakaoLoginUseCase @Inject constructor(
-    private val authKakaoRepository: AuthKakaoRepository
-){
-    operator fun invoke(postLogin: (String) -> Unit) = authKakaoRepository.startKakaoLogin(postLogin = postLogin)
-}
+class StartKakaoLoginUseCase
+    @Inject
+    constructor(
+        private val authKakaoRepository: AuthKakaoRepository,
+    ) {
+        operator fun invoke(postLogin: (String) -> Unit) = authKakaoRepository.startKakaoLogin(postLogin = postLogin)
+    }

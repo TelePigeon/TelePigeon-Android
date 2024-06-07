@@ -7,9 +7,12 @@ import retrofit2.Response
 
 interface AuthRemoteDataSource {
     suspend fun postLogin(
-        authorization: String
+        authorization: String,
     ): BaseResponseDto<ResponsePostLoginDto>
+
     suspend fun deleteLogout(): Response<Unit?>
+
     suspend fun deleteWithdrawal(): Response<Unit?>
+
     suspend fun postReissue(): NullableBaseResponseDto<Unit>
 }
