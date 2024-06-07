@@ -43,6 +43,7 @@
             </intent-filter>
         </activity>
 
+        $
         <activity
             android:name=".feature.splash.SplashActivity"
             android:exported="true"
@@ -81,6 +82,13 @@
         <meta-data
             android:name="io.sentry.traces.profiling.sample-rate"
             android:value="1.0" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo_white" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/lemon" />
+
     </application>
 
 </manifest>
