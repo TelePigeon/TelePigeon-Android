@@ -81,11 +81,13 @@
     <string name="main_btn_text_hurry"><u>재촉하기</u></string>
     <string name="main_btn_text_check_answer"><u>답변 확인하기</u></string>
     <string name="main_btn_text_answer_question">질문 답변하기</string>
+    <string name="main_speech_bubble_text_waiting">상대를 기다리는 중이에요</string>
+    <string name="main_speech_bubble_text_completed">오늘의 생존신고를\n완료했어요!</string>
     <string name="main_speech_bubble_text_sent_hurry">상대에게 재촉하기를\n보냈어요</string>
     <string name="main_speech_bubble_text_arrive_survival">상대의 생존신고가\n도착했어요</string>
     <string name="main_speech_bubble_text_wait_survival">상대의 생존신고를\n기다리고 있어요</string>
     <string name="main_speech_bubble_text_got_survival">상대가 재촉하기를 보냈어요</string>
-    <string name="main_speech_bubble_text_got_question">오늘의 질문이 도착했어요</string>
+    <string name="main_speech_bubble_text_got_question">오늘의 질문이 도착했어요!</string>
     <string name="main_speech_bubble_text_not_send_survival">%d일 동안 생존신고를 보내지 않았어요</string>
 
     <!-- qna -->

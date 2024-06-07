@@ -2,7 +2,6 @@ package com.dongguk.telepigeon.feature.home.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -40,7 +39,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
     }
 
     private fun initAdapter() {
-        homeRoomAdapter = HomeRoomAdapter(navigateToMain = ::navigateToMain)
+        homeRoomAdapter = HomeRoomAdapter(navigateToMain = ::navigateToMain, setRoomId = ::setRoomId)
         binding.rvHomeRoom.adapter = homeRoomAdapter
     }
 
@@ -80,8 +79,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
         }
     }
 
-    private fun navigateToMain(roomId: Int) {
-        findNavController().navigate(R.id.action_home_to_main, bundleOf(ROOM_ID to roomId))
+    private fun navigateToMain() {
+        findNavController().navigate(R.id.action_home_to_main)
     }
 
     private fun navigateToHomeSetting() {
@@ -96,7 +95,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
         findNavController().navigate(R.id.action_home_to_home_modify_room)
     }
 
-    companion object {
-        const val ROOM_ID = "roomId"
+    private fun setRoomId(roomId: Int) {
+        homeViewModel.setRoomId(roomId = roomId)
     }
 }

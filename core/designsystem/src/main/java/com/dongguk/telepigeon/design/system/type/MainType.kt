@@ -9,6 +9,16 @@ enum class MainType(
     @DrawableRes val character: Int,
     @StringRes val btnText: Int?,
 ) {
+    WAITING(
+        speechBubbleText = R.string.main_speech_bubble_text_waiting,
+        character = R.drawable.ic_character,
+        btnText = null,
+    ),
+    COMPLETED(
+        speechBubbleText = R.string.main_speech_bubble_text_completed,
+        character = R.drawable.ic_character,
+        btnText = null,
+    ),
     SENT_HURRY(
         speechBubbleText = R.string.main_speech_bubble_text_sent_hurry,
         character = R.drawable.ic_character,

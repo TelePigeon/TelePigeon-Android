@@ -21,7 +21,7 @@ interface ProfileService {
         @Path("${ROOM_ID}") roomId: Int,
     ): BaseResponseDto<ResponseGetRoomExtraDto>
 
-    @PUT("$ROOMS/${ROOM_ID}")
+    @PUT("$ROOMS/{$ROOM_ID}")
     suspend fun putRoomKeywordsExtra(
         @Path("${ROOM_ID}") roomId: Int,
         @Body requestPutRoomKeywordsExtraDto: RequestPutRoomKeywordsExtraDto,

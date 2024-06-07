@@ -5,12 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dongguk.telepigeon.domain.model.HomeRoomModel
 import com.dongguk.telepigeon.feature.databinding.ItemHomeRoomBinding
 
-class HomeRoomViewHolder(private val binding: ItemHomeRoomBinding, private val context: Context, private val navigateToMain: (Int) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+class HomeRoomViewHolder(private val binding: ItemHomeRoomBinding, private val context: Context, private val navigateToMain: () -> Unit, private val setRoomId: (Int) -> Unit) : RecyclerView.ViewHolder(binding.root) {
     private lateinit var homeRoomModel: HomeRoomModel
 
     init {
         binding.root.setOnClickListener {
-            navigateToMain(homeRoomModel.id)
+            setRoomId(homeRoomModel.id)
+            navigateToMain()
         }
     }
 

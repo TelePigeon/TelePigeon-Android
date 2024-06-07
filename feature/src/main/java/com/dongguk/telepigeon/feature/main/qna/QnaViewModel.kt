@@ -35,6 +35,9 @@ class QnaViewModel
         private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
         val getQuestionAnswerState get() = _getQuestionAnswerState.asStateFlow()
 
+        private val _imageUri = MutableStateFlow<String?>(null)
+        val imageUri get() = _imageUri.asStateFlow()
+
         private val roomId = getRoomIdUseCase()
 
         fun getQuestion() {
@@ -72,5 +75,9 @@ class QnaViewModel
                     _getQuestionAnswerState.value = UiState.Error(exception.message)
                 }
             }
+        }
+
+        fun setImageUri(uri: String?) {
+            _imageUri.value = uri
         }
     }

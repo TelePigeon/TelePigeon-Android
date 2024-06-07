@@ -4,6 +4,7 @@ import com.dongguk.telepigeon.data.remote.model.request.RequestPostWorryDto
 import com.dongguk.telepigeon.data.remote.model.response.ResponseGetWorriesDto
 import com.dongguk.telepigeon.data.remote.model.response.base.BaseResponseDto
 import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseResponseDto
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -25,7 +26,7 @@ interface WorryService {
     @DELETE("$WORRIES/{$WORRY_ID}")
     suspend fun deleteWorry(
         @Path("${WORRY_ID}") worryId: Int,
-    ): NullableBaseResponseDto<Unit>
+    ): Response<Unit?>
 
     companion object {
         const val ROOMS = "rooms"

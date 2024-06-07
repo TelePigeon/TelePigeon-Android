@@ -9,6 +9,7 @@ import com.dongguk.telepigeon.data.remote.model.response.base.NullableBaseRespon
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
@@ -25,6 +26,7 @@ interface QuestionAnswerService {
         @Path("$ROOM_ID") roomId: Int,
     ): BaseResponseDto<ResponseGetQuestionDto>
 
+    @Multipart
     @POST("$ROOMS/{$ROOM_ID}/$QUESTIONS/{$QUESTIONS_ID}/$ANSWERS")
     suspend fun postAnswer(
         @Path("$ROOM_ID") roomId: Int,

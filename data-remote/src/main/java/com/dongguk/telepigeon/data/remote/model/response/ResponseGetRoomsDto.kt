@@ -10,7 +10,7 @@ class ResponseGetRoomsDto(
 ) {
     @Serializable
     class ResponseGetRoomDto(
-        @SerialName("id")
+        @SerialName("roomId")
         val id: Int,
         @SerialName("name")
         val name: String,

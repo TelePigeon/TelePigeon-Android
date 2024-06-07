@@ -8,7 +8,7 @@ import com.dongguk.telepigeon.feature.databinding.ItemCalendarAnswerBinding
 class CalendarAnswerViewHolder(private val binding: ItemCalendarAnswerBinding) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(questionAnswerModel: QuestionAnswerModel) {
         with(binding) {
-            ivCalendarAnswerImage.load(questionAnswerModel.answerImage)
+            if (questionAnswerModel.answerImage != null) ivCalendarAnswerImage.load(questionAnswerModel.answerImage)
             tvCalendarAnswerQuestionName.text = questionAnswerModel.questionName
             tvCalendarAnswerQuestionContent.text = questionAnswerModel.questionContent
             tvCalendarAnswerAnswerName.text = questionAnswerModel.answerName

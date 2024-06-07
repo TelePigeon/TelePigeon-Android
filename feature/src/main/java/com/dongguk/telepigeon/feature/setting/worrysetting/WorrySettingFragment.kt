@@ -33,6 +33,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
         initAdapter()
         initLayout()
         collectGetWorriesState()
+        collectDeleteWorryState()
         setBtnWorrySettingAddClickListener()
     }
 
@@ -62,7 +63,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun deleteWorryState() {
+    private fun collectDeleteWorryState() {
         worrySettingViewModel.deleteWorryState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { deleteWorryState ->
             when (deleteWorryState) {
                 is UiState.Success -> {
@@ -83,7 +84,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private fun showDeleteWorryBottomSheetDialogFragment(worryId: Int) {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY,
-            clickRightBtn = { worrySettingViewModel.deleteWorry(worryId = worryId) },
+            clickLeftBtn = { worrySettingViewModel.deleteWorry(worryId = worryId) },
         ).show(childFragmentManager, DELETE_WORRY_BOTTOM_SHEET)
     }
 

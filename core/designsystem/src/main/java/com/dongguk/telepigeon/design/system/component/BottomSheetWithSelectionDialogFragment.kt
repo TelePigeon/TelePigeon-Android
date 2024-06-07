@@ -13,7 +13,7 @@ class BottomSheetWithSelectionDialogFragment(
     private val selectionList: List<String>,
     private val bottomSheetWithSelectionAdapter: BottomSheetWithSelectionAdapter,
     private val clickBtn: () -> Unit = {},
-    private val onDialogClosed: () -> Unit = {},
+    private val onDialogClosed: (String) -> Unit = {},
 ) : BindingBottomSheetDialogFragment<DialogBottomSheetWithSelectionBinding>({ DialogBottomSheetWithSelectionBinding.inflate(it) }) {
     override fun onViewCreated(
         view: View,
@@ -27,7 +27,7 @@ class BottomSheetWithSelectionDialogFragment(
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        onDialogClosed()
+        onDialogClosed(bottomSheetWithSelectionAdapter.currentList[bottomSheetWithSelectionAdapter.selectedItemPosition])
     }
 
     private fun initLayout() {
