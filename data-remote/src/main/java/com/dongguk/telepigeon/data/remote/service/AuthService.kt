@@ -12,7 +12,7 @@ interface AuthService {
     @POST("$AUTH/$LOGIN/$KAKAO")
     suspend fun postLogin(
         @Header("$AUTHORIZATION") authorization: String,
-        @Header("$FCM_TOKEN") fcmToken: String
+        @Header("$FCM_TOKEN") fcmToken: String,
     ): BaseResponseDto<ResponsePostLoginDto>
 
     @DELETE("$AUTH/$LOGOUT")

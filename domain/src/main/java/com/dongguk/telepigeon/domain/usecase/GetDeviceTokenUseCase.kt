@@ -6,9 +6,9 @@ import javax.inject.Singleton
 
 @Singleton
 class GetDeviceTokenUseCase
-@Inject
-constructor(
-    private val telePigeonRepository: TelePigeonRepository,
-) {
-    operator fun invoke() = telePigeonRepository.getDeviceToken()
-}
+    @Inject
+    constructor(
+        private val telePigeonRepository: TelePigeonRepository,
+    ) {
+        operator fun invoke() = telePigeonRepository.getDeviceToken()
+    }

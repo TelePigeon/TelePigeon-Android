@@ -13,7 +13,10 @@ class AuthRemoteDataSourceImpl
     constructor(
         private val authService: AuthService,
     ) : AuthRemoteDataSource {
-        override suspend fun postLogin(authorization: String, fcmToken: String): BaseResponseDto<ResponsePostLoginDto> = authService.postLogin(authorization = authorization, fcmToken = fcmToken)
+        override suspend fun postLogin(
+            authorization: String,
+            fcmToken: String,
+        ): BaseResponseDto<ResponsePostLoginDto> = authService.postLogin(authorization = authorization, fcmToken = fcmToken)
 
         override suspend fun deleteLogout(): Response<Unit?> = authService.deleteLogout()
 

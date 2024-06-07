@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TelePigeonMessagingService : FirebaseMessagingService(){
+class TelePigeonMessagingService : FirebaseMessagingService() {
     @Inject
     lateinit var telePigeonLocalDataSource: TelePigeonLocalDataSource
 

@@ -49,9 +49,9 @@ class TelePigeonLocalDataSourceImpl
             get() = pref.getInt(ROOM_ID, -1)
             set(value) = pref.edit { putInt(ROOM_ID, value) }
 
-    override var deviceToken: String
-        get() = pref.getString(DEVICE_TOKEN, "") ?: ""
-        set(value) = pref.edit {putString(DEVICE_TOKEN, value)}
+        override var deviceToken: String
+            get() = pref.getString(DEVICE_TOKEN, "") ?: ""
+            set(value) = pref.edit { putString(DEVICE_TOKEN, value) }
 
         override fun clear() {
             pref.edit {

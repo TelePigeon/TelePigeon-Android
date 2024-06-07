@@ -11,7 +11,10 @@ class AuthRepositoryImpl
     constructor(
         private val authRemoteDataSource: AuthRemoteDataSource,
     ) : AuthRepository {
-        override suspend fun postLogin(authorization: String, fcmToken: String): Result<AuthTokenModel> =
+        override suspend fun postLogin(
+            authorization: String,
+            fcmToken: String,
+        ): Result<AuthTokenModel> =
             runCatching {
                 authRemoteDataSource.postLogin(authorization = authorization, fcmToken = fcmToken).data.toAuthTokenModel()
             }
