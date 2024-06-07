@@ -13,5 +13,5 @@ interface WorryRemoteDataSource {
         requestPostWorryDto: RequestPostWorryDto,
     ): NullableBaseResponseDto<Unit>
 
-    suspend fun deleteWorry(worryId: Int): NullableBaseResponseDto<Unit>
+    suspend fun deleteWorry(worryId: Int): Unit?
 }

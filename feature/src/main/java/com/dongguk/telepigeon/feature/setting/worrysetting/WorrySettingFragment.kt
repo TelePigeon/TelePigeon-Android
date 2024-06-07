@@ -71,6 +71,10 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
                     worrySettingViewModel.getWorries()
                 }
 
+                is UiState.Error -> {
+                    Log.e("ㅋㅋ", deleteWorryState.message.toString())
+                }
+
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
