@@ -28,7 +28,7 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCale
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        calendarViewModel.getQuestionAnswer(LocalDate.now().year.toString() + "-" + String.format("%02d", LocalDate.now().monthValue))
+        calendarViewModel.getQuestionAnswer(LocalDate.now().year.toString() + "-" + String.format("%02d", LocalDate.now().monthValue) + "-" + String.format("%02d", LocalDate.now().dayOfMonth))
         initAdapter()
         collectGetQuestionAnswerState()
         setCvCalendarDateChangeListener()
@@ -65,7 +65,7 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>({ FragmentCale
         binding.cvCalendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             binding.tvCalendarEmpty.text = if (LocalDate.now() == LocalDate.of(year, month + 1, dayOfMonth)) stringOf(R.string.calendar_today_answer_empty) else stringOf(R.string.calendar_future_answer_empty)
 
-            calendarViewModel.getQuestionAnswer(year.toString() + "-" + String.format("%02d", month + 1))
+            calendarViewModel.getQuestionAnswer(year.toString() + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth))
             setBtnCalendarMonthlyReportClickListener(year.toString() + "-" + String.format("%02d", month + 1))
         }
     }
