@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.feature.setting.worrysetting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -69,10 +68,6 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
             when (deleteWorryState) {
                 is UiState.Success -> {
                     worrySettingViewModel.getWorries()
-                }
-
-                is UiState.Error -> {
-                    Log.e("ㅋㅋ", deleteWorryState.message.toString())
                 }
 
                 else -> Unit
