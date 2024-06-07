@@ -1,5 +1,6 @@
 package com.dongguk.telepigeon.di
 
+import com.dongguk.telepigeon.data.remote.service.AuthService
 import com.dongguk.telepigeon.data.remote.service.CommonService
 import com.dongguk.telepigeon.data.remote.service.HurryService
 import com.dongguk.telepigeon.data.remote.service.ProfileService
@@ -12,11 +13,19 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
+    @Provides
+    @Singleton
+    fun providesAuthService(
+        @TelePigeon retrofit: Retrofit
+    ): AuthService =
+        retrofit.create(AuthService::class.java)
+
     @Provides
     @Singleton
     fun providesCommonService(
