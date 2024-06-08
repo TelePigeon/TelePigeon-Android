@@ -25,7 +25,6 @@
         android:layout_marginStart="10dp"
         android:background="@null"
         android:imeOptions="actionDone"
-        android:maxLines="1"
         android:textAppearance="@style/TextAppearance.TelePigeon.Body.Semi.14"
         android:textColor="@color/g_10"
         android:textColorHint="@color/g_04"
