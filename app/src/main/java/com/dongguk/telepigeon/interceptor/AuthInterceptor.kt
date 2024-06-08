@@ -1,28 +1,40 @@
 package com.dongguk.telepigeon.interceptor
 
+import android.app.Application
+import com.dongguk.telepigeon.domain.usecase.GetAccessTokenUseCase
+import com.dongguk.telepigeon.domain.usecase.GetIsLoginUseCase
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
 
 class AuthInterceptor
     @Inject
-    constructor() : Interceptor {
+    constructor(
+        private val context: Application,
+        private val getAccessTokenUseCase: GetAccessTokenUseCase,
+        private val getIsLoginUseCase: GetIsLoginUseCase,
+    ) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val originalRequest = chain.request()
             val authRequest =
-
-                originalRequest.newBuilder().addHeader(AUTHORIZATION, "Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjEsImlhdCI6MTcxNzY1NTQ1MCwiZXhwIjoxNzE4ODY1MDUwfQ.Yzsslyb6Iait3Pa2Uxfuuvk7mC7oxCjgxg_KOVDqLLar436EcgRwY7BJfXRrTeNqnF7mUMsf9S-zM017IOs68Q").build()
+                if (getIsLoginUseCase()) originalRequest.newAuthBuilder() else originalRequest
             val response = chain.proceed(authRequest)
 
             when (response.code) {
-                401 -> {
+                CODE_TOKEN_EXPIRE -> {
                     // TODO 토큰 재발급 api 연동
                 }
             }
             return response
         }
 
+        private fun Request.newAuthBuilder() =
+            this.newBuilder().addHeader(AUTHORIZATION, getAccessTokenUseCase()).build()
+
         companion object {
+            const val CODE_TOKEN_EXPIRE = 401
             const val AUTHORIZATION = "Authorization"
+            const val BEARER = "Bearer "
         }
     }

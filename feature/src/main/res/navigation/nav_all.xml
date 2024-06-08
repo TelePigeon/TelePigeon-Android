@@ -149,5 +149,9 @@
         android:id="@+id/menu_home_setting"
         android:name="com.dongguk.telepigeon.feature.home.setting.HomeSettingFragment"
         android:label="fragment_home_setting"
-        tools:layout="@layout/fragment_home_setting" />
+        tools:layout="@layout/fragment_home_setting" >
+        <action
+            android:id="@+id/action_home_setting_to_login"
+            app:destination="@id/menu_login" />
+    </fragment>
 </navigation>

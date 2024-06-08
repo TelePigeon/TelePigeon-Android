@@ -49,6 +49,10 @@ class TelePigeonLocalDataSourceImpl
             get() = pref.getInt(ROOM_ID, -1)
             set(value) = pref.edit { putInt(ROOM_ID, value) }
 
+        override var deviceToken: String
+            get() = pref.getString(DEVICE_TOKEN, "") ?: ""
+            set(value) = pref.edit { putString(DEVICE_TOKEN, value) }
+
         override fun clear() {
             pref.edit {
                 clear()
@@ -60,6 +64,7 @@ class TelePigeonLocalDataSourceImpl
             const val AUTO_LOGIN = "IsLogin"
             const val ACCESS_TOKEN = "AccessToken"
             const val REFRESH_TOKEN = "RefreshToken"
+            const val DEVICE_TOKEN = "deviceToken"
             const val ROOM_ID = "RoomId"
         }
     }

@@ -5,10 +5,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ClearTelePigeonLocalDataUseCase
+class SetDeviceTokenUseCase
     @Inject
     constructor(
         private val telePigeonRepository: TelePigeonRepository,
     ) {
-        operator fun invoke() = telePigeonRepository.clear()
+        operator fun invoke(deviceToken: String) = telePigeonRepository.setDeviceToken(deviceToken = deviceToken)
     }

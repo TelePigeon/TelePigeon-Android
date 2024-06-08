@@ -33,6 +33,12 @@ class TelePigeonRepositoryImpl
             telePigeonLocalDataSource.roomId = roomId
         }
 
+        override fun getDeviceToken(): String = telePigeonLocalDataSource.deviceToken
+
+        override fun setDeviceToken(deviceToken: String) {
+            telePigeonLocalDataSource.deviceToken = deviceToken
+        }
+
         override fun clear() {
             telePigeonLocalDataSource.clear()
         }

@@ -20,6 +20,29 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <service
+            android:name=".config.TelePigeonMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao${KAKAO_NATIVE_APP_KEY_MANIFEST}" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".feature.splash.SplashActivity"
             android:exported="true"
@@ -58,6 +81,13 @@
         <meta-data
             android:name="io.sentry.traces.profiling.sample-rate"
             android:value="1.0" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo_white" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/lemon" />
+
     </application>
 
 </manifest>

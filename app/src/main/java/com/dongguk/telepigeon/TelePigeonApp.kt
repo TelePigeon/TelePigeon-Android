@@ -2,6 +2,8 @@ package com.dongguk.telepigeon
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.dongguk.telepigeon.BuildConfig.KAKAO_NATIVE_APP_KEY
+import com.kakao.sdk.common.KakaoSdk
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -12,6 +14,7 @@ class TelePigeonApp : Application() {
 
         setTimber()
         setDarkMode()
+        setKakao()
     }
 
     private fun setTimber() {
@@ -20,5 +23,9 @@ class TelePigeonApp : Application() {
 
     private fun setDarkMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+    }
+
+    private fun setKakao() {
+        KakaoSdk.init(this, KAKAO_NATIVE_APP_KEY)
     }
 }
