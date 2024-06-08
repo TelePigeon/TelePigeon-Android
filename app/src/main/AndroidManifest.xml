@@ -43,7 +43,6 @@
             </intent-filter>
         </activity>
 
-        $
         <activity
             android:name=".feature.splash.SplashActivity"
             android:exported="true"
