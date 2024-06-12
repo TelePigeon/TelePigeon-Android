@@ -3,13 +3,13 @@ package com.dongguk.telepigeon.data.remote.service
 import android.content.Context
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
 class AuthKakaoService
     @Inject
     constructor(
-        @ApplicationContext private val context: Context,
+        @ActivityContext private val context: Context,
         private val userApiClient: UserApiClient,
     ) {
         fun startKakaoLogin(
