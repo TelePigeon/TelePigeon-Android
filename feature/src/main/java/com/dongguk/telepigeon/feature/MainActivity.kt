@@ -1,8 +1,9 @@
 package com.dongguk.telepigeon.feature
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -12,6 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) }) {
+    private val mainViewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,16 +47,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
     }
 
     private fun handleFcmNavigation(navController: NavController) {
-        intent.getStringExtra(RELATED_CONTENT_ID)?.let {
-            navController.navigate(
-                R.id.action_home_to_main,
-                bundleOf(ID to it.toInt())
-            )
+        intent.getStringExtra(ROOM_ID)?.let { id ->
+            mainViewModel.setRoomId(roomId = id.toInt())
+            navController.navigate(R.id.menu_all_navi_main)
         }
     }
 
     companion object {
-        const val ID = "id"
-        const val RELATED_CONTENT_ID = "relateContentId"
+        const val ROOM_ID = "id"
     }
 }

@@ -33,7 +33,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>({ FragmentLoginBindi
         super.onViewCreated(view, savedInstanceState)
 
         loginViewModel.getDeviceToken()
-        initLayout()
+        //initLayout()
         setLayoutLoginKakaoClickListener()
         collectPostLoginState()
     }
