@@ -134,6 +134,7 @@
                 app:layout_constraintEnd_toEndOf="@id/gl_end"
                 app:layout_constraintStart_toStartOf="@id/gl_start"
                 app:layout_constraintTop_toBottomOf="@id/et_keyword_setting_age_range"
+                app:layout_constraintVertical_bias="0.0"
                 app:telePigeonEditTextTitle="@string/setting_key_word_extra_relation" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
