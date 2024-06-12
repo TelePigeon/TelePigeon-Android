@@ -93,7 +93,7 @@ class HomeModifyRoomFragment : BindingFragment<FragmentHomeModifyRoomBinding>({ 
     private fun showDeleteRoomBottomSheetDialogFragment() {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_ROOM,
-            clickLeftBtn = {
+            clickRightBtn = {
                 homeModifyRoomViewModel.deleteRoom(
                     roomId =
                         with(homeModifyRoomAdapter) {
