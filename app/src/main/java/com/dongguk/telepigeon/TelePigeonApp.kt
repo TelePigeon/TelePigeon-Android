@@ -34,15 +34,15 @@ class TelePigeonApp : Application() {
         KakaoSdk.init(this, KAKAO_NATIVE_APP_KEY)
     }
 
-
     private fun createNotificationChannel() {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
-        val channel = NotificationChannel(
-            CHANNEL_ID,
-            CHANNEL_NAME,
-            IMPORTANCE_HIGH
-        )
+        val channel =
+            NotificationChannel(
+                CHANNEL_ID,
+                CHANNEL_NAME,
+                IMPORTANCE_HIGH,
+            )
         notificationManager?.createNotificationChannel(channel)
     }
 

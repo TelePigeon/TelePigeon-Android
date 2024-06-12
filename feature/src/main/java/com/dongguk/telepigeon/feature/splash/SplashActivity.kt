@@ -2,13 +2,10 @@ package com.dongguk.telepigeon.feature.splash
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import com.dongguk.telepigeon.feature.MainActivity
 import com.dongguk.telepigeon.feature.MainActivity.Companion.ROOM_ID
-import com.dongguk.telepigeon.feature.MainViewModel
 import com.dongguk.telepigeon.feature.databinding.ActivitySplashBinding
 import com.dongguk.telpigeon.core.ui.base.BindingActivity
 import kotlinx.coroutines.delay

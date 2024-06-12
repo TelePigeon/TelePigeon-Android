@@ -1,6 +1,5 @@
 package com.dongguk.telepigeon.feature.main.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dongguk.telepigeon.domain.model.RoomModel

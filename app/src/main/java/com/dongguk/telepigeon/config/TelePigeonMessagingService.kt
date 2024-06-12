@@ -36,20 +36,22 @@ class TelePigeonMessagingService : FirebaseMessagingService() {
         sendPushAlarm(
             title = if (::title.isInitialized) title else "",
             body = if (::body.isInitialized) body else "",
-            roomId = message.data[ROOM_ID] ?: "-1"
+            roomId = message.data[ROOM_ID] ?: "-1",
         )
     }
 
     override fun handleIntent(intent: Intent?) {
-        val newPushAlarmIntent = intent?.apply {
-            val temp = extras?.apply {
-                title = getString(NOTIFICATION_TITLE).orEmpty()
-                body = getString(NOTIFICATION_BODY).orEmpty()
-                remove(ENABLE_NOTIFICATION)
-                remove(getKeyWithOldPrefix())
+        val newPushAlarmIntent =
+            intent?.apply {
+                val temp =
+                    extras?.apply {
+                        title = getString(NOTIFICATION_TITLE).orEmpty()
+                        body = getString(NOTIFICATION_BODY).orEmpty()
+                        remove(ENABLE_NOTIFICATION)
+                        remove(getKeyWithOldPrefix())
+                    }
+                replaceExtras(temp)
             }
-            replaceExtras(temp)
-        }
         super.handleIntent(newPushAlarmIntent)
     }
 
@@ -57,13 +59,19 @@ class TelePigeonMessagingService : FirebaseMessagingService() {
         val key = ENABLE_NOTIFICATION
         return if (!key.startsWith(NOTIFICATION_PREFIX)) {
             key
-        } else key.replace(
-            NOTIFICATION_PREFIX,
-            NOTIFICATION_PREFIX_OLD
-        )
+        } else {
+            key.replace(
+                NOTIFICATION_PREFIX,
+                NOTIFICATION_PREFIX_OLD,
+            )
+        }
     }
 
-    private fun sendPushAlarm(title: String, body: String, roomId: String) {
+    private fun sendPushAlarm(
+        title: String,
+        body: String,
+        roomId: String,
+    ) {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
         val notification = buildNotification(title, body, roomId)
@@ -73,7 +81,7 @@ class TelePigeonMessagingService : FirebaseMessagingService() {
     private fun buildNotification(
         title: String,
         body: String,
-        roomId: String
+        roomId: String,
     ): Notification {
         val pendingIntent = createPendingIntent(roomId)
         return NotificationCompat.Builder(this, CHANNEL_ID)
@@ -89,15 +97,16 @@ class TelePigeonMessagingService : FirebaseMessagingService() {
     }
 
     private fun createPendingIntent(roomId: String): PendingIntent {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            putExtra(ROOM_ID, roomId)
-        }
+        val intent =
+            Intent(this, MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                putExtra(ROOM_ID, roomId)
+            }
         return PendingIntent.getActivity(
             this,
             0,
             intent,
-            PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE
+            PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE,
         )
     }
 

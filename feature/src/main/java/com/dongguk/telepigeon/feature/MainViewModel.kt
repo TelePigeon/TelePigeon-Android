@@ -7,10 +7,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel
-@Inject constructor(
-    private val setRoomIdUseCase: SetRoomIdUseCase,
-) : ViewModel() {
-    fun setRoomId(roomId: Int) {
-        setRoomIdUseCase(roomId = roomId)
+    @Inject
+    constructor(
+        private val setRoomIdUseCase: SetRoomIdUseCase,
+    ) : ViewModel() {
+        fun setRoomId(roomId: Int) {
+            setRoomIdUseCase(roomId = roomId)
+        }
     }
-}
