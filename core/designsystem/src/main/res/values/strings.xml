@@ -122,7 +122,7 @@
     <!-- keyword setting -->
     <string name="keyword_setting_title">키워드 설정</string>
     <string name="keyword_setting_total_keyword">전체 키워드</string>
-    <string name="keyword_setting_total_keyword_content">선택된 키워드를 변경해보세요. 최대 3개까지 선택할 수 있어요.</string>
+    <string name="keyword_setting_total_keyword_content">선택된 키워드를 변경해보세요.</string>
     <string name="keyword_setting_extra_content">적절한 질문 생성을 위해 추가 정보를 입력해주세요.</string>
     <string name="keyword_setting_user">사용자</string>
 
