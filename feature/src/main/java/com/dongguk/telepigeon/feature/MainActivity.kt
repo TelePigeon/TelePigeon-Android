@@ -2,6 +2,7 @@ package com.dongguk.telepigeon.feature
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -22,6 +23,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
         binding.bnvMainAllNavi.setupWithNavController(navController)
 
         setBottomNavigationVisibility(navController = navController)
+        handleFcmNavigation(navController = navController)
     }
 
     private fun setBottomNavigationVisibility(navController: NavController) {
@@ -39,5 +41,19 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
                     View.GONE
                 }
         }
+    }
+
+    private fun handleFcmNavigation(navController: NavController) {
+        intent.getStringExtra(RELATED_CONTENT_ID)?.let {
+            navController.navigate(
+                R.id.action_home_to_main,
+                bundleOf(ID to it.toInt())
+            )
+        }
+    }
+
+    companion object {
+        const val ID = "id"
+        const val RELATED_CONTENT_ID = "relateContentId"
     }
 }
