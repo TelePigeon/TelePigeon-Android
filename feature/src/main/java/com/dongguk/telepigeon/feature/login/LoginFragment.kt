@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.feature.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -33,13 +32,13 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>({ FragmentLoginBindi
         super.onViewCreated(view, savedInstanceState)
 
         loginViewModel.getDeviceToken()
-        //initLayout()
+        initLayout()
         setLayoutLoginKakaoClickListener()
         collectPostLoginState()
     }
 
     private fun initLayout() {
-        if (loginViewModel.getIsLogin()) {
+        if (loginViewModel.getIsLogin() && !loginViewModel.isRoomIdSaved()) {
             navigateToNotification()
         }
     }

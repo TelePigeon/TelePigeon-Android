@@ -18,6 +18,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mainViewModel.setRoomId(-1)
         initBottomNavigation()
     }
 
