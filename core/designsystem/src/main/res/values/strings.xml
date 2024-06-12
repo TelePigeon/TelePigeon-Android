@@ -69,6 +69,8 @@
     <string name="answer_description_check_answer">상대의 답변을 확인하세요</string>
     <string name="answer_description_done">답변을 완료했어요</string>
     <string name="answer_description_not_yet">아직 답변을 하지 않았어요</string>
+    <string name="answer_description_no_one_else">상대방이 없어요</string>
+    <string name="answer_description_other_person_left_room">상대방이 방을 나갔어요</string>
 
     <!-- home setting -->
     <string name="home_setting_title">앱 전체 설정</string>

@@ -27,5 +27,7 @@ fun ResponseGetRoomDto.toHomeRoomModelSentence(): Int =
     when (this.sentence) {
         0 -> R.string.answer_description_check_answer
         1 -> R.string.answer_description_done
-        else -> R.string.answer_description_not_yet
+        2 -> R.string.answer_description_not_yet
+        3 -> R.string.answer_description_no_one_else
+        else -> R.string.answer_description_other_person_left_room
     }
