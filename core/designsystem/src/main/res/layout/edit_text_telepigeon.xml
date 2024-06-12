@@ -28,6 +28,7 @@
         android:background="@null"
         android:imeOptions="actionDone"
         android:maxLines="1"
+        android:singleLine="true"
         android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
         android:textColor="@color/g_10"
         android:textColorHint="@color/g_04"
