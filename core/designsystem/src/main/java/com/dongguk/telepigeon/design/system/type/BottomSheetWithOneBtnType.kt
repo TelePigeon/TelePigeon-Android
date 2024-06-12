@@ -37,5 +37,5 @@ enum class BottomSheetWithOneBtnType(
         interjection = R.string.dialog_interjection_ooh,
         sentence = R.string.dialog_sentence_other_person_left_room,
         btnText = R.string.dialog_check,
-    )
+    ),
 }

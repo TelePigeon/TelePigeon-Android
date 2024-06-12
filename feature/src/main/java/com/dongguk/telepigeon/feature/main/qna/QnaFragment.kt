@@ -19,7 +19,6 @@ import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
 import com.dongguk.telepigeon.design.system.type.QnaType
 import com.dongguk.telepigeon.design.system.type.TelePigeonQnaEditTextType
 import com.dongguk.telepigeon.feature.databinding.FragmentQnaBinding
-import com.dongguk.telepigeon.feature.home.enterroom.HomeEnterRoomFragment
 import com.dongguk.telepigeon.feature.main.main.MainFragment.Companion.QNA_TYPE
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
