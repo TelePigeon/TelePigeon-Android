@@ -18,47 +18,47 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
 class QuestionAnswerRepositoryImpl
-    @Inject
-    constructor(
-        private val contentResolver: ContentResolver,
-        private val questionAnswerRemoteDataSource: QuestionAnswerRemoteDataSource,
-    ) : QuestionAnswerRepository {
-        override suspend fun getLatestRoomInfo(roomId: Int): Result<RoomModel> =
-            runCatching {
-                questionAnswerRemoteDataSource.getLatestRoomInfo(roomId = roomId).data.toRoomModel()
-            }
+@Inject
+constructor(
+    private val contentResolver: ContentResolver,
+    private val questionAnswerRemoteDataSource: QuestionAnswerRemoteDataSource,
+) : QuestionAnswerRepository {
+    override suspend fun getLatestRoomInfo(roomId: Int): Result<RoomModel> =
+        runCatching {
+            questionAnswerRemoteDataSource.getLatestRoomInfo(roomId = roomId).data.toRoomModel()
+        }
 
-        override suspend fun getQuestion(roomId: Int): Result<CheckQuestionModel> =
-            runCatching {
-                questionAnswerRemoteDataSource.getQuestion(roomId = roomId).data.toCheckQuestionModel()
-            }
+    override suspend fun getQuestion(roomId: Int): Result<CheckQuestionModel> =
+        runCatching {
+            questionAnswerRemoteDataSource.getQuestion(roomId = roomId).data.toCheckQuestionModel()
+        }
 
-        override suspend fun postAnswer(
-            roomId: Int,
-            questionId: Int,
-            image: String?,
-            content: String,
-        ): Result<Unit> =
-            runCatching {
-                questionAnswerRemoteDataSource.postAnswer(roomId = roomId, questionId = questionId, image = if (image != null) ContentUriRequestBody(contentResolver = contentResolver, uri = Uri.parse(image)).toFormData() else null, content = content.toRequestBody("text/plain".toMediaType()))
-            }
+    override suspend fun postAnswer(
+        roomId: Int,
+        questionId: Int,
+        image: String?,
+        content: String,
+    ): Result<String> =
+        runCatching {
+            questionAnswerRemoteDataSource.postAnswer(roomId = roomId, questionId = questionId, image = if (image != null) ContentUriRequestBody(contentResolver = contentResolver, uri = Uri.parse(image)).toFormData() else null, content = content.toRequestBody("text/plain".toMediaType())).code
+        }
 
-        override suspend fun getQuestionAnswer(
-            roomId: Int,
-            date: String?,
-            respondent: Boolean,
-        ): Result<List<QuestionAnswerModel>> =
-            runCatching {
-                questionAnswerRemoteDataSource.getQuestionAnswer(roomId = roomId, date = date, respondent = respondent).data.sets.map { responseGetQuestionAnswerSetDto ->
-                    responseGetQuestionAnswerSetDto.toQuestionAnswerModel()
-                }
+    override suspend fun getQuestionAnswer(
+        roomId: Int,
+        date: String?,
+        respondent: Boolean,
+    ): Result<List<QuestionAnswerModel>> =
+        runCatching {
+            questionAnswerRemoteDataSource.getQuestionAnswer(roomId = roomId, date = date, respondent = respondent).data.sets.map { responseGetQuestionAnswerSetDto ->
+                responseGetQuestionAnswerSetDto.toQuestionAnswerModel()
             }
+        }
 
-        override suspend fun getMonthlyReport(
-            roomId: Int,
-            date: String,
-        ): Result<MonthlyReportModel?> =
-            runCatching {
-                questionAnswerRemoteDataSource.getMonthlyReport(roomId = roomId, date = date).data?.toMonthlyReportModel()
-            }
-    }
+    override suspend fun getMonthlyReport(
+        roomId: Int,
+        date: String,
+    ): Result<MonthlyReportModel?> =
+        runCatching {
+            questionAnswerRemoteDataSource.getMonthlyReport(roomId = roomId, date = date).data?.toMonthlyReportModel()
+        }
+}

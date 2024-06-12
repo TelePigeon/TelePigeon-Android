@@ -88,6 +88,7 @@ class HomeEnterRoomFragment : BindingFragment<FragmentHomeEnterRoomBinding>({ Fr
     private fun showMatchedRoomBottomSheerDialogFragment() {
         BottomSheetWithOneBtnDialogFragment(
             bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.MATCHED_ROOM,
+            clickBtn = { findNavController().popBackStack() }
         ).show(childFragmentManager, MATCHED_ROOM_BOTTOM_SHEET)
     }
 

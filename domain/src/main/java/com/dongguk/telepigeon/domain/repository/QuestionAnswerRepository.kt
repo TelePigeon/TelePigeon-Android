@@ -15,7 +15,7 @@ interface QuestionAnswerRepository {
         questionId: Int,
         image: String?,
         content: String,
-    ): Result<Unit>
+    ): Result<String>
 
     suspend fun getQuestionAnswer(
         roomId: Int,

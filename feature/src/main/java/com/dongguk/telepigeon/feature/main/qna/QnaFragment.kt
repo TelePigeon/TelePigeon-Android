@@ -12,11 +12,14 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.mapper.toQnaType
 import com.dongguk.telepigeon.design.system.type.AppBarType
+import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
 import com.dongguk.telepigeon.design.system.type.QnaType
 import com.dongguk.telepigeon.design.system.type.TelePigeonQnaEditTextType
 import com.dongguk.telepigeon.feature.databinding.FragmentQnaBinding
+import com.dongguk.telepigeon.feature.home.enterroom.HomeEnterRoomFragment
 import com.dongguk.telepigeon.feature.main.main.MainFragment.Companion.QNA_TYPE
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
@@ -120,7 +123,12 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     private fun collectPostAnswerState() {
         qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
             when (postAnswerState) {
-                is UiState.Success -> findNavController().popBackStack()
+                is UiState.Success -> {
+                    when (postAnswerState.data) {
+                        SUCCESS -> findNavController().popBackStack()
+                        CONFLICT -> showOtherPersonLeftRoomBottomSheerDialogFragment()
+                    }
+                }
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -186,5 +194,17 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     qnaViewModel.setImageUri(it.toString())
                 }
             }
+    }
+
+    private fun showOtherPersonLeftRoomBottomSheerDialogFragment() {
+        BottomSheetWithOneBtnDialogFragment(
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.OTHER_PERSON_LEFT_ROOM,
+        ).show(childFragmentManager, OTHER_PERSON_LEFT_ROOM_BOTTOM_SHEET)
+    }
+
+    companion object {
+        private const val OTHER_PERSON_LEFT_ROOM_BOTTOM_SHEET = "otherPersonLeftRoomBottomSheet"
+        private const val SUCCESS = "success"
+        private const val CONFLICT = "conflict"
     }
 }

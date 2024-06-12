@@ -24,6 +24,7 @@
     <string name="dialog_sentence_delete_room">선택한 방을 삭제하시겠습니까?</string>
     <string name="dialog_sentence_copy_code">초대코드가 복사되었습니다.</string>
     <string name="dialog_sentence_delete_worry">선택한 걱정을 삭제하시겠습니까?</string>
+    <string name="dialog_sentence_other_person_left_room">상대방이 방을 나갔어요.</string>
 
     <!-- edit text -->
     <string name="edit_text_code">초대코드</string>
