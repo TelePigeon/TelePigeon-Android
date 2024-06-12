@@ -30,6 +30,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     private val qnaViewModel by viewModels<QnaViewModel>()
     private lateinit var getGalleryLauncher: ActivityResultLauncher<String>
     private lateinit var getPhotoPickerLauncher: ActivityResultLauncher<PickVisualMediaRequest>
+    private lateinit var qnaType: QnaType
 
     override fun onViewCreated(
         view: View,
@@ -41,11 +42,11 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         initPhotoPickerLauncher()
         initLayout()
         setAppBar()
-        requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { setQnaType(it) }
+        requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { qnaType -> this.qnaType = qnaType }
+        setQnaType(qnaType = qnaType)
         collectGetQuestionState()
         collectPostAnswerState()
         collectGetQuestionAnswerState()
-        collectImageUri()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -77,6 +78,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     qnaViewModel.getQuestion()
                     ivQnaPicture.visibility = View.INVISIBLE
                 }
+                collectImageUri()
             }
 
             QnaType.CHECK_ANSWER -> {
@@ -103,7 +105,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
-                        setEtQnaAnswerTextChangedListener(isPenalty)
+                        if (qnaType == QnaType.SURVIVAL) setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
                             qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
