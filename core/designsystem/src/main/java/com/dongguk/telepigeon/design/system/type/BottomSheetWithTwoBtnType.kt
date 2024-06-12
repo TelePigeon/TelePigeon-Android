@@ -30,7 +30,7 @@ enum class BottomSheetWithTwoBtnType(
     DELETE_WORRY(
         interjection = R.string.dialog_interjection_whoops,
         sentence = R.string.dialog_sentence_delete_worry,
-        leftBtnText = R.string.dialog_check,
-        rightBtnText = R.string.dialog_cancellation,
+        leftBtnText = R.string.dialog_cancellation,
+        rightBtnText = R.string.dialog_check,
     ),
 }

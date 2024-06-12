@@ -84,7 +84,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private fun showDeleteWorryBottomSheetDialogFragment(worryId: Int) {
         BottomSheetWithTwoBtnDialogFragment(
             bottomSheetWithTwoBtnType = BottomSheetWithTwoBtnType.DELETE_WORRY,
-            clickLeftBtn = { worrySettingViewModel.deleteWorry(worryId = worryId) },
+            clickRightBtn = { worrySettingViewModel.deleteWorry(worryId = worryId) },
         ).show(childFragmentManager, DELETE_WORRY_BOTTOM_SHEET)
     }
 
