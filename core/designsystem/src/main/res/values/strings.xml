@@ -24,6 +24,7 @@
     <string name="dialog_sentence_delete_room">선택한 방을 삭제하시겠습니까?</string>
     <string name="dialog_sentence_copy_code">초대코드가 복사되었습니다.</string>
     <string name="dialog_sentence_delete_worry">선택한 걱정을 삭제하시겠습니까?</string>
+    <string name="dialog_sentence_other_person_left_room">상대방이 방을 나갔어요.</string>
 
     <!-- edit text -->
     <string name="edit_text_code">초대코드</string>
@@ -69,6 +70,8 @@
     <string name="answer_description_check_answer">상대의 답변을 확인하세요</string>
     <string name="answer_description_done">답변을 완료했어요</string>
     <string name="answer_description_not_yet">아직 답변을 하지 않았어요</string>
+    <string name="answer_description_no_one_else">상대방이 없어요</string>
+    <string name="answer_description_other_person_left_room">상대방이 방을 나갔어요</string>
 
     <!-- home setting -->
     <string name="home_setting_title">앱 전체 설정</string>
@@ -122,7 +125,7 @@
     <!-- keyword setting -->
     <string name="keyword_setting_title">키워드 설정</string>
     <string name="keyword_setting_total_keyword">전체 키워드</string>
-    <string name="keyword_setting_total_keyword_content">선택된 키워드를 변경해보세요. 최대 3개까지 선택할 수 있어요.</string>
+    <string name="keyword_setting_total_keyword_content">선택된 키워드를 변경해보세요.</string>
     <string name="keyword_setting_extra_content">적절한 질문 생성을 위해 추가 정보를 입력해주세요.</string>
     <string name="keyword_setting_user">사용자</string>
 

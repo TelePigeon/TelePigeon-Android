@@ -29,7 +29,7 @@ class QnaViewModel
         private val _getQuestionState = MutableStateFlow<UiState<CheckQuestionModel>>(UiState.Empty)
         val getQuestionState get() = _getQuestionState.asStateFlow()
 
-        private val _postAnswerState = MutableSharedFlow<UiState<Unit>>()
+        private val _postAnswerState = MutableSharedFlow<UiState<String>>()
         val postAnswerState get() = _postAnswerState.asSharedFlow()
 
         private val _getQuestionAnswerState = MutableStateFlow<UiState<List<QuestionAnswerModel>>>(UiState.Empty)
@@ -58,8 +58,8 @@ class QnaViewModel
         ) {
             viewModelScope.launch {
                 _postAnswerState.emit(UiState.Loading)
-                postAnswerUseCase(roomId = roomId, questionId = questionId, image = image, content = content).onSuccess {
-                    _postAnswerState.emit(UiState.Success(Unit))
+                postAnswerUseCase(roomId = roomId, questionId = questionId, image = image, content = content).onSuccess { code ->
+                    _postAnswerState.emit(UiState.Success(code))
                 }.onFailure { exception: Throwable ->
                     _postAnswerState.emit(UiState.Error(exception.message))
                 }

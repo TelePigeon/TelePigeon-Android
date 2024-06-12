@@ -1,7 +1,6 @@
 package com.dongguk.telepigeon.feature.setting.keywordsetting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -25,7 +24,9 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ FragmentKeywordSettingBinding.inflate(it) }) {
     private val keywordSettingViewModel by viewModels<KeywordSettingViewModel>()
-    private val bottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
+    private val genderBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
+    private val ageRangeBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
+    private val relationBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
 
     override fun onViewCreated(
         view: View,
@@ -73,8 +74,6 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                 is UiState.Success -> {
                     findNavController().popBackStack()
                 }
-
-                is UiState.Error -> Log.e("ㅋㅋ", putRoomKeywordExtraState.message.toString())
 
                 else -> Unit
             }
@@ -150,19 +149,19 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun setEtKeywordSettingGenderClickListener(genders: List<String>) {
         binding.etKeywordSettingGender.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = genders, onDialogClosed = ::setEtKeywordSettingGenderText)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.GENDER, selectionList = genders, bottomSheetWithSelectionAdapter = genderBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingGenderText)
         }
     }
 
     private fun setEtKeywordSettingAgeRangeClickListener(ageRanges: List<String>) {
         binding.etKeywordSettingAgeRange.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = ageRanges, onDialogClosed = ::setEtKeywordSettingAgeRangeText)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.AGE_RANGE, selectionList = ageRanges, bottomSheetWithSelectionAdapter = ageRangeBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingAgeRangeText)
         }
     }
 
     private fun setEtKeywordSettingRelationClickListener(relations: List<String>) {
         binding.etKeywordSettingRelation.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = relations, onDialogClosed = ::setEtKeywordSettingRelationText)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.RELATION, selectionList = relations, bottomSheetWithSelectionAdapter = relationBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingRelationText)
         }
     }
 
@@ -183,6 +182,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private fun showSelectionBottomSheetDialogFragment(
         bottomSheetWithSelectionType: BottomSheetWithSelectionType,
         selectionList: List<String>,
+        bottomSheetWithSelectionAdapter: BottomSheetWithSelectionAdapter,
         onDialogClosed: (String) -> Unit = {},
     ) {
         BottomSheetWithSelectionDialogFragment(
@@ -220,7 +220,6 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     }
 
     companion object {
-        const val MAX_SELECTION = 3
         const val SELECTION_BOTTOM_SHEET = "selectionBottomSheet"
     }
 }

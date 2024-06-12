@@ -12,8 +12,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.mapper.toQnaType
 import com.dongguk.telepigeon.design.system.type.AppBarType
+import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
 import com.dongguk.telepigeon.design.system.type.QnaType
 import com.dongguk.telepigeon.design.system.type.TelePigeonQnaEditTextType
 import com.dongguk.telepigeon.feature.databinding.FragmentQnaBinding
@@ -30,6 +32,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     private val qnaViewModel by viewModels<QnaViewModel>()
     private lateinit var getGalleryLauncher: ActivityResultLauncher<String>
     private lateinit var getPhotoPickerLauncher: ActivityResultLauncher<PickVisualMediaRequest>
+    private lateinit var qnaType: QnaType
 
     override fun onViewCreated(
         view: View,
@@ -41,11 +44,11 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         initPhotoPickerLauncher()
         initLayout()
         setAppBar()
-        requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { setQnaType(it) }
+        requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { qnaType -> this.qnaType = qnaType }
+        setQnaType(qnaType = qnaType)
         collectGetQuestionState()
         collectPostAnswerState()
         collectGetQuestionAnswerState()
-        collectImageUri()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -77,6 +80,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     qnaViewModel.getQuestion()
                     ivQnaPicture.visibility = View.INVISIBLE
                 }
+                collectImageUri()
             }
 
             QnaType.CHECK_ANSWER -> {
@@ -103,7 +107,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
-                        setEtQnaAnswerTextChangedListener(isPenalty)
+                        if (qnaType == QnaType.SURVIVAL) setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
                             qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = binding.etQnaAnswer.editText.text.toString())
                         }
@@ -118,7 +122,12 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
     private fun collectPostAnswerState() {
         qnaViewModel.postAnswerState.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { postAnswerState ->
             when (postAnswerState) {
-                is UiState.Success -> findNavController().popBackStack()
+                is UiState.Success -> {
+                    when (postAnswerState.data) {
+                        SUCCESS -> findNavController().popBackStack()
+                        CONFLICT -> showOtherPersonLeftRoomBottomSheerDialogFragment()
+                    }
+                }
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -184,5 +193,17 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     qnaViewModel.setImageUri(it.toString())
                 }
             }
+    }
+
+    private fun showOtherPersonLeftRoomBottomSheerDialogFragment() {
+        BottomSheetWithOneBtnDialogFragment(
+            bottomSheetWithOneBtnType = BottomSheetWithOneBtnType.OTHER_PERSON_LEFT_ROOM,
+        ).show(childFragmentManager, OTHER_PERSON_LEFT_ROOM_BOTTOM_SHEET)
+    }
+
+    companion object {
+        private const val OTHER_PERSON_LEFT_ROOM_BOTTOM_SHEET = "otherPersonLeftRoomBottomSheet"
+        private const val SUCCESS = "success"
+        private const val CONFLICT = "conflict"
     }
 }

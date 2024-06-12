@@ -38,9 +38,9 @@ class QuestionAnswerRepositoryImpl
             questionId: Int,
             image: String?,
             content: String,
-        ): Result<Unit> =
+        ): Result<String> =
             runCatching {
-                questionAnswerRemoteDataSource.postAnswer(roomId = roomId, questionId = questionId, image = if (image != null) ContentUriRequestBody(contentResolver = contentResolver, uri = Uri.parse(image)).toFormData() else null, content = content.toRequestBody("text/plain".toMediaType()))
+                questionAnswerRemoteDataSource.postAnswer(roomId = roomId, questionId = questionId, image = if (image != null) ContentUriRequestBody(contentResolver = contentResolver, uri = Uri.parse(image)).toFormData() else null, content = content.toRequestBody("text/plain".toMediaType())).code
             }
 
         override suspend fun getQuestionAnswer(

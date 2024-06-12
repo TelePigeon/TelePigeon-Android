@@ -104,4 +104,12 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!-- Calendar View -->
+    <style name="Theme.TelePigeon.Calendar" parent="Theme.TelePigeon">
+        <item name="colorAccent">@color/lemon</item>
+    </style>
+
+    <style name="Theme.TelePigeon.Calendar.Text" parent="Theme.TelePigeon">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

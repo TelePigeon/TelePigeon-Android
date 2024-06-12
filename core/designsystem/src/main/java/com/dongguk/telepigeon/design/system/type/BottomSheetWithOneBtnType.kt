@@ -33,4 +33,9 @@ enum class BottomSheetWithOneBtnType(
         sentence = R.string.dialog_sentence_copy_code,
         btnText = R.string.dialog_check,
     ),
+    OTHER_PERSON_LEFT_ROOM(
+        interjection = R.string.dialog_interjection_ooh,
+        sentence = R.string.dialog_sentence_other_person_left_room,
+        btnText = R.string.dialog_check,
+    ),
 }
