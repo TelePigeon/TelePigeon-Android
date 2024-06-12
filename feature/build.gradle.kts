@@ -41,4 +41,7 @@ dependencies {
     // Firebase Messaging
     implementation(libs.google.firebase.messaging)
     implementation(libs.google.firebase.messaging.ktx)
+
+    // Kakao
+    implementation(libs.kakao)
 }
