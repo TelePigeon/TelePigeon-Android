@@ -6,6 +6,9 @@ import com.dongguk.telepigeon.core.design.system.R
 enum class TimeType(
     @StringRes val timeRes: Int,
 ) {
+    TIME_00(
+        timeRes = R.string.time_00,
+    ),
     TIME_01(
         timeRes = R.string.time_1,
     ),
@@ -74,8 +77,5 @@ enum class TimeType(
     ),
     TIME_23(
         timeRes = R.string.time_23,
-    ),
-    TIME_24(
-        timeRes = R.string.time_24,
     ),
 }

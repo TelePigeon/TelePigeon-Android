@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_login_to_notification"
             app:destination="@id/menu_notification" />
+        <action
+            android:id="@+id/action_login_to_main"
+            app:destination="@id/menu_all_navi_main" />
     </fragment>
 
     <fragment

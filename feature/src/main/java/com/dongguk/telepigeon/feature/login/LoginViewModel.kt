@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dongguk.telepigeon.domain.usecase.GetDeviceTokenUseCase
 import com.dongguk.telepigeon.domain.usecase.GetIsLoginUseCase
+import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
 import com.dongguk.telepigeon.domain.usecase.PostLoginUseCase
 import com.dongguk.telepigeon.domain.usecase.SetAccessTokenUseCase
 import com.dongguk.telepigeon.domain.usecase.SetDeviceTokenUseCase
@@ -23,6 +24,7 @@ class LoginViewModel
     @Inject
     constructor(
         private val getIsLoginUseCase: GetIsLoginUseCase,
+        val getRoomIdUseCase: GetRoomIdUseCase,
         private val getDeviceTokenUseCase: GetDeviceTokenUseCase,
         private val setDeviceTokenUseCase: SetDeviceTokenUseCase,
         private val setIsLoginUseCase: SetIsLoginUseCase,
@@ -58,6 +60,8 @@ class LoginViewModel
                 }
             }
         }
+
+        fun isRoomIdSaved(): Boolean = getRoomIdUseCase() != -1
 
         fun startKakaoLogin(postLogin: (String) -> Unit) {
             startKakaoLoginUseCase(postLogin = postLogin)

@@ -38,7 +38,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>({ FragmentLoginBindi
     }
 
     private fun initLayout() {
-        if (loginViewModel.getIsLogin()) {
+        if (loginViewModel.getIsLogin() && !loginViewModel.isRoomIdSaved()) {
             navigateToNotification()
         }
     }

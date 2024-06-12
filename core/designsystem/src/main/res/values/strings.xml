@@ -138,6 +138,7 @@
     <string name="add_worry_content">상대에게 보내주고 싶은 걱정을 입력해주세요</string>
 
     <!-- time -->
+    <string name="time_00">00시</string>
     <string name="time_1">01시</string>
     <string name="time_2">02시</string>
     <string name="time_3">03시</string>
@@ -161,7 +162,6 @@
     <string name="time_21">21시</string>
     <string name="time_22">22시</string>
     <string name="time_23">23시</string>
-    <string name="time_24">24시</string>
     
     <!-- calendar -->
     <string name="calendar_content">원하는 날짜를 선택해 답변을 확인해보세요</string>
