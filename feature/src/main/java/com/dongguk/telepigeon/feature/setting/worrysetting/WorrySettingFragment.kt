@@ -35,6 +35,7 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
         collectGetWorriesState()
         collectDeleteWorryState()
         setBtnWorrySettingAddClickListener()
+        setBtnWorrySettingCompleteClickListener()
     }
 
     private fun initAdapter() {
@@ -78,6 +79,12 @@ class WorrySettingFragment : BindingFragment<FragmentWorrySettingBinding>({ Frag
     private fun setBtnWorrySettingAddClickListener() {
         binding.btnWorrySettingAdd.setOnClickListener {
             navigateToAddWorry()
+        }
+    }
+
+    private fun setBtnWorrySettingCompleteClickListener() {
+        binding.btnWorrySettingComplete.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
