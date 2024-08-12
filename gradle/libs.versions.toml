@@ -2,22 +2,22 @@
 compileSdk = "34"
 minSdk = "28"
 targetSdk = "34"
-versionCode = "2"
+versionCode = "5"
 versionName = "1.0.0"
 
 # Kotlin
 agp = "8.1.4"
 kotlin = "1.9.23"
-kotlin-serialization-json = "1.5.1"
+kotlin-serialization-json = "1.6.3"
 kotlinx-coroutines = "1.7.3"
 
 # AndroidX
 core-ktx = "1.13.1"
 appcompat = "1.7.0"
 constraintlayout = "2.1.4"
-activity = "1.9.0"
-fragment = "1.7.1"
-lifecycle = "2.8.1"
+activity = "1.9.1"
+fragment = "1.8.2"
+lifecycle = "2.8.4"
 security = "1.1.0-alpha06"
 splash = "1.0.1"
 navigation = "2.7.7"
@@ -25,13 +25,13 @@ navigation = "2.7.7"
 # Google
 material = "1.12.0"
 google-services = "4.4.2"
-firebase-crashlytics = "3.0.1"
-firebase-bom = "33.1.0"
+firebase-crashlytics = "3.0.2"
+firebase-bom = "33.1.2"
 
 # Test
 junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
+androidx-test-ext-junit = "1.2.1"
+espresso-core = "3.6.1"
 
 # Dagger-Hilt
 dagger-hilt = "2.51"
@@ -43,9 +43,9 @@ timber = "5.0.1"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofit-kotlin-serialization-converter = "1.0.0"
-activityVersion = "1.9.0"
+activityVersion = "1.9.1"
 sentry = "4.1.1"
-kakao = "2.15.0"
+kakao = "2.20.3"
 inject = "1"
 firebaseMessagingKtx = "24.0.0"
 
