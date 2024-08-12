@@ -11,4 +11,6 @@ data class ResponseGetRoomExtraDto(
     val ageRange: String,
     @SerialName("relation")
     val relation: String,
+    @SerialName("easyMode")
+    val eastMode: Boolean,
 )
