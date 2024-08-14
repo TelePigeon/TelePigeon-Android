@@ -38,6 +38,9 @@ class QnaViewModel
         private val _imageUri = MutableStateFlow<String?>(null)
         val imageUri get() = _imageUri.asStateFlow()
 
+        private val _easyModeAnswer = MutableStateFlow<String?>(null)
+        val easyModeAnswer = _easyModeAnswer.asStateFlow()
+
         private val roomId = getRoomIdUseCase()
 
         fun getQuestion() {
@@ -79,5 +82,9 @@ class QnaViewModel
 
         fun setImageUri(uri: String?) {
             _imageUri.value = uri
+        }
+
+        fun setEasyModeAnswer(easyModeAnswer: String) {
+            _easyModeAnswer.value = easyModeAnswer
         }
     }
