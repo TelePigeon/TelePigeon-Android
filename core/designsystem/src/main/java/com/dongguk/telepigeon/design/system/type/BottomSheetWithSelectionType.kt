@@ -19,4 +19,8 @@ enum class BottomSheetWithSelectionType(
         title = R.string.setting_key_word_extra_relation,
         btnText = R.string.button_apply,
     ),
+    EASY_MODE(
+        title = R.string.setting_key_word_extra_easy_mode,
+        btnText = R.string.button_apply,
+    ),
 }
