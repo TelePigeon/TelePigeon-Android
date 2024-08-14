@@ -174,6 +174,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                         gender = binding.etKeywordSettingGender.editText.text.toString(),
                         ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
                         relation = binding.etKeywordSettingRelation.editText.text.toString(),
+                        easyMode = false
                     ),
             )
         }

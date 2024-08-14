@@ -9,4 +9,5 @@ fun RoomKeywordsExtraModel.toRequestPutRoomKeywordsExtraDto() =
         gender = this.gender,
         ageRange = this.ageRange,
         relation = this.relation,
+        easyMode = this.easyMode
     )
