@@ -166,13 +166,13 @@
                     android:id="@+id/tv_setting_key_word_extra_gender_content"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="37dp"
                     android:layout_marginEnd="18dp"
                     android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
                     android:textColor="@color/g_10"
                     app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word_extra_gender"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_setting_key_word_extra_gender"
+                    app:layout_constraintStart_toEndOf="@id/tv_setting_key_word_easy_mode"
                     app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_extra_gender"
                     tools:text="남성" />
 
@@ -213,9 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:layout_marginBottom="17dp"
                     android:src="@drawable/ic_setting_relationship_20"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/iv_setting_key_word_age_group"
                     app:layout_constraintTop_toBottomOf="@id/iv_setting_key_word_age_group" />
 
@@ -241,6 +239,40 @@
                     app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_age_group_content"
                     app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_relationship"
                     tools:text="자식" />
+
+                <ImageView
+                    android:id="@+id/iv_setting_key_word_easy_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="17dp"
+                    android:src="@drawable/ic_setting_easy_mode_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/iv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toBottomOf="@id/iv_setting_key_word_relationship" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_easy_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_key_word_extra_easy_mode"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Sub.Semi.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_setting_key_word_easy_mode"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_extra_gender"
+                    app:layout_constraintTop_toTopOf="@id/iv_setting_key_word_easy_mode" />
+
+                <TextView
+                    android:id="@+id/tv_setting_key_word_age_easy_mode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TelePigeon.Body.Med.16"
+                    android:textColor="@color/g_10"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_setting_key_word_easy_mode"
+                    app:layout_constraintEnd_toEndOf="@id/tv_setting_key_word_extra_gender_content"
+                    app:layout_constraintStart_toStartOf="@id/tv_setting_key_word_relationship_content"
+                    app:layout_constraintTop_toTopOf="@id/tv_setting_key_word_easy_mode"
+                    tools:text="설정 안함" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
