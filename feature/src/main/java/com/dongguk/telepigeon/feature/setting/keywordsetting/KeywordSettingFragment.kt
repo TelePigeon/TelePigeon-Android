@@ -10,6 +10,7 @@ import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionAd
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
+import com.dongguk.telepigeon.design.system.type.EasyModeType.Companion.getValueByTitle
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
 import com.dongguk.telepigeon.feature.setting.setting.SettingFragment.Companion.KEYWORDS
@@ -169,13 +170,15 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         binding.btnKeywordSettingComplete.setOnClickListener {
             keywordSettingViewModel.putRoomKeywordExtra(
                 roomKeywordsExtraModel =
-                    RoomKeywordsExtraModel(
-                        keywords = getKeywords(),
-                        gender = binding.etKeywordSettingGender.editText.text.toString(),
-                        ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
-                        relation = binding.etKeywordSettingRelation.editText.text.toString(),
-                        easyMode = false
-                    ),
+                    with(binding) {
+                        RoomKeywordsExtraModel(
+                            keywords = getKeywords(),
+                            gender = etKeywordSettingGender.editText.text.toString(),
+                            ageRange = etKeywordSettingAgeRange.editText.text.toString(),
+                            relation = etKeywordSettingRelation.editText.text.toString(),
+                            easyMode = requireContext().getValueByTitle(etKeywordSettingEasyMode.editText.text.toString()),
+                        )
+                    },
             )
         }
     }
