@@ -5,5 +5,5 @@ data class RoomKeywordsExtraModel(
     val gender: String,
     val ageRange: String,
     val relation: String,
-    val easyMode: Boolean
+    val easyMode: Boolean,
 )

@@ -14,5 +14,5 @@ data class RequestPutRoomKeywordsExtraDto(
     @SerialName("relation")
     val relation: String,
     @SerialName("easyMode")
-    val easyMode: Boolean
+    val easyMode: Boolean,
 )
