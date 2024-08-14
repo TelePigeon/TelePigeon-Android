@@ -1,14 +1,14 @@
 package com.dongguk.telepigeon.domain.repository
 
-import com.dongguk.telepigeon.domain.model.CheckQuestionModel
 import com.dongguk.telepigeon.domain.model.MonthlyReportModel
 import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
+import com.dongguk.telepigeon.domain.model.QuestionModel
 import com.dongguk.telepigeon.domain.model.RoomModel
 
 interface QuestionAnswerRepository {
     suspend fun getLatestRoomInfo(roomId: Int): Result<RoomModel>
 
-    suspend fun getQuestion(roomId: Int): Result<CheckQuestionModel>
+    suspend fun getQuestion(roomId: Int): Result<QuestionModel>
 
     suspend fun postAnswer(
         roomId: Int,

@@ -8,9 +8,9 @@ import com.dongguk.telepigeon.data.mapper.toQuestionAnswerModel
 import com.dongguk.telepigeon.data.mapper.toRoomModel
 import com.dongguk.telepigeon.data.remote.datasource.QuestionAnswerRemoteDataSource
 import com.dongguk.telepigeon.data.util.ContentUriRequestBody
-import com.dongguk.telepigeon.domain.model.CheckQuestionModel
 import com.dongguk.telepigeon.domain.model.MonthlyReportModel
 import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
+import com.dongguk.telepigeon.domain.model.QuestionModel
 import com.dongguk.telepigeon.domain.model.RoomModel
 import com.dongguk.telepigeon.domain.repository.QuestionAnswerRepository
 import okhttp3.MediaType.Companion.toMediaType
@@ -28,7 +28,7 @@ class QuestionAnswerRepositoryImpl
                 questionAnswerRemoteDataSource.getLatestRoomInfo(roomId = roomId).data.toRoomModel()
             }
 
-        override suspend fun getQuestion(roomId: Int): Result<CheckQuestionModel> =
+        override suspend fun getQuestion(roomId: Int): Result<QuestionModel> =
             runCatching {
                 questionAnswerRemoteDataSource.getQuestion(roomId = roomId).data.toCheckQuestionModel()
             }

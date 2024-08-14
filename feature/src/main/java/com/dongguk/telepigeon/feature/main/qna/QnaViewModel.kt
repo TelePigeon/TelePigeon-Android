@@ -2,8 +2,8 @@ package com.dongguk.telepigeon.feature.main.qna
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dongguk.telepigeon.domain.model.CheckQuestionModel
 import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
+import com.dongguk.telepigeon.domain.model.QuestionModel
 import com.dongguk.telepigeon.domain.usecase.GetQuestionAnswerUseCase
 import com.dongguk.telepigeon.domain.usecase.GetQuestionUseCase
 import com.dongguk.telepigeon.domain.usecase.GetRoomIdUseCase
@@ -26,7 +26,7 @@ class QnaViewModel
         private val postAnswerUseCase: PostAnswerUseCase,
         private val getQuestionAnswerUseCase: GetQuestionAnswerUseCase,
     ) : ViewModel() {
-        private val _getQuestionState = MutableStateFlow<UiState<CheckQuestionModel>>(UiState.Empty)
+        private val _getQuestionState = MutableStateFlow<UiState<QuestionModel>>(UiState.Empty)
         val getQuestionState get() = _getQuestionState.asStateFlow()
 
         private val _postAnswerState = MutableSharedFlow<UiState<String>>()

@@ -11,4 +11,6 @@ data class ResponseGetQuestionDto(
     val content: String,
     @SerialName("isPenalty")
     val isPenalty: Boolean,
+    @SerialName("easyMode")
+    val easyMode: Boolean,
 )
