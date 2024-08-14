@@ -98,6 +98,8 @@
     <string name="qna_title_check_answer">상대의 답변 확인하기</string>
     <string name="qna_description_survival">아래 질문에 답변을 작성해주세요</string>
     <string name="qna_description_check_answer">상대의 생존신고를 확인해보세요</string>
+    <string name="qna_yes">네</string>
+    <string name="qna_no">아니요</string>
     <string name="qna_btn_text_survival">전송하기</string>
     <string name="qna_btn_text_check_answer">확인하기</string>
     <string name="qna_answer_hint">답변 입력하기</string>
