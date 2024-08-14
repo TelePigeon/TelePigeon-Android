@@ -11,6 +11,7 @@ import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionDi
 import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
 import com.dongguk.telepigeon.design.system.type.EasyModeType
+import com.dongguk.telepigeon.design.system.type.EasyModeType.Companion.getTitleByValue
 import com.dongguk.telepigeon.design.system.type.EasyModeType.entries
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
@@ -69,6 +70,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             etKeywordSettingGender.editText.isEnabled = false
             etKeywordSettingAgeRange.editText.isEnabled = false
             etKeywordSettingRelation.editText.isEnabled = false
+            etKeywordSettingEasyMode.editText.isEnabled = false
         }
     }
 
@@ -92,6 +94,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                         binding.etKeywordSettingGender.editText.setText(gender)
                         binding.etKeywordSettingAgeRange.editText.setText(ageRange)
                         binding.etKeywordSettingRelation.editText.setText(relation)
+                        binding.etKeywordSettingEasyMode.editText.setText(getTitleByValue(easyMode))
                     }
                 }
 
@@ -171,7 +174,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun setEtKeywordSettingEasyModeClickListener() {
         binding.etKeywordSettingEasyMode.setOnClickListener {
-            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.EASY_MODE, selectionList = EasyModeType.entries.map { getString(it.title) }, bottomSheetWithSelectionAdapter = relationBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingEasyModeText)
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.EASY_MODE, selectionList = EasyModeType.entries.map { getString(it.title) }, bottomSheetWithSelectionAdapter = easyModeBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingEasyModeText)
         }
     }
 
