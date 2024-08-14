@@ -114,6 +114,9 @@
     <string name="setting_key_word_extra_gender">성별</string>
     <string name="setting_key_word_extra_age_range">연령대</string>
     <string name="setting_key_word_extra_relation">관계</string>
+    <string name="setting_key_word_extra_easy_mode">쉬운 사용 모드</string>
+    <string name="setting_key_word_extra_easy_mode_true">설정</string>
+    <string name="setting_key_word_extra_easy_mode_false">설정 안함</string>
     <string name="setting_modify">수정하기</string>
     <string name="setting_worry_setting_title">걱정 설정</string>
     <string name="setting_setting">설정하기</string>
