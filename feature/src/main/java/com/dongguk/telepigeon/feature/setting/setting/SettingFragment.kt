@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithOneBtnType
+import com.dongguk.telepigeon.design.system.type.EasyModeType.Companion.getTitleByValue
 import com.dongguk.telepigeon.feature.R
 import com.dongguk.telepigeon.feature.databinding.FragmentSettingBinding
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
@@ -96,6 +97,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>({ FragmentSettin
                         binding.tvSettingKeyWordExtraGenderContent.text = gender
                         binding.tvSettingKeyWordAgeGroupContent.text = ageRange
                         binding.tvSettingKeyWordRelationshipContent.text = relation
+                        binding.tvSettingKeyWordAgeEasyMode.text = getString(getTitleByValue(easyMode))
                     }
                 }
 

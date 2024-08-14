@@ -10,6 +10,9 @@ import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionAd
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithSelectionDialogFragment
 import com.dongguk.telepigeon.design.system.type.AppBarType
 import com.dongguk.telepigeon.design.system.type.BottomSheetWithSelectionType
+import com.dongguk.telepigeon.design.system.type.EasyModeType
+import com.dongguk.telepigeon.design.system.type.EasyModeType.Companion.getTitleByValue
+import com.dongguk.telepigeon.design.system.type.EasyModeType.entries
 import com.dongguk.telepigeon.domain.model.RoomKeywordsExtraModel
 import com.dongguk.telepigeon.feature.databinding.FragmentKeywordSettingBinding
 import com.dongguk.telepigeon.feature.setting.setting.SettingFragment.Companion.KEYWORDS
@@ -27,6 +30,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
     private val genderBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
     private val ageRangeBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
     private val relationBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
+    private val easyModeBottomSheetWithSelectionAdapter = BottomSheetWithSelectionAdapter()
 
     override fun onViewCreated(
         view: View,
@@ -48,6 +52,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         collectGetGendersState()
         collectGetAgeRangesState()
         collectGetRelationsState()
+        setEtKeywordSettingEasyModeClickListener()
         setBtnKeywordSettingCompleteClickListener()
     }
 
@@ -65,6 +70,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
             etKeywordSettingGender.editText.isEnabled = false
             etKeywordSettingAgeRange.editText.isEnabled = false
             etKeywordSettingRelation.editText.isEnabled = false
+            etKeywordSettingEasyMode.editText.isEnabled = false
         }
     }
 
@@ -88,6 +94,7 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
                         binding.etKeywordSettingGender.editText.setText(gender)
                         binding.etKeywordSettingAgeRange.editText.setText(ageRange)
                         binding.etKeywordSettingRelation.editText.setText(relation)
+                        binding.etKeywordSettingEasyMode.editText.setText(getTitleByValue(easyMode))
                     }
                 }
 
@@ -165,16 +172,25 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
         }
     }
 
+    private fun setEtKeywordSettingEasyModeClickListener() {
+        binding.etKeywordSettingEasyMode.setOnClickListener {
+            showSelectionBottomSheetDialogFragment(bottomSheetWithSelectionType = BottomSheetWithSelectionType.EASY_MODE, selectionList = EasyModeType.entries.map { getString(it.title) }, bottomSheetWithSelectionAdapter = easyModeBottomSheetWithSelectionAdapter, onDialogClosed = ::setEtKeywordSettingEasyModeText)
+        }
+    }
+
     private fun setBtnKeywordSettingCompleteClickListener() {
         binding.btnKeywordSettingComplete.setOnClickListener {
             keywordSettingViewModel.putRoomKeywordExtra(
                 roomKeywordsExtraModel =
-                    RoomKeywordsExtraModel(
-                        keywords = getKeywords(),
-                        gender = binding.etKeywordSettingGender.editText.text.toString(),
-                        ageRange = binding.etKeywordSettingAgeRange.editText.text.toString(),
-                        relation = binding.etKeywordSettingRelation.editText.text.toString(),
-                    ),
+                    with(binding) {
+                        RoomKeywordsExtraModel(
+                            keywords = getKeywords(),
+                            gender = etKeywordSettingGender.editText.text.toString(),
+                            ageRange = etKeywordSettingAgeRange.editText.text.toString(),
+                            relation = etKeywordSettingRelation.editText.text.toString(),
+                            easyMode = entries.first { getString(it.title) == etKeywordSettingEasyMode.editText.text.toString() }.value,
+                        )
+                    },
             )
         }
     }
@@ -217,6 +233,10 @@ class KeywordSettingFragment : BindingFragment<FragmentKeywordSettingBinding>({ 
 
     private fun setEtKeywordSettingRelationText(relation: String) {
         binding.etKeywordSettingRelation.editText.setText(relation)
+    }
+
+    private fun setEtKeywordSettingEasyModeText(easyMode: String) {
+        binding.etKeywordSettingEasyMode.editText.setText(easyMode)
     }
 
     companion object {

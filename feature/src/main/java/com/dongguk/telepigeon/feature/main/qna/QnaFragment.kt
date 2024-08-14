@@ -12,6 +12,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.dongguk.telepigeon.core.design.system.R
 import com.dongguk.telepigeon.design.system.component.BottomSheetWithOneBtnDialogFragment
 import com.dongguk.telepigeon.design.system.mapper.toQnaType
 import com.dongguk.telepigeon.design.system.type.AppBarType
@@ -21,8 +22,10 @@ import com.dongguk.telepigeon.design.system.type.TelePigeonQnaEditTextType
 import com.dongguk.telepigeon.feature.databinding.FragmentQnaBinding
 import com.dongguk.telepigeon.feature.main.main.MainFragment.Companion.QNA_TYPE
 import com.dongguk.telpigeon.core.ui.base.BindingFragment
+import com.dongguk.telpigeon.core.ui.util.context.colorOf
 import com.dongguk.telpigeon.core.ui.util.fragment.stringOf
 import com.dongguk.telpigeon.core.ui.util.view.UiState
+import com.dongguk.telpigeon.core.ui.util.view.setBackgroundTint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -49,6 +52,9 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         collectGetQuestionState()
         collectPostAnswerState()
         collectGetQuestionAnswerState()
+        collectEasyModeAnswer()
+        setTvQnaEasyModeAnswerYesClickListener()
+        setTvQnaEasyModeAnswerNoClickListener()
         setLayoutQnaAddPictureClickListener()
     }
 
@@ -107,9 +113,12 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaQuestion.editText.setText(content)
                         binding.ivQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaWarning.visibility = if (isPenalty) View.VISIBLE else View.INVISIBLE
+                        binding.etQnaAnswer.visibility = if (easyMode) View.INVISIBLE else View.VISIBLE
+                        binding.tvQnaEasyModeAnswerYes.visibility = if (easyMode) View.VISIBLE else View.INVISIBLE
+                        binding.tvQnaEasyModeAnswerNo.visibility = if (easyMode) View.VISIBLE else View.INVISIBLE
                         if (qnaType == QnaType.SURVIVAL) setEtQnaAnswerTextChangedListener(isPenalty)
                         binding.btnQna.setOnClickListener {
-                            qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = binding.etQnaAnswer.editText.text.toString())
+                            qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = if (easyMode) qnaViewModel.easyModeAnswer.value.toString() else binding.etQnaAnswer.editText.text.toString())
                         }
                     }
                 }
@@ -128,6 +137,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         CONFLICT -> showOtherPersonLeftRoomBottomSheerDialogFragment()
                     }
                 }
+
                 else -> Unit
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -154,9 +164,55 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
             with(binding) {
                 ivQnaPicture.visibility = if (uri == null) View.GONE else View.VISIBLE
                 if (uri != null) ivQnaPicture.load(Uri.parse(uri))
-                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() && uri != null
+                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() || !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() && uri != null
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectEasyModeAnswer() {
+        qnaViewModel.easyModeAnswer.flowWithLifecycle(viewLifecycleOwner.lifecycle).onEach { easyModeAnswer ->
+            when (easyModeAnswer) {
+                getString(R.string.qna_yes) ->
+                    with(binding) {
+                        tvQnaEasyModeAnswerYes.setTextColor(requireContext().colorOf(R.color.g_01))
+                        tvQnaEasyModeAnswerYes.setBackgroundTint(R.color.monstera)
+                        tvQnaEasyModeAnswerNo.setTextColor(requireContext().colorOf(R.color.g_10))
+                        tvQnaEasyModeAnswerNo.setBackgroundTint(R.color.marble)
+                    }
+
+                getString(R.string.qna_no) ->
+                    with(binding) {
+                        tvQnaEasyModeAnswerYes.setTextColor(requireContext().colorOf(R.color.g_10))
+                        tvQnaEasyModeAnswerYes.setBackgroundTint(R.color.marble)
+                        tvQnaEasyModeAnswerNo.setTextColor(requireContext().colorOf(R.color.g_01))
+                        tvQnaEasyModeAnswerNo.setBackgroundTint(R.color.monstera)
+                    }
+
+                else ->
+                    with(binding) {
+                        tvQnaEasyModeAnswerYes.setTextColor(requireContext().colorOf(R.color.g_10))
+                        tvQnaEasyModeAnswerYes.setBackgroundTint(R.color.marble)
+                        tvQnaEasyModeAnswerNo.setTextColor(requireContext().colorOf(R.color.g_10))
+                        tvQnaEasyModeAnswerNo.setBackgroundTint(R.color.marble)
+                    }
+            }
+
+            with(binding) {
+                btnQna.isEnabled = etQnaAnswer.editText.text.isNotEmpty() || !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() && qnaViewModel.imageUri.value != null
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun setTvQnaEasyModeAnswerYesClickListener() {
+        binding.tvQnaEasyModeAnswerYes.setOnClickListener {
+            qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerYes.text.toString())
+        }
+    }
+
+    private fun setTvQnaEasyModeAnswerNoClickListener() {
+        binding.tvQnaEasyModeAnswerNo.setOnClickListener {
+            qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerNo.text.toString())
+        }
     }
 
     private fun setLayoutQnaAddPictureClickListener() {

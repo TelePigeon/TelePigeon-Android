@@ -8,4 +8,5 @@ fun ResponseGetRoomExtraDto.toRoomKeywordExtraModel() =
         gender = this.gender,
         ageRange = this.ageRange,
         relation = this.relation,
+        easyMode = this.eastMode,
     )

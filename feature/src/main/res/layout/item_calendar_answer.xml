@@ -17,6 +17,7 @@
         android:background="@drawable/shape_border_radius_15"
         android:backgroundTint="@color/key_lime"
         android:clipToOutline="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_character"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
