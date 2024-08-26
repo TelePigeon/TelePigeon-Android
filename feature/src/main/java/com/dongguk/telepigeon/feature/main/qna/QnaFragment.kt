@@ -49,13 +49,6 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         setAppBar()
         requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { qnaType -> this.qnaType = qnaType }
         setQnaType(qnaType = qnaType)
-        collectGetQuestionState()
-        collectPostAnswerState()
-        collectGetQuestionAnswerState()
-        collectEasyModeAnswer()
-        setTvQnaEasyModeAnswerYesClickListener()
-        setTvQnaEasyModeAnswerNoClickListener()
-        setLayoutQnaAddPictureClickListener()
     }
 
     private fun initLayout() {
@@ -87,6 +80,10 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     ivQnaPicture.visibility = View.INVISIBLE
                 }
                 collectImageUri()
+                collectGetQuestionState()
+                collectPostAnswerState()
+                collectEasyModeAnswer()
+                setLayoutQnaAddPictureClickListener()
             }
 
             QnaType.CHECK_ANSWER -> {
@@ -101,6 +98,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         findNavController().popBackStack()
                     }
                 }
+                collectGetQuestionAnswerState()
             }
         }
     }
@@ -116,7 +114,11 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         binding.etQnaAnswer.visibility = if (easyMode) View.INVISIBLE else View.VISIBLE
                         binding.tvQnaEasyModeAnswerYes.visibility = if (easyMode) View.VISIBLE else View.INVISIBLE
                         binding.tvQnaEasyModeAnswerNo.visibility = if (easyMode) View.VISIBLE else View.INVISIBLE
-                        if (qnaType == QnaType.SURVIVAL) setEtQnaAnswerTextChangedListener(isPenalty)
+                        if (qnaType == QnaType.SURVIVAL) {
+                            setTvQnaEasyModeAnswerYesClickListener(isPenalty)
+                            setTvQnaEasyModeAnswerNoClickListener(isPenalty)
+                            setEtQnaAnswerTextChangedListener(isPenalty)
+                        }
                         binding.btnQna.setOnClickListener {
                             qnaViewModel.postAnswer(questionId = id, image = if (qnaViewModel.imageUri.value == null) null else qnaViewModel.imageUri.value.toString(), content = if (easyMode) qnaViewModel.easyModeAnswer.value.toString() else binding.etQnaAnswer.editText.text.toString())
                         }
@@ -203,15 +205,17 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun setTvQnaEasyModeAnswerYesClickListener() {
+    private fun setTvQnaEasyModeAnswerYesClickListener(isPenalty: Boolean) {
         binding.tvQnaEasyModeAnswerYes.setOnClickListener {
             qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerYes.text.toString())
+            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() else !qnaViewModel.easyModeAnswer.value.isNullOrEmpty()
         }
     }
 
-    private fun setTvQnaEasyModeAnswerNoClickListener() {
+    private fun setTvQnaEasyModeAnswerNoClickListener(isPenalty: Boolean) {
         binding.tvQnaEasyModeAnswerNo.setOnClickListener {
             qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerNo.text.toString())
+            binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() else !qnaViewModel.easyModeAnswer.value.isNullOrEmpty()
         }
     }
 
