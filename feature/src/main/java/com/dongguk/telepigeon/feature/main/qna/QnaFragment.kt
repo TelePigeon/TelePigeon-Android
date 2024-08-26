@@ -209,7 +209,6 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         binding.tvQnaEasyModeAnswerYes.setOnClickListener {
             qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerYes.text.toString())
             binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() else !qnaViewModel.easyModeAnswer.value.isNullOrEmpty()
-
         }
     }
 
@@ -217,7 +216,6 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         binding.tvQnaEasyModeAnswerNo.setOnClickListener {
             qnaViewModel.setEasyModeAnswer(binding.tvQnaEasyModeAnswerNo.text.toString())
             binding.btnQna.isEnabled = if (isPenalty) qnaViewModel.imageUri.value != null && !qnaViewModel.easyModeAnswer.value.isNullOrEmpty() else !qnaViewModel.easyModeAnswer.value.isNullOrEmpty()
-
         }
     }
 

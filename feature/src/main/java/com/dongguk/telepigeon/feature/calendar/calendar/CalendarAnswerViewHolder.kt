@@ -7,7 +7,7 @@ import com.dongguk.telepigeon.domain.model.QuestionAnswerModel
 import com.dongguk.telepigeon.feature.databinding.ItemCalendarAnswerBinding
 
 class CalendarAnswerViewHolder(
-    private val binding: ItemCalendarAnswerBinding
+    private val binding: ItemCalendarAnswerBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(questionAnswerModel: QuestionAnswerModel) {
         with(binding) {
