@@ -49,11 +49,6 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
         setAppBar()
         requireArguments().getString(QNA_TYPE)?.toQnaType()?.let { qnaType -> this.qnaType = qnaType }
         setQnaType(qnaType = qnaType)
-        collectGetQuestionState()
-        collectPostAnswerState()
-        collectGetQuestionAnswerState()
-        collectEasyModeAnswer()
-        setLayoutQnaAddPictureClickListener()
     }
 
     private fun initLayout() {
@@ -85,6 +80,10 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                     ivQnaPicture.visibility = View.INVISIBLE
                 }
                 collectImageUri()
+                collectGetQuestionState()
+                collectPostAnswerState()
+                collectEasyModeAnswer()
+                setLayoutQnaAddPictureClickListener()
             }
 
             QnaType.CHECK_ANSWER -> {
@@ -99,6 +98,7 @@ class QnaFragment : BindingFragment<FragmentQnaBinding>({ FragmentQnaBinding.inf
                         findNavController().popBackStack()
                     }
                 }
+                collectGetQuestionAnswerState()
             }
         }
     }
