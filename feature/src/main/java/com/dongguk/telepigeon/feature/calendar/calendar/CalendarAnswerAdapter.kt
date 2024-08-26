@@ -16,7 +16,10 @@ class CalendarAnswerAdapter : ListAdapter<QuestionAnswerModel, CalendarAnswerVie
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): CalendarAnswerViewHolder = CalendarAnswerViewHolder(binding = ItemCalendarAnswerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ): CalendarAnswerViewHolder = CalendarAnswerViewHolder(
+        binding = ItemCalendarAnswerBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        context = parent.context
+    )
 
     override fun onBindViewHolder(
         holder: CalendarAnswerViewHolder,
