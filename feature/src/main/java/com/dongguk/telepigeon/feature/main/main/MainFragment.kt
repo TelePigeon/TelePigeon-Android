@@ -75,7 +75,8 @@ class MainFragment : BindingFragment<FragmentMainBinding>({ FragmentMainBinding.
                             else -> MainType.WAITING
                         }?.let { mainType ->
                             days?.let { days ->
-                                setHomeType(mainType = mainType, number = days) }
+                                setHomeType(mainType = mainType, number = days)
+                            }
                         }
                     }
                 }
